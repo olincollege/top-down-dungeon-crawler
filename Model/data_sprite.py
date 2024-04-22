@@ -4,13 +4,15 @@ inherit from. it will contain base attributes that
 apply to all the classes in the other files
 """
 import pygame
+
+
 class DataSprite(pygame.sprite.Sprite):
     """
     DataSprite contains the base info that all of
     the other classes inherit from.
     """
 
-    def __init__(self, name, coordinates, room, image=pygame.Surface([32,32])):
+    def __init__(self, name, coordinates, room, image=pygame.Surface([32, 32])):
         """
         Initializes the DataSprite object
 
@@ -26,8 +28,43 @@ class DataSprite(pygame.sprite.Sprite):
         self._image = image
         self._room = room
         self._rect = self.image.get_rect()
-    
-    #Add Getters 
-    #setCoords do nothing, gets overriden
-    #setRoom do nothing, gets overriden
-    
+
+    @property
+    def get_name(self):
+        """
+        returns name of the object
+        """
+        return self._name
+
+    @property
+    def get_coordinates(self):
+        """
+        returns coordinates of the object
+        """
+        return self._coordinates
+
+    @property
+    def get_image(self):
+        """
+        returns image of the object
+        """
+        return self._image
+
+    @property
+    def get_room(self):
+        """
+        returns room of the object
+        """
+        return self._room
+
+    def set_coordinates(self, coords):
+        """
+        setter method for coordinates, does nothing
+        -- to be overriden
+        """
+
+    def set_room(self, room_name):
+        """
+        setter method for room, does nothing
+        -- to be overriden
+        """
