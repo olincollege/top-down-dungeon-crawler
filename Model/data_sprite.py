@@ -3,6 +3,7 @@ data_sprite.py is the file that most of our classes
 inherit from. it will contain base attributes that
 apply to all the classes in the other files
 """
+
 import pygame
 
 
@@ -57,11 +58,16 @@ class DataSprite(pygame.sprite.Sprite):
         """
         return self._room
 
-    def set_coordinates(self, coords):
+    def set_coordinates(self, new_x, new_y):
         """
-        setter method for coordinates, does nothing
-        -- to be overriden
+        Setter method for coordinates
+
+        Args:
+            new_x: an int representing the new x-coordinate
+            new_y: an int representing the new y-coordinate
+
         """
+        self._coordinates = (new_x, new_y)
 
     def set_room(self, room_name):
         """
