@@ -21,7 +21,7 @@ class Character(DataSprite):
         coordinates,
         room,
         image,
-    ):
+    ): #pylint: disable=too-many-arguments
         """
         Initializes a new character
 

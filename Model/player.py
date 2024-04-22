@@ -4,12 +4,10 @@ player.py lays out all the information for a player
 
 from character import Character
 
-
 class Player(Character):
     """
     Creates a player object, inherits from Character
     """
-
     def __init__(
         self,
         inventory,
@@ -48,7 +46,7 @@ class Player(Character):
             room,
             image,
         )
-
+    
     def equip(self, item_num):
         """
         changes what item is currently in the hand of the player
@@ -58,7 +56,19 @@ class Player(Character):
                 their inventory into their hand
         """
         self.set_current_item(self._inventory[item_num])
+    
+    def pick_up(self, item):
+        """
+        takes item to be picked up and places it in the inventory
 
+        Args:
+            item: item to be picked up
+        """
+        if len(self._inventory) == 9:
+            print("Inventory Full!") #maybe change this later depending on how we print out messages like this
+        else:
+            self._inventory.append(item)
+    
     def list_inventory(self):
         """
         Returns a string of the current items in the inventory
@@ -71,5 +81,5 @@ class Player(Character):
 
         for item in self._inventory:
             inv_string += f"{item.name}\n"
-
+        
         return inv_string
