@@ -56,7 +56,7 @@ class Npc(Character):
             coordinates,
             room,
             image,
-        )
+        )#pylint: disable=too-many-arguments
 
     @property
     def get_voice_line(self):
