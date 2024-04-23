@@ -1,4 +1,8 @@
 import pygame
+import Model
+import Model.player
+import Model.character
+from controller import TopDownController
 
 
 class Mover:
@@ -7,7 +11,6 @@ class Mover:
         self.x = init_x
         self.y = init_y
 
-    @property
     def get_x(self):
         return self.x
 
@@ -58,9 +61,16 @@ pygame.init()
 WIDTH = 1000
 HEIGHT = 800
 
-user = Mover(0, 0)
+user = Model.character.Character(
+    ["test.jpeg"], 0, None, "coco", (0, 0), "basement", ["test.jpeg"]
+)
+
+tdc = TopDownController()
 
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
+imp = pygame.image.load("test.jpeg").convert()
+screen.blit(imp, (0, 0))
+pygame.display.flip()
 
 RUN = True
 
@@ -70,39 +80,28 @@ while RUN:
         if event.type == pygame.QUIT:
             RUN = False
 
-        # if event.type == pygame.KEYDOWN:
-        #     if event.key == pygame.K_LEFT:
-        #         user.move_left()
-        #     if event.key == pygame.K_RIGHT:
-        #         user.move_right()
-        #     if event.key == pygame.K_UP:
-        #         user.move_up()
-        #     if event.key == pygame.K_DOWN:
-        #         user.move_down()
-        #     if event.key == pygame.K_1:
-        #         user.move_diagpos()
-        #     if event.key == pygame.K_2:
-        #         user.move_diagneg()
         if event.type == pygame.KEYDOWN:
             match (event.key):
                 case pygame.K_LEFT:
-                    user.move_left()
+                    tdc.move_left(user)
+                    screen.blit(imp, user.get_coordinates())
+                    pygame.display.flip()
                     print("LEFT")
                 case pygame.K_RIGHT:
-                    user.move_right()
+                    tdc.move_right(user)
+                    screen.blit(imp, user.get_coordinates())
+                    pygame.display.flip()
                     print("RIGHT")
                 case pygame.K_UP:
-                    user.move_up()
+                    tdc.move_up(user)
+                    screen.blit(imp, user.get_coordinates())
+                    pygame.display.flip()
                     print("UP")
                 case pygame.K_DOWN:
-                    user.move_down()
+                    tdc.move_down(user)
+                    screen.blit(imp, user.get_coordinates())
+                    pygame.display.flip()
                     print("DOWN")
-                case pygame.K_1:
-                    user.move_diagpos()
-                    print("DIAGONAL POSITIVE")
-                case pygame.K_2:
-                    user.move_diagneg()
-                    print("DIAGONAL NEGATIVE")
 
 
 pygame.quit()

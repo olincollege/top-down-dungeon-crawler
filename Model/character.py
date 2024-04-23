@@ -3,7 +3,7 @@ character.py lays out information for characters:
 npc or players
 """
 
-from data_sprite import DataSprite
+from Model.data_sprite import DataSprite
 
 
 class Character(DataSprite):
@@ -21,7 +21,7 @@ class Character(DataSprite):
         coordinates,
         room,
         image,
-    ): #pylint: disable=too-many-arguments
+    ):  # pylint: disable=too-many-arguments
         """
         Initializes a new character
 

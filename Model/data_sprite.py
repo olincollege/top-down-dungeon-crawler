@@ -19,7 +19,7 @@ class DataSprite(pygame.sprite.Sprite):
 
         Attributes:
             name: String of the name of the sprite
-            coordinates: list of 2 ints, reprisenting the location of the sprite
+            coordinates: tuple of 2 ints, reprisenting the location of the sprite
             room: String of name of the room the sprite is in
             image: image reprisenting the sprite, auto set to be a blank pygame
                 surface of 32x32 px. Can be set to be any image
@@ -28,16 +28,16 @@ class DataSprite(pygame.sprite.Sprite):
         self._coordinates = coordinates
         self._image = image
         self._room = room
-        self._rect = self.image.get_rect()
+        # self._rect = self._image.get_rect()
 
-    @property
+    # @property
     def get_name(self):
         """
         returns name of the object
         """
         return self._name
 
-    @property
+    # @property
     def get_coordinates(self):
         """
         returns coordinates of the object
