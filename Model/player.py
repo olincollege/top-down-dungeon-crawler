@@ -2,7 +2,7 @@
 player.py lays out all the information for a player
 """
 
-from character import Character
+from Model.character import Character
 
 
 class Player(Character):
@@ -20,7 +20,7 @@ class Player(Character):
         coordinates,
         room,
         image,
-    ): #pylint: disable=too-many-arguments
+    ):  # pylint: disable=too-many-arguments
         """
         Initializes a new npc
 

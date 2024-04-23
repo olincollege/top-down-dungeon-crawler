@@ -42,7 +42,6 @@ class Character(DataSprite):
         self._current_sprite = current_sprite
         super().__init__(name, coordinates, room, image)
 
-    @property
     def get_current_sprite(self):
         """
         Returns the current sprite orientation as an int
@@ -50,7 +49,6 @@ class Character(DataSprite):
         """
         return self._current_sprite
 
-    @property
     def get_current_item(self):
         """
         Returns the current item that the Character has

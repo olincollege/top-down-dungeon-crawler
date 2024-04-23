@@ -1,7 +1,8 @@
 """
 Lays out the information for each item
 """
-from data_sprite import DataSprite
+
+from Model.data_sprite import DataSprite
 
 
 class Item(DataSprite):
