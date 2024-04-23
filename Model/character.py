@@ -3,6 +3,7 @@ character.py lays out information for characters:
 npc or players
 """
 
+import pygame
 from Model.data_sprite import DataSprite
 
 
@@ -37,10 +38,20 @@ class Character(DataSprite):
             image: image reprisenting the sprite, auto set to be a blank pygame
                 surface of 32x32 px. Can be set to be any image
         """
-        self._sprite_list = sprite_list
+        self._sprite_list = []
+        for sprite in sprite_list:
+            temp = pygame.image.load(sprite)
+            self._sprite_list.append(temp)
+
         self._current_item = current_item
         self._current_sprite = current_sprite
         super().__init__(name, coordinates, room, image)
+
+    def get_sprite_list(self):
+        """
+        Returns the sprite list of a character as a list of strings
+        """
+        return self._sprite_list
 
     def get_current_sprite(self):
         """
