@@ -12,7 +12,7 @@ class Room(DataSprite):
     Inherits from DataSprite
     """
 
-    def __init__(self, name, coordinates, room, image, filepath):
+    def __init__(self, name, coordinates, filepath):
         """
         initializes the Room
 
@@ -26,7 +26,7 @@ class Room(DataSprite):
                 surface of 32x32 px. Can be set to be any image
         """
         self._was_visited = False
-        super().__init__(name, coordinates, room, image)
+        super().__init__(name, coordinates, room=None, image=None)
         self.tile_group = pygame.sprite.Group()
         self.map_tmx = load_pygame(filepath)
         self.tile_id = 0
@@ -38,7 +38,7 @@ class Room(DataSprite):
                         x,
                         y,
                     ),
-                    self.name,
+                    name,
                     surf,
                     self.tile_group,
                 )
