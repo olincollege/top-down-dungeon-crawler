@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="10" height="10" tilewidth="32" tileheight="32" infinite="0" nextlayerid="6" nextobjectid="1">
- <tileset firstgid="1" source="green_forest.tsx"/>
+ <tileset firstgid="1" source="/root/top-down-dungeon-crawler/Resources/Maps/green_forest.tsx"/>
  <layer id="1" name="Floor" width="10" height="10">
   <data encoding="csv">
 9,9,9,9,9,45,45,45,45,45,

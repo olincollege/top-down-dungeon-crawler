@@ -1,6 +1,4 @@
-"""
-e
-"""
+""" """
 
 import pygame
 from pytmx.util_pygame import load_pygame
@@ -9,22 +7,25 @@ from Model.room import Room
 
 pygame.init()
 
-WIDTH = 100
-HEIGHT = 100
+TILE_SIZE = 32
+WIDTH = 10
+HEIGHT = 10
 
-screen = pygame.display.set_mode((WIDTH, HEIGHT))
+
+screen = pygame.display.set_mode((WIDTH * TILE_SIZE, HEIGHT * TILE_SIZE))
 tmx = load_pygame("Resources/test_map.tmx")
 
 test_room = Room(
     name="testroom",
-    coordinates=(0, 0),
     filepath="/root/top-down-dungeon-crawler/Resources/test_map.tmx",
 )
 
-RUN = True
-while RUN:
+while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
-            RUN = False
-    screen.blit(test_room.tile_group)
+            pygame.quit()
+
+    screen.fill("black")
+    test_room.tile_group.draw(screen)
+
     pygame.display.update()
