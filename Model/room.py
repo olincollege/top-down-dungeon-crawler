@@ -1,9 +1,9 @@
 """ """
 
-from pytmx.util_pygame import load_pygame
-from data_sprite import DataSprite
-from tile import Tile
 import pygame
+from pytmx.util_pygame import load_pygame
+from Model.data_sprite import DataSprite
+from Model.tile import Tile
 
 
 class Room(DataSprite):
@@ -12,7 +12,7 @@ class Room(DataSprite):
     Inherits from DataSprite
     """
 
-    def __init__(self, name, coordinates, filepath):
+    def __init__(self, name, filepath):
         """
         initializes the Room
 
@@ -26,21 +26,30 @@ class Room(DataSprite):
                 surface of 32x32 px. Can be set to be any image
         """
         self._was_visited = False
-        super().__init__(name, coordinates, room=None, image=None)
+        super().__init__(
+            name, coordinates=None, room=None, image=pygame.Surface((32, 32))
+        )
         self.tile_group = pygame.sprite.Group()
         self.map_tmx = load_pygame(filepath)
         self.tile_id = 0
-        for layer in self.map_tmx.layers:
-            for x, y, surf in layer.tiles():
-                self.temp_tile = Tile(
-                    self.tile_id,
-                    (
-                        x,
-                        y,
-                    ),
-                    name,
-                    surf,
-                    self.tile_group,
+        # cycle through all layers
+        for layer in self.map_tmx.visible_layers:
+            if hasattr(layer, "data"):
+                for x, y, surf in layer.tiles():
+                    Tile(
+                        coordinates=(x, y),
+                        room=self,
+                        surf=surf,
+                        group=self.tile_group,
+                    )
+
+        for obj in self.map_tmx.objects:
+            if obj.type in ("Building", "Vegetation"):
+                Tile(
+                    coordinates=(x, y),
+                    room=self,
+                    surf=obj.image,
+                    group=self.tile_group,
                 )
 
     def get_was_visited(self):

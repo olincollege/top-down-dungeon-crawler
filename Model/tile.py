@@ -1,16 +1,17 @@
 """ """
 
-import data_sprite
 import pygame
 
 
-class Tile(data_sprite.DataSprite):
+class Tile(pygame.sprite.Sprite):
     """
     tile object
     """
 
-    def __init__(self, name, coordinates, room, surf, group):
-        super().__init__(name, coordinates, room, surf)
-        self.rect = self.image.get_rect(topleft=coordinates)
-        pos = coordinates
-        self.group = group
+    def __init__(self, coordinates, room, group, surf=pygame.Surface((32, 32))):
+        super().__init__(group)
+        self.room = room
+        self.image = surf
+        self.coordinates = coordinates
+        self.pos = (coordinates[0] * 32, coordinates[1] * 32)
+        self.rect = self.image.get_rect(topleft=self.pos)

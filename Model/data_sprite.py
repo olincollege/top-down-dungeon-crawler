@@ -13,7 +13,7 @@ class DataSprite(pygame.sprite.Sprite):
     the other classes inherit from.
     """
 
-    def __init__(self, name, coordinates, room, image=pygame.Surface([32, 32])):
+    def __init__(self, name, coordinates, room, image=pygame.Surface((32, 32))):
         """
         Initializes the DataSprite object
 
@@ -28,7 +28,7 @@ class DataSprite(pygame.sprite.Sprite):
         self._coordinates = coordinates
         self._image = image
         self._room = room
-        self._rect = self.image.get_rect()
+        self._rect = self._image.get_rect()
 
     @property
     def get_name(self):
