@@ -1,25 +1,33 @@
 """Runs the game"""
 
+# external packages
+from pytmx.util_pygame import load_pygame
 import pygame
 
-import Model
-
-import Model.data_sprite
-import Model.player
-import Model.room
+# internal packages
+from Model.player import Player
+from Model.room import Room
 from controller import TopDownController
-
-import view
 
 
 pygame.init()
 
-# view initialization
+TILE_SIZE = 32
+WIDTH = 10
+HEIGHT = 10
 
-player = Model.player.Player([], [], 0, None, "M", (0, 0), "basement", [])
 
+screen = pygame.display.set_mode((WIDTH * TILE_SIZE, HEIGHT * TILE_SIZE))
+tmx = load_pygame("Resources/test_map.tmx")
 
+player = Player([], [], 0, None, "M", (0, 0), "basement", [])
 controller = TopDownController()
+test_room = Room(
+    name="testroom",
+    filepath="/root/top-down-dungeon-crawler/Resources/test_map.tmx",
+    npcs=None,
+    items=None,
+)
 
 RUN = True
 
@@ -46,3 +54,7 @@ while RUN:
                         player, player.get_room(), player.get_current_sprite()
                     )
                     controller.check_item_coords(player, player.get_room())
+
+        screen.fill("black")
+        test_room.tile_group.draw(screen)
+        pygame.display.update()
