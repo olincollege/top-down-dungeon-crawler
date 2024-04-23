@@ -97,28 +97,28 @@ while RUN:
                     tdc.move_left(user)
                     imp = user.get_sprite_list()[user.get_current_sprite()]
                     screen.fill((0, 0, 0))
-                    screen.blit(imp, user.get_coordinates())
+                    screen.blit(imp, user.coordinates)
                     pygame.display.flip()
                     print("LEFT")
                 case pygame.K_RIGHT:
                     tdc.move_right(user)
                     imp = user.get_sprite_list()[user.get_current_sprite()]
                     screen.fill((0, 0, 0))
-                    screen.blit(imp, user.get_coordinates())
+                    screen.blit(imp, user.coordinates)
                     pygame.display.flip()
                     print("RIGHT")
                 case pygame.K_UP:
                     tdc.move_up(user)
                     imp = user.get_sprite_list()[user.get_current_sprite()]
                     screen.fill((0, 0, 0))
-                    screen.blit(imp, user.get_coordinates())
+                    screen.blit(imp, user.coordinates)
                     pygame.display.flip()
                     print("UP")
                 case pygame.K_DOWN:
                     tdc.move_down(user)
                     imp = user.get_sprite_list()[user.get_current_sprite()]
                     screen.fill((0, 0, 0))
-                    screen.blit(imp, user.get_coordinates())
+                    screen.blit(imp, user.coordinates)
                     pygame.display.flip()
                     print("DOWN")
 

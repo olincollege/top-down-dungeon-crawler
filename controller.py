@@ -1,6 +1,7 @@
 """controller.py contains the class that controls the player
 and it's interactions"""
 
+from Model.room import Room
 from Model.data_sprite import DataSprite
 from Model.character import Character
 
@@ -34,7 +35,7 @@ class TopDownController:
         """
         player_coords = DataSprite.get_coordinates(player)
 
-        room_items = room.get_item_list()
+        room_items = room.item_list()
 
         for item in room_items:
             temp_item_coords = item.get_coords()
@@ -57,12 +58,12 @@ class TopDownController:
         the player is interacting with, or None if no such NPC exists
         """
 
-        npc_list = room.get_npc_list()
-        player_coords = DataSprite.get_coordinates(player)
+        npc_list = room.npc_list()
+        player_coords = player.coordinates()
 
         for npc in npc_list:
 
-            npc_coords = DataSprite.get_coordinates(npc)
+            npc_coords = npc.coordinates()
 
             match player_dir:
                 case 0:
@@ -106,7 +107,7 @@ class TopDownController:
         Args:
             player: a Player instance representing the player's information
         """
-        player_coords = DataSprite.get_coordinates(player)
+        player_coords = player.coordinates
 
         DataSprite.set_coordinates(
             player, player_coords[0] - 32, player_coords[1]
@@ -121,7 +122,7 @@ class TopDownController:
         Args:
             player: a Player instance representing the player's information
         """
-        player_coords = DataSprite.get_coordinates(player)
+        player_coords = player.coordinates
 
         DataSprite.set_coordinates(
             player, player_coords[0] + 32, player_coords[1]
@@ -136,8 +137,7 @@ class TopDownController:
         Args:
             player: a Player instance representing the player's information
         """
-        player_coords = DataSprite.get_coordinates(player)
-
+        player_coords = player.coordinates
         DataSprite.set_coordinates(
             player, player_coords[0], player_coords[1] + 32
         )
@@ -151,7 +151,7 @@ class TopDownController:
         Args:
             player: a Player instance representing the player's information
         """
-        player_coords = DataSprite.get_coordinates(player)
+        player_coords = player.coordinates
 
         DataSprite.set_coordinates(
             player, player_coords[0], player_coords[1] - 32

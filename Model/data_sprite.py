@@ -30,27 +30,29 @@ class DataSprite(pygame.sprite.Sprite):
         self._room = room
         # self._rect = self._image.get_rect()
 
-    # @property
-    def get_name(self):
+    @property
+    def name(self):
         """
         returns name of the object
         """
         return self._name
 
-    # @property
-    def get_coordinates(self):
+    @property
+    def coordinates(self):
         """
         returns coordinates of the object
         """
         return self._coordinates
 
-    def get_image(self):
+    @property
+    def image(self):
         """
         returns image of the object
         """
         return self._image
 
-    def get_room(self):
+    @property
+    def room(self):
         """
         returns room of the object
         """
