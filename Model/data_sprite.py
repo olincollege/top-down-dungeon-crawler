@@ -44,14 +44,12 @@ class DataSprite(pygame.sprite.Sprite):
         """
         return self._coordinates
 
-    @property
     def get_image(self):
         """
         returns image of the object
         """
         return self._image
 
-    @property
     def get_room(self):
         """
         returns room of the object

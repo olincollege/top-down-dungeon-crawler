@@ -1,8 +1,9 @@
-"""
-Lays out the information for a room
-"""
+""" """
 
-from data_sprite import DataSprite
+import pygame
+from pytmx.util_pygame import load_pygame
+from Model.data_sprite import DataSprite
+from Model.tile import Tile
 
 
 class Room(DataSprite):
@@ -11,7 +12,7 @@ class Room(DataSprite):
     Inherits from DataSprite
     """
 
-    def __init__(self, name, coordinates, room, image):
+    def __init__(self, name, filepath):
         """
         initializes the Room
 
@@ -25,8 +26,31 @@ class Room(DataSprite):
                 surface of 32x32 px. Can be set to be any image
         """
         self._was_visited = False
-        super().__init__(name, coordinates, room, image)
-        # self._map = #json file of the map here
+        super().__init__(
+            name, coordinates=None, room=None, image=pygame.Surface((32, 32))
+        )
+        self.tile_group = pygame.sprite.Group()
+        self.map_tmx = load_pygame(filepath)
+        self.tile_id = 0
+        # cycle through all layers
+        for layer in self.map_tmx.visible_layers:
+            if hasattr(layer, "data"):
+                for x, y, surf in layer.tiles():
+                    Tile(
+                        coordinates=(x, y),
+                        room=self,
+                        surf=surf,
+                        group=self.tile_group,
+                    )
+
+        for obj in self.map_tmx.objects:
+            if obj.type in ("Building", "Vegetation"):
+                Tile(
+                    coordinates=(x, y),
+                    room=self,
+                    surf=obj.image,
+                    group=self.tile_group,
+                )
 
     def get_was_visited(self):
         """
