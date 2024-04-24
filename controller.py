@@ -33,12 +33,12 @@ class TopDownController:
         Returns an Item instance corresponding to the item that
         the player shares coordinates with, or None if no such item exists
         """
-        player_coords = DataSprite.get_coordinates(player)
+        player_coords = player.coordinates
 
-        room_items = room.item_list()
+        room_items = room.item_list
 
         for item in room_items:
-            temp_item_coords = item.get_coords()
+            temp_item_coords = item.coordinates
             if player_coords == temp_item_coords:
                 return item
 
@@ -58,12 +58,12 @@ class TopDownController:
         the player is interacting with, or None if no such NPC exists
         """
 
-        npc_list = room.npc_list()
-        player_coords = player.coordinates()
+        npc_list = room.npc_list
+        player_coords = player.coordinates
 
         for npc in npc_list:
 
-            npc_coords = npc.coordinates()
+            npc_coords = npc.coordinates
 
             match player_dir:
                 case 0:

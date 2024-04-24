@@ -5,57 +5,6 @@ import Model.character
 from controller import TopDownController
 
 
-class Mover:
-
-    def __init__(self, init_x, init_y):
-        self.x = init_x
-        self.y = init_y
-
-    def get_x(self):
-        return self.x
-
-    def get_y(self):
-        return self.y
-
-    def change_x(self, new):
-        self.x = new
-
-    def change_y(self, new):
-        self.y = new
-
-    def move_left(self):
-        self.x = self.x - 1
-
-        # print(f"({self.x}, {self.y})")
-
-    def move_right(self):
-        self.x = self.x + 1
-
-        # print(f"({self.x}, {self.y})")
-
-    def move_up(self):
-        self.y = self.y + 1
-
-        # print(f"({self.x}, {self.y})")
-
-    def move_down(self):
-        self.y = self.y - 1
-
-        # print(f"({self.x}, {self.y})")
-
-    def move_diagpos(self):
-        self.x = self.x + 1
-        self.y = self.y + 1
-
-        # print(f"({self.x}, {self.y})")
-
-    def move_diagneg(self):
-        self.x = self.x - 1
-        self.y = self.y - 1
-
-        # print(f"({self.x}, {self.y})")
-
-
 pygame.init()
 
 WIDTH = 1000
