@@ -1,7 +1,9 @@
 """controller.py contains the class that controls the player
 and it's interactions"""
 
+from Model.room import Room
 from Model.data_sprite import DataSprite
+from Model.character import Character
 
 TILE_HEIGHT = 8
 TILE_WIDTH = 8
@@ -31,9 +33,9 @@ class TopDownController:
         Returns an Item instance corresponding to the item that
         the player shares coordinates with, or None if no such item exists
         """
-        player_coords = player.get_coords()
+        player_coords = DataSprite.get_coordinates(player)
 
-        room_items = room.get_item_list()
+        room_items = room.item_list()
 
         for item in room_items:
             temp_item_coords = item.get_coords()
@@ -56,12 +58,12 @@ class TopDownController:
         the player is interacting with, or None if no such NPC exists
         """
 
-        npc_list = room.get_npc_list()
-        player_coords = player.get_coords()
+        npc_list = room.npc_list()
+        player_coords = player.coordinates()
 
         for npc in npc_list:
 
-            npc_coords = npc.get_coords()
+            npc_coords = npc.coordinates()
 
             match player_dir:
                 case 0:
@@ -105,11 +107,13 @@ class TopDownController:
         Args:
             player: a Player instance representing the player's information
         """
-        player_coords = DataSprite.get_coordinates(player)
+        player_coords = player.coordinates
 
         DataSprite.set_coordinates(
-            player, player_coords[0] - 10, player_coords[1]
+            player, player_coords[0] - 32, player_coords[1]
         )
+
+        Character.set_current_sprite(player, 3)
 
     def move_right(self, player):
         """
@@ -118,11 +122,13 @@ class TopDownController:
         Args:
             player: a Player instance representing the player's information
         """
-        player_coords = DataSprite.get_coordinates(player)
+        player_coords = player.coordinates
 
         DataSprite.set_coordinates(
-            player, player_coords[0] + 10, player_coords[1]
+            player, player_coords[0] + 32, player_coords[1]
         )
+
+        Character.set_current_sprite(player, 1)
 
     def move_down(self, player):
         """
@@ -131,11 +137,12 @@ class TopDownController:
         Args:
             player: a Player instance representing the player's information
         """
-        player_coords = DataSprite.get_coordinates(player)
-
+        player_coords = player.coordinates
         DataSprite.set_coordinates(
-            player, player_coords[0], player_coords[1] + 10
+            player, player_coords[0], player_coords[1] + 32
         )
+
+        Character.set_current_sprite(player, 2)
 
     def move_up(self, player):
         """
@@ -144,11 +151,13 @@ class TopDownController:
         Args:
             player: a Player instance representing the player's information
         """
-        player_coords = DataSprite.get_coordinates(player)
+        player_coords = player.coordinates
 
         DataSprite.set_coordinates(
-            player, player_coords[0], player_coords[1] - 10
+            player, player_coords[0], player_coords[1] - 32
         )
+
+        Character.set_current_sprite(player, 0)
 
     def change_room(self, player):
         """
@@ -162,9 +171,3 @@ class TopDownController:
         # portal is implemented
 
         # player.set_room(next_room)
-
-    def change_sprite(self):
-        """
-        Changes the sprite according to which direction the
-        player is facing
-        """

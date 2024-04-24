@@ -62,13 +62,24 @@ WIDTH = 1000
 HEIGHT = 800
 
 user = Model.character.Character(
-    ["test.jpeg"], 0, None, "coco", (0, 0), "basement", ["test.jpeg"]
+    [
+        "sprite_up32.png",
+        "sprite_right32.png",
+        "sprite_down32.png",
+        "sprite_left32.png",
+    ],
+    3,
+    None,
+    "coco",
+    (0, 0),
+    "basement",
+    ["sprite_left32.png"],
 )
 
 tdc = TopDownController()
 
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
-imp = pygame.image.load("test.jpeg").convert()
+imp = user.get_sprite_list()[3]
 screen.blit(imp, (0, 0))
 pygame.display.flip()
 
@@ -84,22 +95,30 @@ while RUN:
             match (event.key):
                 case pygame.K_LEFT:
                     tdc.move_left(user)
-                    screen.blit(imp, user.get_coordinates())
+                    imp = user.get_sprite_list()[user.get_current_sprite()]
+                    screen.fill((0, 0, 0))
+                    screen.blit(imp, user.coordinates)
                     pygame.display.flip()
                     print("LEFT")
                 case pygame.K_RIGHT:
                     tdc.move_right(user)
-                    screen.blit(imp, user.get_coordinates())
+                    imp = user.get_sprite_list()[user.get_current_sprite()]
+                    screen.fill((0, 0, 0))
+                    screen.blit(imp, user.coordinates)
                     pygame.display.flip()
                     print("RIGHT")
                 case pygame.K_UP:
                     tdc.move_up(user)
-                    screen.blit(imp, user.get_coordinates())
+                    imp = user.get_sprite_list()[user.get_current_sprite()]
+                    screen.fill((0, 0, 0))
+                    screen.blit(imp, user.coordinates)
                     pygame.display.flip()
                     print("UP")
                 case pygame.K_DOWN:
                     tdc.move_down(user)
-                    screen.blit(imp, user.get_coordinates())
+                    imp = user.get_sprite_list()[user.get_current_sprite()]
+                    screen.fill((0, 0, 0))
+                    screen.blit(imp, user.coordinates)
                     pygame.display.flip()
                     print("DOWN")
 
