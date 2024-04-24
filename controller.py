@@ -2,6 +2,8 @@
 and it's interactions"""
 
 from Model.room import Room
+from Model.tile import Tile
+from Model.portal import Portal
 from Model.data_sprite import DataSprite
 from Model.character import Character
 
@@ -109,9 +111,7 @@ class TopDownController:
         """
         player_coords = player.coordinates
 
-        DataSprite.set_coordinates(
-            player, player_coords[0] - 32, player_coords[1]
-        )
+        player.set_coordinates(player_coords[0] - 32, player_coords[1])
 
         Character.set_current_sprite(player, 3)
 
@@ -124,9 +124,7 @@ class TopDownController:
         """
         player_coords = player.coordinates
 
-        DataSprite.set_coordinates(
-            player, player_coords[0] + 32, player_coords[1]
-        )
+        player.set_coordinates(player_coords[0] + 32, player_coords[1])
 
         Character.set_current_sprite(player, 1)
 
@@ -138,9 +136,7 @@ class TopDownController:
             player: a Player instance representing the player's information
         """
         player_coords = player.coordinates
-        DataSprite.set_coordinates(
-            player, player_coords[0], player_coords[1] + 32
-        )
+        player.set_coordinates(player_coords[0], player_coords[1] + 32)
 
         Character.set_current_sprite(player, 2)
 
@@ -153,21 +149,18 @@ class TopDownController:
         """
         player_coords = player.coordinates
 
-        DataSprite.set_coordinates(
-            player, player_coords[0], player_coords[1] - 32
-        )
+        player.set_coordinates(player_coords[0], player_coords[1] - 32)
 
         Character.set_current_sprite(player, 0)
 
-    def change_room(self, player):
+    def change_room(self, player, portal):
         """
         Changes the current room a player is in based on the portal
         they entered
 
         Args:
             player: a Player instance representing the player's information
+            portal: a Portal instance that represents the portal's information
         """
-        # next_room = portal.get_destination() - will work when
-        # portal is implemented
-
-        # player.set_room(next_room)
+        next_room = portal.get_dest_room
+        player.set_room(next_room)
