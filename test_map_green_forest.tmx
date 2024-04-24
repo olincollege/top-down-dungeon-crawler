@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="30" height="30" tilewidth="32" tileheight="32" infinite="0" nextlayerid="7" nextobjectid="1">
- <tileset firstgid="1" source="Resources/Tilesets/green_forest.tsx"/>
+ <tileset firstgid="1" source="Resources/green_forest.tsx"/>
  <layer id="1" name="Floor" width="30" height="30">
   <data encoding="csv">
 35,35,35,35,35,35,35,35,35,35,35,35,35,35,35,35,45,45,45,45,45,45,45,45,45,45,45,45,45,45,
