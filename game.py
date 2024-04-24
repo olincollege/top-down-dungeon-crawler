@@ -18,13 +18,12 @@ HEIGHT = 10
 
 
 screen = pygame.display.set_mode((WIDTH * TILE_SIZE, HEIGHT * TILE_SIZE))
-tmx = load_pygame("Resources/test_map.tmx")
 
-player = Player([], [], 0, None, "M", (0, 0), "basement", [])
+player = Player([], [], 0, None, "M", (0, 0), "testroom", [])
 controller = TopDownController()
 test_room = Room(
     name="testroom",
-    filepath="/root/top-down-dungeon-crawler/Resources/test_map.tmx",
+    filepath="Resources/Maps/test_map_green_forest.tmx",
     npcs=None,
     items=None,
 )
