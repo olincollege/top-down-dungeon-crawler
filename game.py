@@ -14,8 +14,8 @@ from controller import TopDownController
 pygame.init()
 
 TILE_SIZE = 32
-WIDTH = 10
-HEIGHT = 10
+WIDTH = 30
+HEIGHT = 30
 
 
 user = Model.character.Character(
@@ -33,56 +33,52 @@ user = Model.character.Character(
     ["sprite_left32.png"],
 )
 controller = TopDownController()
-test_room = Room(
-    name="testroom",
-    filepath="Resources/test_map.tmx",
-    npcs=None,
-    items=None,
-)
 
 screen = pygame.display.set_mode((WIDTH * TILE_SIZE, HEIGHT * TILE_SIZE))
-tmx = load_pygame("Resources/test_map.tmx")
 imp = user.get_sprite_list()[3]
 screen.blit(imp, (0, 0))
 pygame.display.flip()
 
+test_room = Room(
+    name="testroom",
+    filepath="test_map_green_forest.tmx",
+    npcs=None,
+    items=None,
+)
+
 RUN = True
 
 while RUN:
-
     for event in pygame.event.get():
-
         if event.type == pygame.QUIT:
             RUN = False
 
         if event.type == pygame.KEYDOWN:
 
+            test_room.tile_group.draw(screen)
+
             match (event.key):
                 case pygame.K_LEFT:
                     controller.move_left(user)
                     imp = user.get_sprite_list()[user.get_current_sprite()]
-                    screen.fill((0, 0, 0))
                     screen.blit(imp, user.coordinates)
                     pygame.display.flip()
                     print("LEFT")
                 case pygame.K_RIGHT:
                     controller.move_right(user)
                     imp = user.get_sprite_list()[user.get_current_sprite()]
-                    screen.fill((0, 0, 0))
                     screen.blit(imp, user.coordinates)
                     pygame.display.flip()
                     print("RIGHT")
                 case pygame.K_UP:
                     controller.move_up(user)
                     imp = user.get_sprite_list()[user.get_current_sprite()]
-                    screen.fill((0, 0, 0))
                     screen.blit(imp, user.coordinates)
                     pygame.display.flip()
                     print("UP")
                 case pygame.K_DOWN:
                     controller.move_down(user)
                     imp = user.get_sprite_list()[user.get_current_sprite()]
-                    screen.fill((0, 0, 0))
                     screen.blit(imp, user.coordinates)
                     pygame.display.flip()
                     print("DOWN")
@@ -91,7 +87,4 @@ while RUN:
                         user, user.get_room(), user.get_current_sprite()
                     )
                     controller.check_item_coords(user, user.get_room())
-
-        screen.fill("black")
-        test_room.tile_group.draw(screen)
         pygame.display.update()
