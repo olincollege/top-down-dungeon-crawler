@@ -73,6 +73,10 @@ class Room(pygame.sprite.Sprite):
         return self._item_list
 
     @property
+    def tile_group(self):
+        return self._tile_group
+
+    @property
     def was_visited(self):
         """
         returns whether the player has been to the room or not

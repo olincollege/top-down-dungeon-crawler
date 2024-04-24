@@ -1,29 +1,28 @@
 """
-portal.py is the file that contains information 
+portal.py is the file that contains information
 relating to portal tiles. these tiles will change the coords
 of the player when interacted with
 """
-from data_sprite import (
-    DataSprite,
-)  # to be changed later, when tile.py is implemented
+
+from tile import Tile
 
 
-class Portal(DataSprite):
+class Portal(Tile):
     """
     Creates a portal tile
     """
 
     def __init__(
         self,
-        is_locked,
         dest_room,
         dest_coords,
-        key,
-        name,
         coordinates,
         room,
-        image,
-    ): #pylint: disable=too-many-arguments
+        surf,
+        group,
+        is_locked=False,
+        key=None,
+    ):  # pylint: disable=too-many-arguments
         """
         initializes a new portal object.
 
@@ -38,11 +37,11 @@ class Portal(DataSprite):
             image: image reprisenting the sprite, auto set to be a blank pygame
                 surface of 32x32 px. Can be set to be any image
         """
-        self._is_locked = is_locked
+        super().__init__(coordinates, room, group, surf)
         self._dest_room = dest_room
         self._dest_coords = dest_coords
+        self._is_locked = is_locked
         self._key = key
-        super().__init__(name, coordinates, room, image)
 
     @property
     def get_is_locked(self):
