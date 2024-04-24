@@ -46,6 +46,13 @@ test_room = Room(
     items=None,
 )
 
+test_dungeon = Room(
+    name="testdungeon",
+    filepath="test_map_green_dungeon.tmx",
+    npcs=None,
+    items=None,
+)
+
 RUN = True
 
 while RUN:
@@ -55,7 +62,7 @@ while RUN:
 
         if event.type == pygame.KEYDOWN:
 
-            test_room.tile_group.draw(screen)
+            test_dungeon.tile_group.draw(screen)
 
             match (event.key):
                 case pygame.K_LEFT:
