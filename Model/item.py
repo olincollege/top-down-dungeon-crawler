@@ -10,7 +10,7 @@ class Item(DataSprite):
     Sets up an Item object
     """
 
-    def __init__(self, name, coordinates, room, image):
+    def __init__(self, name, coordinates, room):
         """
         Initializes an item object
 
@@ -24,7 +24,7 @@ class Item(DataSprite):
                 surface of 32x32 px. Can be set to be any image
         """
         self._player_has = False
-        super().__init__(name, coordinates, room, image)
+        super().__init__(name, coordinates, room)
 
     def get_player_has(self):
         """
