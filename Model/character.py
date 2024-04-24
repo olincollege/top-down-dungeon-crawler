@@ -49,7 +49,7 @@ class Character(DataSprite):
 
     def get_sprite_list(self):
         """
-        Returns the sprite list of a character as a list of strings
+        Returns the sprite list of a character as a list of Surfaces
         """
         return self._sprite_list
 
