@@ -2,15 +2,15 @@
 Lays out the information for each item
 """
 
-from Model.data_sprite import DataSprite
+from Model.tile import Tile
 
 
-class Item(DataSprite):
+class Item(Tile):
     """
     Sets up an Item object
     """
 
-    def __init__(self, name, coordinates, room, image):
+    def __init__(self, name, coordinates, room, group, surf):
         """
         Initializes an item object
 
@@ -23,8 +23,9 @@ class Item(DataSprite):
             image: image reprisenting the sprite, auto set to be a blank pygame
                 surface of 32x32 px. Can be set to be any image
         """
+        self._name = name
         self._player_has = False
-        super().__init__(name, coordinates, room, image)
+        super().__init__(coordinates, room, group, surf)
 
     def get_player_has(self):
         """
