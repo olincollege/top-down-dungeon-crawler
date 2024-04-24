@@ -21,7 +21,6 @@ class Character(DataSprite):
         name,
         coordinates,
         room,
-        image,
     ):  # pylint: disable=too-many-arguments
         """
         Initializes a new character
@@ -45,7 +44,7 @@ class Character(DataSprite):
 
         self._current_item = current_item
         self._current_sprite = current_sprite
-        super().__init__(name, coordinates, room, image)
+        super().__init__(name, coordinates, room)
 
     def get_sprite_list(self):
         """
