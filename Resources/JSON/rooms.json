@@ -1,5 +1,6 @@
 {
-    "testroom" : {
+    "green_forest" : {
+        "filepath" : "test_map_green_forest.tmx",
         "portals" : [
             {
                 "dest_room" : "green_dungeon",
@@ -20,6 +21,11 @@
             },
             {
                 "name" : "manure"
+            }
+        ],
+        "NPCs" : [
+            {
+                "name" : "Felix"
             }
         ]
     }
