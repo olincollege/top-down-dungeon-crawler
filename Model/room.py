@@ -2,8 +2,8 @@
 
 import pygame
 from pytmx.util_pygame import load_pygame
-from Model.data_sprite import DataSprite
 from Model.tile import Tile
+from Model.tile import Portal
 
 
 class Room(pygame.sprite.Sprite):
@@ -12,39 +12,58 @@ class Room(pygame.sprite.Sprite):
     Inherits from DataSprite
     """
 
-    def __init__(self, name, filepath, npcs, items):
+    def __init__(self, name, filepath, portals, items, npcs):
         """
         initializes the Room
 
         Attributes:
-            _was_visited: boolean of whether the room has been visited
-            _map: 2d array of sprites reprisenting the room
             name: String of the name of the sprite
-            coordinates: list of 2 ints, reprisenting the location of the sprite
-            room: String of name of the room the sprite is in
-            image: image reprisenting the sprite, auto set to be a blank pygame
-                surface of 32x32 px. Can be set to be any image
+            filepath: String representing the path to the .tmx map file
+            portals: A list of dictionaries in which each dictionary represents
+            key/value pair information about a portal. Assumes that the list
+            order matches the order in which they appear on the map.
+            items: A list of dictionaries in which each dictionary represents
+            key/value pair information about an item. Assumes that the list
+            order matches the order in which they appear on the map.
+            NPCs: A list of dictionaries in which each dictionary represents
+            key/value pair information about an NPC. Assumes that the list
+            order matches the order in which they appear on the map.
         """
         # super init
         super().__init__()
         # set from parameters
         self._name = name
+        # unpack dictionary information
         self._npc_list = npcs
         self._item_list = items
         # defining map and tilegroups
         self._tile_group = pygame.sprite.Group()
         self._map_tmx = load_pygame(filepath)
         self._tile_id = 0
+
         # cycle through all layers
         for layer in self._map_tmx.visible_layers:
             if hasattr(layer, "data"):
                 for x, y, surf in layer.tiles():
-
                     Tile(
                         coordinates=(x, y),
                         room=self,
                         surf=surf,
                         group=self._tile_group,
+                    )
+            if layer.name == "Portals":
+                portal_count = 0
+                for x, y, surf in layer.tiles():
+                    portal_data = portals[portal_count]
+                    Portal(
+                        coordinates=(x, y),
+                        room=self,
+                        surf=surf,
+                        group=self._tile_group,
+                        dest_coords=portal_data["dest_coords"],
+                        dest_room=portal_data["dest_room"],
+                        is_locked=portal_data["is_locked"],
+                        key=portal_data["key"],
                     )
 
         # other attributes
