@@ -19,7 +19,6 @@ class Player(Character):
         name,
         coordinates,
         room,
-        image,
     ):  # pylint: disable=too-many-arguments
         """
         Initializes a new npc
@@ -46,7 +45,6 @@ class Player(Character):
             name,
             coordinates,
             room,
-            image,
         )
 
     def equip(self, item_num):

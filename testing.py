@@ -22,7 +22,6 @@ user = Model.character.Character(
     "coco",
     (0, 0),
     "basement",
-    ["sprite_left32.png"],
 )
 
 tdc = TopDownController()

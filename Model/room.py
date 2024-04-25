@@ -39,21 +39,13 @@ class Room(pygame.sprite.Sprite):
         for layer in self._map_tmx.visible_layers:
             if hasattr(layer, "data"):
                 for x, y, surf in layer.tiles():
+
                     Tile(
                         coordinates=(x, y),
                         room=self,
                         surf=surf,
                         group=self._tile_group,
                     )
-
-        for obj in self._map_tmx.objects:
-            if obj.type in ("Building", "Vegetation"):
-                Tile(
-                    coordinates=(obj.x, obj.y),
-                    room=self,
-                    surf=obj.image,
-                    group=self._tile_group,
-                )
 
         # other attributes
         self._was_visited = False

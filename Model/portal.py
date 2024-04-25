@@ -4,7 +4,7 @@ relating to portal tiles. these tiles will change the coords
 of the player when interacted with
 """
 
-from tile import Tile
+from Model.tile import Tile
 
 
 class Portal(Tile):
