@@ -1,32 +1,31 @@
 {
-    "green_forest" : {
-        "filepath" : "test_map_green_forest.tmx",
-        "portals" : [
-            {
-                "dest_room" : "green_dungeon",
-                "dest_coords" : [0,0],
-                "is_locked" : true,
-                "key" : "flower"
-            },
-            {
-                "dest_room" : "farmlands",
-                "dest_coords" : [15,1],
-                "is_locked" : false,
-                "key" : null 
-            }
-        ],
-        "items" : [
-            {
-                "name" : "flower"
-            },
-            {
-                "name" : "manure"
-            }
-        ],
-        "NPCs" : [
-            {
-                "name" : "Felix"
-            }
-        ]
-    }
+    "name" : "green_forest",
+    "filepath" : "test_map_green_forest.tmx",
+    "portals" : [
+        {
+            "dest_room" : "green_dungeon",
+            "dest_coords" : [0,0],
+            "is_locked" : true,
+            "key" : "flower"
+        },
+        {
+            "dest_room" : "farmlands",
+            "dest_coords" : [15,1],
+            "is_locked" : false,
+            "key" : null 
+        }
+    ],
+    "items" : [
+        {
+            "name" : "flower"
+        },
+        {
+            "name" : "manure"
+        }
+    ],
+    "NPCs" : [
+        {
+            "name" : "Felix"
+        }
+    ]
 }
