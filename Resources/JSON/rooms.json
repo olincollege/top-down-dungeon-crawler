@@ -1,25 +1,161 @@
 {
-    "green_forest" : {
-        "name" : "green_forest",
-        "filepath" : "test_map_green_forest.tmx",
+    "Tent_Interior" : {
+        "name" : "Tent_Interior",
+        "filepath" : "Tent_Interior.tmx",
         "portals" : [
             {
-                "dest_room" : "green_dungeon",
-                "dest_coords" : [0,0],
-                "is_locked" : true,
-                "key" : "flower"
-            },
-            {
-                "dest_room" : "farmlands",
-                "dest_coords" : [15,1],
+                "dest_room" : "Green_Forest",
+                "dest_coords" : [12,7],
                 "is_locked" : false,
-                "key" : null 
+                "key" : null
             }
         ],
         "items" : [
             {
-                "name" : "flower"
+                "name" : "berries"
+            }
+        ],
+        "npcs" : [
+            {
+                "name" : "Felix"
+            }
+        ]
+    },
+
+    "Green_Forest" : {
+        "name" : "Green_Forest",
+        "filepath" : "Green_Forest.tmx",
+        "portals" : [
+            {
+                "dest_room" : "Tent_Interior",
+                "dest_coords" : [10,1],
+                "is_locked" : false,
+                "key" : null
             },
+            {
+                "dest_room" : "Small_Dungeon_1",
+                "dest_coords" : [3,8],
+                "is_locked" : false,
+                "key" : null
+            }            
+        ],
+        "items" : [
+            {
+                "name" : "sack"
+            }
+        ],
+        "npcs" : [
+            {
+                "name" : "Felix"
+            }
+        ]
+    },
+
+    "Small_Dungeon_1" : {
+        "name" : "Small_Dungeon_1",
+        "filepath" : "Small_Dungeon_1.tmx",
+        "portals" : [
+            {
+                "dest_room" : "Small_Dungeon_2",
+                "dest_coords" : [9,1],
+                "is_locked" : false,
+                "key" : null
+            },
+            {
+                "dest_room" : "Green_Forest",
+                "dest_coords" : [26,1],
+                "is_locked" : false,
+                "key" : null
+            }            
+        ],
+        "items" : [
+            {
+                "name" : "skull"
+            }
+        ],
+        "npcs" : [
+            {
+                "name" : "Felix"
+            }
+        ]
+    },
+
+    "Small_Dungeon_2" : {
+        "name" : "Small_Dungeon_2",
+        "filepath" : "Small_Dungeon_2.tmx",
+        "portals" : [
+            {
+                "dest_room" : "Farmlands_2",
+                "dest_coords" : [13,14],
+                "is_locked" : false,
+                "key" : null
+            },
+            {
+                "dest_room" : "Small_Dungeon_1",
+                "dest_coords" : [3,1],
+                "is_locked" : false,
+                "key" : null
+            }            
+        ],
+        "items" : [
+            {
+                "name" : "purple_pot"
+            }
+        ],
+        "npcs" : [
+            {
+                "name" : "Felix"
+            }
+        ]
+    },
+
+    "Farmlands_2" : {
+        "name" : "Farmlands_2",
+        "filepath" : "Farmlands_2.tmx",
+        "portals" : [
+            {
+                "dest_room" : "Farmlands",
+                "dest_coords" : [12,0],
+                "is_locked" : false,
+                "key" : null
+            },
+            {
+                "dest_room" : "Small_Dungeon_2",
+                "dest_coords" : [3,1],
+                "is_locked" : false,
+                "key" : null
+            }            
+        ],
+        "items" : [
+            {
+                "name" : "berry"
+            }
+        ],
+        "npcs" : [
+            {
+                "name" : "Felix"
+            }
+        ]
+    },
+
+    "Farmlands" : {
+        "name" : "Farmlands",
+        "filepath" : "Farmlands.tmx",
+        "portals" : [
+            {
+                "dest_room" : "Farmlands_2",
+                "dest_coords" : [4,0],
+                "is_locked" : false,
+                "key" : null
+            },
+            {
+                "dest_room" : "Barn_Interior",
+                "dest_coords" : [6,6],
+                "is_locked" : false,
+                "key" : null
+            }            
+        ],
+        "items" : [
             {
                 "name" : "manure"
             }
@@ -30,29 +166,21 @@
             }
         ]
     },
-    "green_dungeon" : {
-        "name" : "green_forest",
-        "filepath" : "test_map_green_dungeon.tmx",
+
+    "Barn_Interior" : {
+        "name" : "Barn_Interior",
+        "filepath" : "Barn_Interior.tmx",
         "portals" : [
             {
-                "dest_room" : "green_dungeon",
-                "dest_coords" : [0,0],
-                "is_locked" : true,
-                "key" : "flower"
-            },
-            {
-                "dest_room" : "farmlands",
-                "dest_coords" : [15,1],
+                "dest_room" : "Farmlands",
+                "dest_coords" : [17,20],
                 "is_locked" : false,
-                "key" : null 
-            }
+                "key" : null
+            }            
         ],
         "items" : [
             {
-                "name" : "flower"
-            },
-            {
-                "name" : "manure"
+                "name" : "battle_axe"
             }
         ],
         "npcs" : [
