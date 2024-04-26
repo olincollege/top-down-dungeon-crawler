@@ -85,7 +85,7 @@ class Player(Character):
         """
 
         npc_list = room.npc_list
-        player_coords = player.coordinates
+        player_coords = self.coordinates
 
         for npc in npc_list:
 
