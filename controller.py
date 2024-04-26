@@ -1,8 +1,8 @@
 """controller.py contains the class that controls the player
 and it's interactions"""
 
-TILE_HEIGHT = 8
-TILE_WIDTH = 8
+TILE_HEIGHT = 32
+TILE_WIDTH = 32
 
 
 class TopDownController:
@@ -36,7 +36,9 @@ class TopDownController:
 
             player_coords = player.coordinates
 
-            player.set_coordinates(player_coords[0] - 32, player_coords[1])
+            player.set_coordinates(
+                player_coords[0] - TILE_WIDTH, player_coords[1]
+            )
 
             player.set_current_sprite(3)
 
@@ -54,7 +56,9 @@ class TopDownController:
         if not player.check_collision(1):
             player_coords = player.coordinates
 
-            player.set_coordinates(player_coords[0] + 32, player_coords[1])
+            player.set_coordinates(
+                player_coords[0] + TILE_WIDTH, player_coords[1]
+            )
 
             player.set_current_sprite(1)
 
@@ -71,7 +75,9 @@ class TopDownController:
         """
         if not player.check_collision(2):
             player_coords = player.coordinates
-            player.set_coordinates(player_coords[0], player_coords[1] + 32)
+            player.set_coordinates(
+                player_coords[0], player_coords[1] + TILE_HEIGHT
+            )
 
             player.set_current_sprite(2)
 
@@ -89,7 +95,9 @@ class TopDownController:
         if not player.check_collision(0):
             player_coords = player.coordinates
 
-            player.set_coordinates(player_coords[0], player_coords[1] - 32)
+            player.set_coordinates(
+                player_coords[0], player_coords[1] - TILE_HEIGHT
+            )
 
             player.set_current_sprite(0)
 
