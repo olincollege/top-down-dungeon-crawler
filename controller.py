@@ -3,7 +3,7 @@ and it's interactions"""
 
 from Model.room import Room
 from Model.tile import Tile
-from Model.portal import Portal
+from Model.tile import Portal
 from Model.data_sprite import DataSprite
 from Model.character import Character
 
