@@ -42,7 +42,9 @@ class TopDownController:
 
         player_coords = player.coordinates
 
-        player.set_coordinates(player_coords[0] - TILE_WIDTH, player_coords[1])
+        player.set_coordinates(
+            (player_coords[0] - TILE_WIDTH, player_coords[1])
+        )
 
         if player.check_collision():
             player.set_coordinates(
@@ -66,7 +68,9 @@ class TopDownController:
         """
         player_coords = player.coordinates
 
-        player.set_coordinates(player_coords[0] + TILE_WIDTH, player_coords[1])
+        player.set_coordinates(
+            (player_coords[0] + TILE_WIDTH, player_coords[1])
+        )
 
         if player.check_collision():
             player.set_coordinates(
@@ -89,7 +93,9 @@ class TopDownController:
             player: a Player instance representing the player's information
         """
         player_coords = player.coordinates
-        player.set_coordinates(player_coords[0], player_coords[1] + TILE_HEIGHT)
+        player.set_coordinates(
+            (player_coords[0], player_coords[1] + TILE_HEIGHT)
+        )
 
         if player.check_collision():
             player.set_coordinates(
@@ -113,7 +119,9 @@ class TopDownController:
         """
         player_coords = player.coordinates
 
-        player.set_coordinates(player_coords[0], player_coords[1] - TILE_HEIGHT)
+        player.set_coordinates(
+            (player_coords[0], player_coords[1] - TILE_HEIGHT)
+        )
 
         if player.check_collision():
             player.set_coordinates(
