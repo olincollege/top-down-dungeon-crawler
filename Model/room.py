@@ -33,6 +33,8 @@ class Room(pygame.sprite.Sprite):
         super().__init__()
         # set from parameters
         self._name = name
+        # other attributes
+        self._was_visited = False
         # unpack dictionary information
         self._npc_list = npcs
         self._item_list = items
@@ -81,9 +83,6 @@ class Room(pygame.sprite.Sprite):
                         surf=surf,
                         group=self._tile_group,
                     )
-
-        # other attributes
-        self._was_visited = False
 
     @property
     def name(self):
