@@ -1,6 +1,8 @@
 """controller.py contains the class that controls the player
 and it's interactions"""
 
+from Model.tile import Portal, Item
+
 TILE_HEIGHT = 32
 TILE_WIDTH = 32
 
@@ -13,7 +15,7 @@ class TopDownController:
     def __init__(self):
         pass
 
-    def change_room(self, player, portal):
+    def track_step(self, player):
         """
         Changes the current room a player is in based on the portal
         they entered
@@ -22,8 +24,13 @@ class TopDownController:
             player: a Player instance representing the player's information
             portal: a Portal instance that represents the portal's information
         """
-        next_room = portal.get_dest_room
-        player.set_room(next_room)
+        tile = player.check_step()
+        if isinstance(tile, Portal):
+            player.set_room(tile.dest_room)
+            player.set_coordinates(tile.dest_coords)
+        elif isinstance(tile, Item):
+            player.pick_up(tile)
+            tile.set_player_has = True
 
     def move_left(self, player):
         """
@@ -37,7 +44,7 @@ class TopDownController:
             player_coords = player.coordinates
 
             player.set_coordinates(
-                player_coords[0] - TILE_WIDTH, player_coords[1]
+                (player_coords[0] - TILE_WIDTH, player_coords[1])
             )
 
             player.set_current_sprite(3)
@@ -45,6 +52,8 @@ class TopDownController:
             new_coords = player.coordinates
 
             player.set_rect(new_coords)
+
+            self.track_step(player)
 
     def move_right(self, player):
         """
@@ -57,7 +66,7 @@ class TopDownController:
             player_coords = player.coordinates
 
             player.set_coordinates(
-                player_coords[0] + TILE_WIDTH, player_coords[1]
+                (player_coords[0] + TILE_WIDTH, player_coords[1])
             )
 
             player.set_current_sprite(1)
@@ -65,6 +74,8 @@ class TopDownController:
             new_coords = player.coordinates
 
             player.set_rect(new_coords)
+
+            self.track_step(player)
 
     def move_down(self, player):
         """
@@ -76,7 +87,7 @@ class TopDownController:
         if not player.check_collision(2):
             player_coords = player.coordinates
             player.set_coordinates(
-                player_coords[0], player_coords[1] + TILE_HEIGHT
+                (player_coords[0], player_coords[1] + TILE_HEIGHT)
             )
 
             player.set_current_sprite(2)
@@ -84,6 +95,8 @@ class TopDownController:
             new_coords = player.coordinates
 
             player.set_rect(new_coords)
+
+            self.track_step(player)
 
     def move_up(self, player):
         """
@@ -96,7 +109,7 @@ class TopDownController:
             player_coords = player.coordinates
 
             player.set_coordinates(
-                player_coords[0], player_coords[1] - TILE_HEIGHT
+                (player_coords[0], player_coords[1] - TILE_HEIGHT)
             )
 
             player.set_current_sprite(0)
@@ -104,3 +117,5 @@ class TopDownController:
             new_coords = player.coordinates
 
             player.set_rect(new_coords)
+
+            self.track_step(player)

@@ -77,7 +77,7 @@ class Portal(Tile):
         """
         super().__init__(coordinates, room, group, surf)
         self._dest_room = dest_room
-        self._dest_coords = dest_coords
+        self._dest_coords = tuple(dest_coords)
         self._is_locked = is_locked
         self._key = key
 
