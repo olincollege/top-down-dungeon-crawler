@@ -65,6 +65,7 @@ class Room(pygame.sprite.Sprite):
                         is_locked=portal_data["is_locked"],
                         key=portal_data["key"],
                     )
+                    portal_count += 1
 
         # other attributes
         self._was_visited = False

@@ -1,7 +1,6 @@
 """Runs the game"""
 
 # external packages
-from pytmx.util_pygame import load_pygame
 import pygame
 
 # internal packages
@@ -9,6 +8,7 @@ import Model
 from Model.room import Room
 import Model.character
 from controller import TopDownController
+from Model.world_manager import WorldManager
 
 
 pygame.init()
@@ -17,7 +17,11 @@ TILE_SIZE = 32
 WIDTH = 30
 HEIGHT = 30
 
+screen = pygame.display.set_mode((WIDTH * TILE_SIZE, HEIGHT * TILE_SIZE))
 
+
+world = WorldManager()
+current_room = world.get_room("green_forest")
 user = Model.character.Character(
     [
         "sprite_up32.png",
@@ -29,28 +33,14 @@ user = Model.character.Character(
     None,
     "coco",
     (0, 0),
-    "basement",
+    current_room,
 )
 controller = TopDownController()
 
-screen = pygame.display.set_mode((WIDTH * TILE_SIZE, HEIGHT * TILE_SIZE))
 imp = user.get_sprite_list()[3]
 screen.blit(imp, (0, 0))
 pygame.display.flip()
 
-test_room = Room(
-    name="testroom",
-    filepath="test_map_green_forest.tmx",
-    npcs=None,
-    items=None,
-)
-
-test_dungeon = Room(
-    name="testdungeon",
-    filepath="test_map_green_dungeon.tmx",
-    npcs=None,
-    items=None,
-)
 
 RUN = True
 
@@ -61,7 +51,7 @@ while RUN:
 
         if event.type == pygame.KEYDOWN:
 
-            test_dungeon.tile_group.draw(screen)
+            current_room.tile_group.draw(screen)
 
             match (event.key):
                 case pygame.K_LEFT:
@@ -90,7 +80,7 @@ while RUN:
                     print("DOWN")
                 case pygame.K_SPACE:
                     controller.check_npc_coords(
-                        user, user.get_room(), user.get_current_sprite()
+                        user, user.room, user.get_current_sprite()
                     )
-                    controller.check_item_coords(user, user.get_room())
+                    controller.check_item_coords(user, user.room)
         pygame.display.update()
