@@ -50,7 +50,6 @@ while RUN:
             RUN = False
 
         if event.type == pygame.KEYDOWN:
-            print(current_room.name)
             current_room.tile_group.draw(screen)
 
             match (event.key):
