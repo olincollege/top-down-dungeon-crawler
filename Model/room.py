@@ -99,6 +99,13 @@ class Room(pygame.sprite.Sprite):
         return self._npc_list
 
     @property
+    def collide_list(self):
+        """
+        e
+        """
+        return self._collide_list
+
+    @property
     def item_list(self):
         """
         e
