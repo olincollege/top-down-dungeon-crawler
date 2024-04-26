@@ -55,7 +55,7 @@ class TopDownController:
 
         player.set_rect(new_coords)
 
-            self.track_step(player)
+        self.track_step(player)
 
     def move_right(self, player):
         """
@@ -79,7 +79,7 @@ class TopDownController:
 
         player.set_rect(new_coords)
 
-            self.track_step(player)
+        self.track_step(player)
 
     def move_down(self, player):
         """
@@ -102,7 +102,7 @@ class TopDownController:
 
         player.set_rect(new_coords)
 
-            self.track_step(player)
+        self.track_step(player)
 
     def move_up(self, player):
         """
@@ -124,6 +124,6 @@ class TopDownController:
 
         new_coords = player.coordinates
 
-            player.set_rect(new_coords)
+        player.set_rect(new_coords)
 
-            self.track_step(player)
+        self.track_step(player)
