@@ -1,12 +1,6 @@
 """controller.py contains the class that controls the player
 and it's interactions"""
 
-from Model.room import Room
-from Model.tile import Tile
-from Model.tile import Portal
-from Model.data_sprite import DataSprite
-from Model.character import Character
-
 TILE_HEIGHT = 8
 TILE_WIDTH = 8
 
@@ -97,15 +91,3 @@ class TopDownController:
         new_coords = player.coordinates
 
         player.set_rect(new_coords)
-
-    def change_room(self, player, portal):
-        """
-        Changes the current room a player is in based on the portal
-        they entered
-
-        Args:
-            player: a Player instance representing the player's information
-            portal: a Portal instance that represents the portal's information
-        """
-        next_room = portal.get_dest_room
-        player.set_room(next_room)

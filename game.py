@@ -78,8 +78,6 @@ while RUN:
                     pygame.display.flip()
                     print("DOWN")
                 case pygame.K_SPACE:
-                    controller.check_npc_coords(
-                        user, user.room, user.get_current_sprite()
-                    )
-                    controller.check_item_coords(user, user.room)
+                    user.check_npc_coords()
+                    user.check_item_coords()
         pygame.display.update()
