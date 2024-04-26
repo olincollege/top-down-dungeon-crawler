@@ -23,32 +23,19 @@ class WorldManager:
         with open("Resources/JSON/rooms.json") as rooms:
             parsed_rooms = json.load(rooms)
 
-        portals_json = parsed_rooms["portals"]
-        npc_json = parsed_rooms["npcs"]
-        item_json = parsed_rooms["items"]
+        for room_name, room_data in parsed_rooms.items():
 
-        # real_portal = []
+            portals_json = room_data["portals"]
+            npc_json = room_data["npcs"]
+            item_json = room_data["items"]
 
-        # for portal in portals_json:
-        #     real_portal += [json.loads(portal)]
-
-        # real_npcs = []
-
-        # for npc in npc_json:
-        #     real_npcs += [json.loads(npc)]
-
-        # real_items = []
-
-        # for item in item_json:
-        #     real_items += [json.loads(item)]
-
-        self._room_list[parsed_rooms["name"]] = Room(
-            parsed_rooms["name"],
-            parsed_rooms["filepath"],
-            portals=portals_json,
-            npcs=None,
-            items=None,
-        )
+            self._room_list[room_name] = Room(
+                name=room_name,
+                filepath=room_data["filepath"],
+                portals=portals_json,
+                npcs=npc_json,
+                items=item_json,
+            )
 
     # get room by name function
     def get_room(self, name):
