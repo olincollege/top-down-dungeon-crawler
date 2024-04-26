@@ -5,6 +5,7 @@ import pygame
 
 # internal packages
 import Model
+import Model.player
 from Model.room import Room
 import Model.character
 from controller import TopDownController
@@ -22,7 +23,22 @@ screen = pygame.display.set_mode((WIDTH * TILE_SIZE, HEIGHT * TILE_SIZE))
 
 world = WorldManager()
 current_room = world.get_room("green_dungeon")
-user = Model.character.Character(
+# user = Model.character.Character(
+#     [
+#         "sprite_up32.png",
+#         "sprite_right32.png",
+#         "sprite_down32.png",
+#         "sprite_left32.png",
+#     ],
+#     3,
+#     None,
+#     "coco",
+#     (0, 0),
+#     current_room,
+# )
+
+user = Model.player.Player(
+    None,
     [
         "sprite_up32.png",
         "sprite_right32.png",
@@ -77,7 +93,9 @@ while RUN:
                     screen.blit(imp, user.coordinates)
                     pygame.display.flip()
                     print("DOWN")
-                case pygame.K_SPACE:
-                    user.check_npc_coords()
-                    user.check_item_coords()
+                # case pygame.K_SPACE:
+                #     controller.check_npc_coords(
+                #         user, user.room, user.get_current_sprite()
+                #     )
+                #     controller.check_item_coords(user, user.room)
         pygame.display.update()
