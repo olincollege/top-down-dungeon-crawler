@@ -41,6 +41,24 @@ imp = user.get_sprite_list()[3]
 screen.blit(imp, (0, 0))
 pygame.display.flip()
 
+<<<<<<< HEAD
+test_room = Room(
+    name="testroom",
+    filepath="test_map_green_forest.tmx",
+    portals=None,
+    npcs=None,
+    items=None,
+)
+
+test_dungeon = Room(
+    name="testdungeon",
+    filepath="test_map_green_dungeon.tmx",
+    portals=None,
+    npcs=None,
+    items=None,
+)
+=======
+>>>>>>> 700483a986b1d2f680ff2029034fa800f45d32ef
 
 RUN = True
 
