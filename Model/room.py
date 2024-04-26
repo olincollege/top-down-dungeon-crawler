@@ -37,20 +37,13 @@ class Room(pygame.sprite.Sprite):
         self._npc_list = npcs
         self._item_list = items
         self._portal_list = []
+        self._collide_list = []
         # defining map and tilegroups
         self._tile_group = pygame.sprite.Group()
         self._map_tmx = load_pygame(filepath)
         # construct the map group
         for layer in self._map_tmx.visible_layers:
-            # if the layer is not empty
-            if hasattr(layer, "data"):
-                for x, y, surf in layer.tiles():
-                    Tile(
-                        coordinates=(x, y),
-                        room=self,
-                        surf=surf,
-                        group=self._tile_group,
-                    )
+            # if layer is portals
             if layer.name == "Portals":
                 portal_count = 0
                 for x, y, surf in layer.tiles():
@@ -68,6 +61,26 @@ class Room(pygame.sprite.Sprite):
                         )
                     )
                     portal_count += 1
+            # if layer is collidable
+            elif layer.name in ("Collidables", "Collidables_Deco"):
+                for x, y, surf in layer.tiles():
+                    self._collide_list.append(
+                        Tile(
+                            coordinates=(x, y),
+                            room=self,
+                            surf=surf,
+                            group=self._tile_group,
+                        )
+                    )
+            # if layer is not empty
+            elif hasattr(layer, "data"):
+                for x, y, surf in layer.tiles():
+                    Tile(
+                        coordinates=(x, y),
+                        room=self,
+                        surf=surf,
+                        group=self._tile_group,
+                    )
 
         # other attributes
         self._was_visited = False
