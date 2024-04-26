@@ -21,7 +21,7 @@ screen = pygame.display.set_mode((WIDTH * TILE_SIZE, HEIGHT * TILE_SIZE))
 
 
 world = WorldManager()
-current_room = world.get_room("green_forest")
+current_room = world.get_room("green_dungeon")
 user = Model.character.Character(
     [
         "sprite_up32.png",
@@ -50,7 +50,7 @@ while RUN:
             RUN = False
 
         if event.type == pygame.KEYDOWN:
-
+            print(current_room.name)
             current_room.tile_group.draw(screen)
 
             match (event.key):
