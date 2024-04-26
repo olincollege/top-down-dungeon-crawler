@@ -10,11 +10,39 @@ class Tile(pygame.sprite.Sprite):
 
     def __init__(self, coordinates, room, group, surf=pygame.Surface((32, 32))):
         super().__init__(group)
-        self.room = room
-        self.image = surf
-        self.coordinates = coordinates
-        self.pos = (coordinates[0] * 32, coordinates[1] * 32)
-        self.rect = self.image.get_rect(topleft=self.pos)
+        self._room = room
+        self._image = surf
+        self._coordinates = coordinates
+        self._pos = (coordinates[0] * 32, coordinates[1] * 32)
+        self._rect = self.image.get_rect(topleft=self.pos)
+
+    @property
+    def coordinates(self):
+        """
+        Gets the coordinates of this tile.
+        """
+        return self._coordinates
+
+    @property
+    def image(self):
+        """
+        Gets the image of this tile.
+        """
+        return self._image
+
+    @property
+    def rect(self):
+        """
+        Gets the rect of this tile.
+        """
+        return self._rect
+
+    @property
+    def pos(self):
+        """
+        Gets the pos of this tile.
+        """
+        return self._pos
 
 
 class Portal(Tile):
@@ -54,28 +82,28 @@ class Portal(Tile):
         self._key = key
 
     @property
-    def get_is_locked(self):
+    def is_locked(self):
         """
         Returns whether the portal is locked
         """
         return self._is_locked
 
     @property
-    def get_dest_room(self):
+    def dest_room(self):
         """
         Returns the destination room
         """
         return self._dest_room
 
     @property
-    def get_dest_coords(self):
+    def dest_coords(self):
         """
         Returns the destination coords of the portal
         """
         return self._dest_coords
 
     @property
-    def get_key(self):
+    def key(self):
         """
         Returns the key item for the portal
         """
