@@ -41,6 +41,7 @@ imp = user.get_sprite_list()[3]
 screen.blit(imp, (0, 0))
 pygame.display.flip()
 
+
 RUN = True
 
 while RUN:
@@ -49,7 +50,6 @@ while RUN:
             RUN = False
 
         if event.type == pygame.KEYDOWN:
-            print(current_room.name)
             current_room.tile_group.draw(screen)
 
             match (event.key):
@@ -78,8 +78,6 @@ while RUN:
                     pygame.display.flip()
                     print("DOWN")
                 case pygame.K_SPACE:
-                    controller.check_npc_coords(
-                        user, user.room, user.get_current_sprite()
-                    )
-                    controller.check_item_coords(user, user.room)
+                    user.check_npc_coords()
+                    user.check_item_coords()
         pygame.display.update()

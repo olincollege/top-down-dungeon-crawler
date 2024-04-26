@@ -33,17 +33,49 @@ class Room(pygame.sprite.Sprite):
         super().__init__()
         # set from parameters
         self._name = name
+        # other attributes
+        self._was_visited = False
         # unpack dictionary information
         self._npc_list = npcs
         self._item_list = items
+        self._portal_list = []
+        self._collide_list = []
         # defining map and tilegroups
         self._tile_group = pygame.sprite.Group()
         self._map_tmx = load_pygame(filepath)
-        self._tile_id = 0
-
-        # cycle through all layers
+        # construct the map group
         for layer in self._map_tmx.visible_layers:
-            if hasattr(layer, "data"):
+            # if layer is portals
+            if layer.name == "Portals":
+                portal_count = 0
+                for x, y, surf in layer.tiles():
+                    portal_data = portals[portal_count]
+                    self._portal_list.append(
+                        Portal(
+                            coordinates=(x, y),
+                            room=self,
+                            surf=surf,
+                            group=self._tile_group,
+                            dest_coords=portal_data["dest_coords"],
+                            dest_room=portal_data["dest_room"],
+                            is_locked=portal_data["is_locked"],
+                            key=portal_data["key"],
+                        )
+                    )
+                    portal_count += 1
+            # if layer is collidable
+            elif layer.name in ("Collidables", "Collidables_Deco"):
+                for x, y, surf in layer.tiles():
+                    self._collide_list.append(
+                        Tile(
+                            coordinates=(x, y),
+                            room=self,
+                            surf=surf,
+                            group=self._tile_group,
+                        )
+                    )
+            # if layer is not empty
+            elif hasattr(layer, "data"):
                 for x, y, surf in layer.tiles():
                     Tile(
                         coordinates=(x, y),
@@ -51,24 +83,13 @@ class Room(pygame.sprite.Sprite):
                         surf=surf,
                         group=self._tile_group,
                     )
-            if layer.name == "Portals":
-                portal_count = 0
-                for x, y, surf in layer.tiles():
-                    portal_data = portals[portal_count]
-                    Portal(
-                        coordinates=(x, y),
-                        room=self,
-                        surf=surf,
-                        group=self._tile_group,
-                        dest_coords=portal_data["dest_coords"],
-                        dest_room=portal_data["dest_room"],
-                        is_locked=portal_data["is_locked"],
-                        key=portal_data["key"],
-                    )
-                    portal_count += 1
 
-        # other attributes
-        self._was_visited = False
+    @property
+    def name(self):
+        """
+        e
+        """
+        return self._name
 
     @property
     def npc_list(self):
