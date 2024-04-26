@@ -39,19 +39,21 @@ class TopDownController:
         Args:
             player: a Player instance representing the player's information
         """
-        if not player.check_collision(3):
 
-            player_coords = player.coordinates
+        player_coords = player.coordinates
 
+        player.set_coordinates(player_coords[0] - TILE_WIDTH, player_coords[1])
+
+        if player.check_collision():
             player.set_coordinates(
                 (player_coords[0] - TILE_WIDTH, player_coords[1])
             )
 
-            player.set_current_sprite(3)
+        player.set_current_sprite(3)
 
-            new_coords = player.coordinates
+        new_coords = player.coordinates
 
-            player.set_rect(new_coords)
+        player.set_rect(new_coords)
 
             self.track_step(player)
 
@@ -62,18 +64,20 @@ class TopDownController:
         Args:
             player: a Player instance representing the player's information
         """
-        if not player.check_collision(1):
-            player_coords = player.coordinates
+        player_coords = player.coordinates
 
+        player.set_coordinates(player_coords[0] + TILE_WIDTH, player_coords[1])
+
+        if player.check_collision():
             player.set_coordinates(
                 (player_coords[0] + TILE_WIDTH, player_coords[1])
             )
 
-            player.set_current_sprite(1)
+        player.set_current_sprite(1)
 
-            new_coords = player.coordinates
+        new_coords = player.coordinates
 
-            player.set_rect(new_coords)
+        player.set_rect(new_coords)
 
             self.track_step(player)
 
@@ -84,17 +88,19 @@ class TopDownController:
         Args:
             player: a Player instance representing the player's information
         """
-        if not player.check_collision(2):
-            player_coords = player.coordinates
+        player_coords = player.coordinates
+        player.set_coordinates(player_coords[0], player_coords[1] + TILE_HEIGHT)
+
+        if player.check_collision():
             player.set_coordinates(
                 (player_coords[0], player_coords[1] + TILE_HEIGHT)
             )
 
-            player.set_current_sprite(2)
+        player.set_current_sprite(2)
 
-            new_coords = player.coordinates
+        new_coords = player.coordinates
 
-            player.set_rect(new_coords)
+        player.set_rect(new_coords)
 
             self.track_step(player)
 
@@ -105,16 +111,18 @@ class TopDownController:
         Args:
             player: a Player instance representing the player's information
         """
-        if not player.check_collision(0):
-            player_coords = player.coordinates
+        player_coords = player.coordinates
 
+        player.set_coordinates(player_coords[0], player_coords[1] - TILE_HEIGHT)
+
+        if player.check_collision():
             player.set_coordinates(
                 (player_coords[0], player_coords[1] - TILE_HEIGHT)
             )
 
-            player.set_current_sprite(0)
+        player.set_current_sprite(0)
 
-            new_coords = player.coordinates
+        new_coords = player.coordinates
 
             player.set_rect(new_coords)
 

@@ -4,6 +4,9 @@ player.py lays out all the information for a player
 
 from Model.character import Character
 
+TILE_WIDTH = 32
+TILE_HEIGHT = 32
+
 
 class Player(Character):
     """
@@ -95,14 +98,14 @@ class Player(Character):
                 case 0:
                     player_up = (
                         player_coords[0],
-                        player_coords[1] + 32,
+                        player_coords[1] + TILE_HEIGHT,
                     )
                     if player_up == npc_coords:
                         return npc
 
                 case 1:
                     player_right = (
-                        player_coords[0] + 32,
+                        player_coords[0] + TILE_WIDTH,
                         player_coords[1],
                     )
                     if player_right == npc_coords:
@@ -111,14 +114,14 @@ class Player(Character):
                 case 2:
                     player_down = (
                         player_coords[0],
-                        player_coords[1] - 32,
+                        player_coords[1] - TILE_HEIGHT,
                     )
                     if player_down == npc_coords:
                         return npc
 
                 case 3:
                     player_left = (
-                        player_coords[0] - 32,
+                        player_coords[0] - TILE_WIDTH,
                         player_coords[1],
                     )
                     if player_left == npc_coords:
@@ -126,7 +129,7 @@ class Player(Character):
 
         return None
 
-    def check_collision(self, player_dir):
+    def check_collision(self):
         """
         Checks to see if the player will collide with a tile
 
@@ -139,44 +142,14 @@ class Player(Character):
         Returns True if the character will collide, and False if it won't
         """
         collide_list = self.room.collide_list
-        player_coords = self.coordinates
+        player_rect = self.rect
 
         for tile in collide_list:
 
-            tile_coords = tile.coordinates
+            tile_rect = tile.rect
 
-            match player_dir:
-                case 0:
-                    player_up = (
-                        player_coords[0],
-                        player_coords[1] + 32,
-                    )
-                    if player_up == tile_coords:
-                        return True
-
-                case 1:
-                    player_right = (
-                        player_coords[0] + 32,
-                        player_coords[1],
-                    )
-                    if player_right == tile_coords:
-                        return True
-
-                case 2:
-                    player_down = (
-                        player_coords[0],
-                        player_coords[1] - 32,
-                    )
-                    if player_down == tile_coords:
-                        return True
-
-                case 3:
-                    player_left = (
-                        player_coords[0] - 32,
-                        player_coords[1],
-                    )
-                    if player_left == tile_coords:
-                        return True
+            if player_rect.colliderect(tile_rect):
+                return True
 
         return False
 
