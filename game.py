@@ -41,6 +41,7 @@ pygame.display.flip()
 test_room = Room(
     name="testroom",
     filepath="test_map_green_forest.tmx",
+    portals=None,
     npcs=None,
     items=None,
 )
@@ -48,6 +49,7 @@ test_room = Room(
 test_dungeon = Room(
     name="testdungeon",
     filepath="test_map_green_dungeon.tmx",
+    portals=None,
     npcs=None,
     items=None,
 )
@@ -90,7 +92,7 @@ while RUN:
                     print("DOWN")
                 case pygame.K_SPACE:
                     controller.check_npc_coords(
-                        user, user.get_room(), user.get_current_sprite()
+                        user, user.room, user.get_current_sprite()
                     )
-                    controller.check_item_coords(user, user.get_room())
+                    controller.check_item_coords(user, user.room)
         pygame.display.update()

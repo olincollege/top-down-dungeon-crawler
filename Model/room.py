@@ -12,7 +12,7 @@ class Room(pygame.sprite.Sprite):
     Inherits from DataSprite
     """
 
-    def __init__(self, name, filepath, npcs, items):
+    def __init__(self, name, filepath, portals, npcs, items):
         """
         initializes the Room
 
