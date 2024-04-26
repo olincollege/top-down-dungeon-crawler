@@ -26,16 +26,18 @@ class Character(DataSprite):
         Initializes a new character
 
         Attributes:
-            sprite_list: list of images reprisenting the
+            sprite_list: list of Surfaces representing the
                 4 states the character sprite can be in
-            current_sprite: int reprisenting which sprite from the list
+            current_sprite: int representing which sprite from the list
                 is currently used
             current_item: item that the character currently has
             name: String of the name of the sprite
-            coordinates: list of 2 ints, reprisenting the location of the sprite
+            coordinates: tuple of 2 ints, reprisenting the location of the sprite
             room: String of name of the room the sprite is in
-            image: image reprisenting the sprite, auto set to be a blank pygame
-                surface of 32x32 px. Can be set to be any image
+            pos: a tuple representing the pixel location of the character
+            image: a Surface representing the image of the character
+            rect: a Rect representing the rectangle around the character
+            for collision detection
         """
         self._sprite_list = []
         for sprite in sprite_list:
@@ -45,6 +47,9 @@ class Character(DataSprite):
         self._current_item = current_item
         self._current_sprite = current_sprite
         super().__init__(name, coordinates, room)
+        self._pos = (coordinates[0] * 32, coordinates[1] * 32)
+        self._image = self._sprite_list[self._current_sprite]
+        self._rect = self._image.get_rect(topleft=self._pos)
 
     def get_sprite_list(self):
         """
@@ -81,6 +86,16 @@ class Character(DataSprite):
         sets the current item that the chracter has
 
         Args:
-            item: item that the character is set to have
+            item: string representing item that the character is set to have
         """
         self._current_item = item
+
+    def set_rect(self, new_coords):
+        """
+        sets the rect of the sprite
+
+        Args:
+            new_coords: tuple representing character's new coords
+        """
+        self._pos = (new_coords[0] * 32, new_coords[1] * 32)
+        self._rect = self._image.get_rect(topleft=self._pos)
