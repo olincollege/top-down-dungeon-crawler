@@ -95,14 +95,14 @@ class Player(Character):
                 case 0:
                     player_up = (
                         player_coords[0],
-                        player_coords[1] + 1,
+                        player_coords[1] + 32,
                     )
                     if player_up == npc_coords:
                         return npc
 
                 case 1:
                     player_right = (
-                        player_coords[0] + 1,
+                        player_coords[0] + 32,
                         player_coords[1],
                     )
                     if player_right == npc_coords:
@@ -111,20 +111,74 @@ class Player(Character):
                 case 2:
                     player_down = (
                         player_coords[0],
-                        player_coords[1] - 1,
+                        player_coords[1] - 32,
                     )
                     if player_down == npc_coords:
                         return npc
 
                 case 3:
                     player_left = (
-                        player_coords[0] - 1,
+                        player_coords[0] - 32,
                         player_coords[1],
                     )
                     if player_left == npc_coords:
                         return npc
 
         return None
+
+    def check_collision(self, room, player_dir):
+        """
+        Checks to see if the player will collide with a tile
+
+        Args:
+            player: a Player instance representing the player's information
+            room: an Room instance representing the room's information
+            player_dir: an int representing which direction the player is
+            facing.
+
+        Returns True if the character will collide, and False if it won't
+        """
+        collide_list = room.collide_list
+        player_coords = self.coordinates
+
+        for tile in collide_list:
+
+            tile_coords = tile.coordinates
+
+            match player_dir:
+                case 0:
+                    player_up = (
+                        player_coords[0],
+                        player_coords[1] + 32,
+                    )
+                    if player_up == tile_coords:
+                        return True
+
+                case 1:
+                    player_right = (
+                        player_coords[0] + 32,
+                        player_coords[1],
+                    )
+                    if player_right == tile_coords:
+                        return True
+
+                case 2:
+                    player_down = (
+                        player_coords[0],
+                        player_coords[1] - 32,
+                    )
+                    if player_down == tile_coords:
+                        return True
+
+                case 3:
+                    player_left = (
+                        player_coords[0] - 32,
+                        player_coords[1],
+                    )
+                    if player_left == tile_coords:
+                        return True
+
+        return False
 
     def equip(self, item_num):
         """
@@ -164,8 +218,3 @@ class Player(Character):
             inv_string += f"{item.name}\n"
 
         return inv_string
-
-    def collide(self):
-        """
-        e
-        """
