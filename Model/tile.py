@@ -31,18 +31,18 @@ class Tile(pygame.sprite.Sprite):
         return self._image
 
     @property
-    def rect(self):
-        """
-        Gets the rect of this tile.
-        """
-        return self._rect
-
-    @property
     def pos(self):
         """
         Gets the pos of this tile.
         """
         return self._pos
+
+    @property
+    def rect(self):
+        """
+        Gets the pos of this tile.
+        """
+        return self._rect
 
 
 class Portal(Tile):

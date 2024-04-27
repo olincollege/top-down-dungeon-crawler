@@ -23,10 +23,12 @@ class DataSprite(pygame.sprite.Sprite):
             room: String of name of the room the sprite is in
             image: image reprisenting the sprite, auto set to be a blank pygame
                 surface of 32x32 px. Can be set to be any image
+            pos: tuple of 2 ints derived from coordinates (pixel location)
         """
         self._name = name
         self._coordinates = coordinates
         self._room = room
+        self._pos = (coordinates[0] * 32, coordinates[1] * 32)
 
     @property
     def name(self):
@@ -49,6 +51,13 @@ class DataSprite(pygame.sprite.Sprite):
         """
         return self._room
 
+    @property
+    def pos(self):
+        """
+        returns the position of the datasprite
+        """
+        return self._pos
+
     def set_coordinates(self, coords):
         """
         Setter method for coordinates
@@ -60,11 +69,21 @@ class DataSprite(pygame.sprite.Sprite):
         """
         self._coordinates = coords
 
-    def set_room(self, room_name):
+    def set_pos(self, coords):
+        """
+        Setter method for position
+
+        Args:
+            coords: A tuple of ints representing the datasprite's new
+            coordinates.
+        """
+        self._pos = (coords[0] * 32, coords[1] * 32)
+
+    def set_room(self, room):
         """
         Setter method for room
 
         Args:
-            room_name: a string representing the new room
+            room_name: a room object representing the new room
         """
-        self._room = room_name
+        self._room = room

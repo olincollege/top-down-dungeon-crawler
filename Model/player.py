@@ -34,10 +34,9 @@ class Player(Character):
                 is currently used
             current_item: item that the character currently has
             name: String of the name of the sprite
-            coordinates: list of 2 ints, reprisenting the location of the sprite
+            coordinates: tuple of 2 ints, reprisenting the location of the sprite
             room: String of name of the room the sprite is in
-            image: image reprisenting the sprite, auto set to be a blank pygame
-                surface of 32x32 px. Can be set to be any image
+            pos: tuple of 2 ints representing pixel locations of the player
         """
 
         self._inventory = inventory
@@ -49,6 +48,7 @@ class Player(Character):
             coordinates,
             room,
         )
+        self._pos = (coordinates[0] * 32, coordinates[1] * 32)
 
     def check_step(self):
         """
@@ -62,12 +62,12 @@ class Player(Character):
         room_items = self._room.item_list
 
         for portal in portals:
-            temp_portal_coords = portal.coordinates
+            temp_portal_coords = portal.pos
             if self.coordinates == temp_portal_coords:
                 return portal
 
         for item in room_items:
-            temp_item_coords = item.coordinates
+            temp_item_coords = item.pos
             if self.coordinates == temp_item_coords:
                 return item
 
@@ -145,7 +145,6 @@ class Player(Character):
         player_rect = self.rect
 
         for tile in collide_list:
-
             tile_rect = tile.rect
 
             if player_rect.colliderect(tile_rect):
@@ -191,3 +190,23 @@ class Player(Character):
             inv_string += f"{item.name}\n"
 
         return inv_string
+
+    def set_coordinates(self, coords):
+        """
+        Setter method for coordinates
+
+        Args:
+            coords: A tuple of ints representing the datasprite's new
+            coordinates.
+
+        """
+        self._coordinates = coords
+
+    def set_room(self, room):
+        """
+        Setter method for room
+
+        Args:
+            room_name: a room object representing the new room
+        """
+        self._room = room
