@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="12" height="12" tilewidth="32" tileheight="32" infinite="0" nextlayerid="9" nextobjectid="1">
  <tileset firstgid="1" source="../TileSets/Green_Dungeon.tsx"/>
- <layer id="2" name="Floor" width="12" height="12">
+ <layer id="2" name="Floor" width="12" height="12" visible="0">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,
 0,3,3,29,29,29,29,27,3,29,27,0,
@@ -27,13 +27,13 @@
 0,0,0,0,0,0,0,0,171,170,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,371,372,373,0,0,
-0,0,0,0,0,0,0,397,398,399,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <layer id="1" name="Collidables" width="12" height="12">
+ <layer id="1" name="Collidables" width="12" height="12" visible="0">
   <data encoding="csv">
 339,339,339,339,339,339,339,339,339,339,339,339,
 339,339,339,339,339,339,339,339,339,339,339,339,
@@ -51,8 +51,8 @@
  </layer>
  <layer id="4" name="Collidables_Deco" width="12" height="12">
   <data encoding="csv">
-0,14,495,496,497,0,0,305,306,0,0,14,
-0,0,521,0,523,0,14,331,332,207,208,0,
+0,14,504,505,506,0,0,305,306,0,0,14,
+0,0,530,0,532,0,14,331,332,207,208,0,
 0,0,0,0,0,0,0,0,0,233,234,0,
 0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,
@@ -65,7 +65,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <layer id="6" name="Items" width="12" height="12">
+ <layer id="6" name="Items" width="12" height="12" visible="0">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,
@@ -81,7 +81,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <layer id="3" name="Portals" width="12" height="12">
+ <layer id="3" name="Portals" width="12" height="12" visible="0">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,522,0,0,0,0,0,0,0,0,
@@ -97,7 +97,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <layer id="7" name="Ceiling" width="12" height="12">
+ <layer id="7" name="Ceiling" width="12" height="12" visible="0">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,
