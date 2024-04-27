@@ -1,5 +1,5 @@
 """
-npc.py lays out information for npc's, 
+npc.py lays out information for npc's,
 """
 
 from character import Character
@@ -55,8 +55,7 @@ class Npc(Character):
             name,
             coordinates,
             room,
-            image,
-        )#pylint: disable=too-many-arguments
+        )  # pylint: disable=too-many-arguments
 
     @property
     def get_voice_line(self):

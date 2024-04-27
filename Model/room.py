@@ -35,9 +35,10 @@ class Room(pygame.sprite.Sprite):
         self._name = name
         # other attributes
         self._was_visited = False
-        # unpack dictionary information
-        self._npc_list = npcs
-        self._item_list = items
+        # unpack dictionary information (neither of these are good at all)
+        # make it tile based in the future for loops
+        self._npc_list = []
+        self._item_list = []
         self._portal_list = []
         self._collide_list = []
         # defining map and tilegroups
@@ -49,40 +50,60 @@ class Room(pygame.sprite.Sprite):
             if layer.name == "Portals":
                 portal_count = 0
                 for x, y, surf in layer.tiles():
-                    portal_data = portals[portal_count]
-                    self._portal_list.append(
-                        Portal(
-                            coordinates=(x, y),
-                            room=self,
-                            surf=surf,
-                            group=self._tile_group,
-                            dest_coords=portal_data["dest_coords"],
-                            dest_room=portal_data["dest_room"],
-                            is_locked=portal_data["is_locked"],
-                            key=portal_data["key"],
+                    try:
+                        portal_data = portals[portal_count]
+                        self._portal_list.append(
+                            Portal(
+                                coordinates=(x, y),
+                                room=self,
+                                surf=surf,
+                                group=self._tile_group,
+                                dest_coords=portal_data["dest_coords"],
+                                dest_room=portal_data["dest_room"],
+                                is_locked=portal_data["is_locked"],
+                                key=portal_data["key"],
+                            )
                         )
-                    )
-                    portal_count += 1
+                        portal_count += 1
+                    except AttributeError:
+                        print(
+                            f"Image error in room {self._name} layer {layer.name} at tile {(x,y)}"
+                        )
+                    except IndexError:
+                        print(
+                            f"Index error in room {self._name} layer {layer.name} at tile {(x,y)}"
+                        )
             # if layer is collidable
             elif layer.name in ("Collidables", "Collidables_Deco"):
                 for x, y, surf in layer.tiles():
-                    self._collide_list.append(
+                    try:
+                        self._collide_list.append(
+                            Tile(
+                                coordinates=(x, y),
+                                room=self,
+                                surf=surf,
+                                group=self._tile_group,
+                            )
+                        )
+                    except AttributeError:
+                        print(
+                            f"Image error in room {self._name} layer {layer.name} at tile {(x,y)}"
+                        )
+
+            # if layer is not empty
+            elif hasattr(layer, "data"):
+                for x, y, surf in layer.tiles():
+                    try:
                         Tile(
                             coordinates=(x, y),
                             room=self,
                             surf=surf,
                             group=self._tile_group,
                         )
-                    )
-            # if layer is not empty
-            elif hasattr(layer, "data"):
-                for x, y, surf in layer.tiles():
-                    Tile(
-                        coordinates=(x, y),
-                        room=self,
-                        surf=surf,
-                        group=self._tile_group,
-                    )
+                    except AttributeError:
+                        print(
+                            f"Image error in room {self._name} layer {layer.name} at tile {(x,y)}"
+                        )
 
     @property
     def name(self):
@@ -97,6 +118,20 @@ class Room(pygame.sprite.Sprite):
         e
         """
         return self._npc_list
+
+    @property
+    def portal_list(self):
+        """
+        e
+        """
+        return self._portal_list
+
+    @property
+    def collide_list(self):
+        """
+        e
+        """
+        return self._collide_list
 
     @property
     def item_list(self):

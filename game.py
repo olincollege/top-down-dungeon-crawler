@@ -4,11 +4,9 @@
 import pygame
 
 # internal packages
-import Model
-from Model.room import Room
-import Model.character
-from controller import TopDownController
 from Model.world_manager import WorldManager
+from Model.player import Player
+from controller import TopDownController
 
 
 pygame.init()
@@ -21,19 +19,20 @@ screen = pygame.display.set_mode((WIDTH * TILE_SIZE, HEIGHT * TILE_SIZE))
 
 
 world = WorldManager()
-current_room = world.get_room("green_dungeon")
-user = Model.character.Character(
-    [
+current_room = world.get_room("Tent_Interior")
+user = Player(
+    sprite_list=[
         "sprite_up32.png",
         "sprite_right32.png",
         "sprite_down32.png",
         "sprite_left32.png",
     ],
-    3,
-    None,
-    "coco",
-    (0, 0),
-    current_room,
+    inventory=[],
+    current_sprite=3,
+    current_item=None,
+    name="coco",
+    coordinates=(0, 0),
+    room=current_room,
 )
 controller = TopDownController()
 
@@ -78,6 +77,6 @@ while RUN:
                     pygame.display.flip()
                     print("DOWN")
                 case pygame.K_SPACE:
-                    user.check_npc_coords()
+                    user.check_npc_coords(user.room, user.dir)
                     user.check_item_coords()
         pygame.display.update()

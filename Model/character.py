@@ -70,6 +70,13 @@ class Character(DataSprite):
         """
         return self._current_item
 
+    @property
+    def rect(self):
+        """
+        Returns the character's rect
+        """
+        return self._rect
+
     def set_current_sprite(self, orientation):
         """
         sets the current orientation of the sprite

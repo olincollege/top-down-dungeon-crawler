@@ -49,16 +49,16 @@ class DataSprite(pygame.sprite.Sprite):
         """
         return self._room
 
-    def set_coordinates(self, new_x, new_y):
+    def set_coordinates(self, coords):
         """
         Setter method for coordinates
 
         Args:
-            new_x: an int representing the new x-coordinate
-            new_y: an int representing the new y-coordinate
+            coords: A tuple of ints representing the datasprite's new
+            coordinates.
 
         """
-        self._coordinates = (new_x, new_y)
+        self._coordinates = coords
 
     def set_room(self, room_name):
         """

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="12" height="20" tilewidth="32" tileheight="32" infinite="0" nextlayerid="9" nextobjectid="1">
- <tileset firstgid="1" source="../TileSets/Interior.tsx"/>
+ <tileset firstgid="1" source="Resources/Interior.tsx"/>
  <layer id="1" name="Floor" width="12" height="20">
   <data encoding="csv">
 177,177,177,177,177,177,177,177,177,177,177,177,
