@@ -49,6 +49,8 @@ while RUN:
 
         current_room = controller.current_room
         current_room.tile_group.draw(screen)
+        imp = user.get_sprite_list()[user.get_current_sprite()]
+        screen.blit(imp, user.coordinates)
 
         if event.type == pygame.KEYDOWN:
             match (event.key):
@@ -79,4 +81,5 @@ while RUN:
                 case pygame.K_SPACE:
                     user.check_npc_coords(user.room, user.dir)
                     user.check_item_coords()
+
         pygame.display.update()

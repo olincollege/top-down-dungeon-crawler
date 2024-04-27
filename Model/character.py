@@ -97,12 +97,11 @@ class Character(DataSprite):
         """
         self._current_item = item
 
-    def set_rect(self, new_coords):
+    def set_rect(self, new_pos):
         """
         sets the rect of the sprite
 
         Args:
             new_coords: tuple representing character's new coords
         """
-        self._pos = (new_coords[0] * 32, new_coords[1] * 32)
-        self._rect = self._image.get_rect(topleft=self._pos)
+        self._rect = self._image.get_rect(topleft=new_pos)
