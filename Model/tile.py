@@ -12,9 +12,8 @@ class Tile(pygame.sprite.Sprite):
         super().__init__(group)
         self._room = room
         self._image = surf
-        self._coordinates = coordinates
-        self._pos = (coordinates[0] * 32, coordinates[1] * 32)
-        self._rect = self.image.get_rect(topleft=self.pos)
+        self._coordinates = (coordinates[0] * 32, coordinates[1] * 32)
+        self._rect = self.image.get_rect(topleft=self.coordinates)
 
     @property
     def coordinates(self):
@@ -29,13 +28,6 @@ class Tile(pygame.sprite.Sprite):
         Gets the image of this tile.
         """
         return self._image
-
-    @property
-    def pos(self):
-        """
-        Gets the pos of this tile.
-        """
-        return self._pos
 
     @property
     def rect(self):

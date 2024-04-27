@@ -20,7 +20,7 @@ class WorldManager:
 
         self._room_list = {}
 
-        with open("Resources/JSON/rooms.json") as rooms:
+        with open("Resources/JSON/rooms.json", encoding="utf-8") as rooms:
             parsed_rooms = json.load(rooms)
 
         for room_name, room_data in parsed_rooms.items():

@@ -17,7 +17,6 @@ class Character(DataSprite):
         self,
         sprite_list,
         current_sprite,
-        current_item,
         name,
         coordinates,
         room,
@@ -34,22 +33,21 @@ class Character(DataSprite):
             name: String of the name of the sprite
             coordinates: tuple of 2 ints, reprisenting the location of the sprite
             room: String of name of the room the sprite is in
-            pos: a tuple representing the pixel location of the character
             image: a Surface representing the image of the character
             rect: a Rect representing the rectangle around the character
             for collision detection
         """
+        # init
+        super().__init__(name, coordinates, room)
+        # create sprites
         self._sprite_list = []
         for sprite in sprite_list:
             temp = pygame.image.load(sprite)
             self._sprite_list.append(temp)
-
-        self._current_item = current_item
+        # create current sprite info
         self._current_sprite = current_sprite
-        super().__init__(name, coordinates, room)
-        self._pos = (coordinates[0] * 32, coordinates[1] * 32)
         self._image = self._sprite_list[self._current_sprite]
-        self._rect = self._image.get_rect(topleft=self._pos)
+        self._rect = self._image.get_rect(topleft=self.coordinates)
 
     def get_sprite_list(self):
         """
@@ -88,20 +86,12 @@ class Character(DataSprite):
         """
         self._current_sprite = orientation
 
-    def set_current_item(self, item):
-        """
-        sets the current item that the chracter has
-
-        Args:
-            item: string representing item that the character is set to have
-        """
-        self._current_item = item
-
-    def set_rect(self, new_pos):
+    def set_rect(self, new_coords):
         """
         sets the rect of the sprite
 
         Args:
             new_coords: tuple representing character's new coords
         """
-        self._rect = self._image.get_rect(topleft=new_pos)
+        self._coordinates = new_coords
+        self._rect = self._image.get_rect(topleft=self._coordinates)

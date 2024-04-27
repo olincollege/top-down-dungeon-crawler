@@ -5,8 +5,7 @@ from Model.tile import Portal, Item
 from Model.player import Player
 from Model.world_manager import WorldManager
 
-TILE_HEIGHT = 32
-TILE_WIDTH = 32
+TILE_SIZE = 32
 
 
 class TopDownController:
@@ -45,9 +44,7 @@ class TopDownController:
         if isinstance(tile, Portal):
             self._current_room = self._world.get_room(tile.dest_room)
             player.set_room(self._current_room)
-            player.set_coordinates(
-                (tile.dest_coords[0] * 32, tile.dest_coords[1] * 32)
-            )
+            player.set_coordinates(tile.dest_coords)
         elif isinstance(tile, Item):
             player.pick_up(tile)
             tile.set_player_has = True
@@ -59,92 +56,84 @@ class TopDownController:
         Args:
             player: a Player instance representing the player's information
         """
-
-        player_coordinates = player.coordinates
-
-        player.set_pos((player_coordinates[0] - 1, player_coordinates[1]))
-        print(f"xpos = {player.pos[0]}, ypos = {player.pos[1]}")
-        print(f"Checking collision, it is {player.check_collision()}")
+        player.set_coordinates(
+            (player.coordinates[0] - TILE_SIZE, player.coordinates[1])
+        )
 
         if player.check_collision():
-            player.set_pos((player_coordinates[0] + 1, player_coordinates[1]))
+            player.set_coordinates(
+                (player.coordinates[0] + TILE_SIZE, player.coordinates[1])
+            )
 
         player.set_current_sprite(3)
 
-        new_pos = player.pos
-
-        player.set_rect(new_pos)
+        player.set_rect(player.coordinates)
 
         self.track_step(player)
 
-    def move_right(self, player):
+    def move_right(self, player=Player):
         """
         Moves the player right
 
         Args:
             player: a Player instance representing the player's information
         """
-        player_coordinates = player.coordinates
 
-        player.set_pos((player_coordinates[0] + 1, player_coordinates[1]))
-        print(f"xpos = {player.pos[0]}, ypos = {player.pos[1]}")
+        player.set_coordinates(
+            (player.coordinates[0] + TILE_SIZE, player.coordinates[1])
+        )
 
-        print(f"Checking collision, it is {player.check_collision()}")
         if player.check_collision():
-            print("COLLISION!!!")
-            player.set_pos((player_coordinates[0] - 1, player_coordinates[1]))
+            player.set_coordinates(
+                (player.coordinates[0] - TILE_SIZE, player.coordinates[1])
+            )
 
         player.set_current_sprite(1)
 
-        new_pos = player.pos
-
-        player.set_rect(new_pos)
+        player.set_rect(player.coordinates)
 
         self.track_step(player)
 
-    def move_down(self, player):
+    def move_down(self, player=Player):
         """
         Moves the player down
 
         Args:
             player: a Player instance representing the player's information
         """
-        player_coordinates = player.coordinates
-        player.set_pos((player_coordinates[0], player_coordinates[1] + 1))
-        print(f"xpos = {player.pos[0]}, ypos = {player.pos[1]}")
-        print(f"Checking collision, it is {player.check_collision()}")
+        player.set_coordinates(
+            (player.coordinates[0], player.coordinates[1] + TILE_SIZE)
+        )
+
         if player.check_collision():
-            print("COLLISION!!!")
-            player.set_pos((player_coordinates[0], player_coordinates[1] - 1))
+            player.set_coordinates(
+                (player.coordinates[0], player.coordinates[1] - TILE_SIZE)
+            )
 
         player.set_current_sprite(2)
 
-        new_pos = player.pos
-
-        player.set_rect(new_pos)
+        player.set_rect(player.coordinates)
 
         self.track_step(player)
 
-    def move_up(self, player):
+    def move_up(self, player=Player):
         """
         Moves the player up
 
         Args:
             player: a Player instance representing the player's information
         """
-        player_coordinates = player.coordinates
+        player.set_coordinates(
+            (player.coordinates[0], player.coordinates[1] - TILE_SIZE)
+        )
 
-        player.set_pos((player_coordinates[0], player_coordinates[1] - 1))
-        print(f"xpos = {player.pos[0]}, ypos = {player.pos[1]}")
-        print(f"Checking collision, it is {player.check_collision()}")
         if player.check_collision():
-            print("COLLISION!!!")
-            player.set_pos((player_coordinates[0], player_coordinates[1] + 1))
+            player.set_coordinates(
+                (player.coordinates[0], player.coordinates[1] + TILE_SIZE)
+            )
 
         player.set_current_sprite(0)
 
-        new_pos = player.pos
-
-        player.set_rect(new_pos)
+        player.set_rect(player.coordinates)
 
         self.track_step(player)
