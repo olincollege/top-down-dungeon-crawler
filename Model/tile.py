@@ -66,8 +66,8 @@ class Portal(Tile):
 
         Attributes:
             is_locked: boolean of whether the portal is availble to use
-            dest_room: room object that the portal leads to
-            dest_coords: coordinates of the portal destination
+            dest_room: string name of room that the portal leads to
+            dest_coords: int tuple coordinates of the portal destination
             key: item object reprisenting the key to the portal
             name: String of the name of the sprite
             coordinates: list of 2 ints, reprisenting the location of the sprite
