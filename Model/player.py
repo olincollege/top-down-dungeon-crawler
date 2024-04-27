@@ -62,12 +62,12 @@ class Player(Character):
         room_items = self._room.item_list
 
         for portal in portals:
-            temp_portal_coords = portal.coordinates
+            temp_portal_coords = portal.pos
             if self.coordinates == temp_portal_coords:
                 return portal
 
         for item in room_items:
-            temp_item_coords = item.coordinates
+            temp_item_coords = item.pos
             if self.coordinates == temp_item_coords:
                 return item
 
@@ -145,7 +145,6 @@ class Player(Character):
         player_rect = self.rect
 
         for tile in collide_list:
-
             tile_rect = tile.rect
 
             if player_rect.colliderect(tile_rect):
@@ -191,3 +190,23 @@ class Player(Character):
             inv_string += f"{item.name}\n"
 
         return inv_string
+
+    def set_coordinates(self, coords):
+        """
+        Setter method for coordinates
+
+        Args:
+            coords: A tuple of ints representing the datasprite's new
+            coordinates.
+
+        """
+        self._coordinates = coords
+
+    def set_room(self, room):
+        """
+        Setter method for room
+
+        Args:
+            room_name: a room object representing the new room
+        """
+        self._room = room

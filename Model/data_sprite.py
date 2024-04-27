@@ -60,11 +60,11 @@ class DataSprite(pygame.sprite.Sprite):
         """
         self._coordinates = coords
 
-    def set_room(self, room_name):
+    def set_room(self, room):
         """
         Setter method for room
 
         Args:
-            room_name: a string representing the new room
+            room_name: a room object representing the new room
         """
-        self._room = room_name
+        self._room = room

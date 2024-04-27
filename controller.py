@@ -2,6 +2,7 @@
 and it's interactions"""
 
 from Model.tile import Portal, Item
+from Model.player import Player
 
 TILE_HEIGHT = 32
 TILE_WIDTH = 32
@@ -15,7 +16,7 @@ class TopDownController:
     def __init__(self):
         pass
 
-    def track_step(self, player):
+    def track_step(self, player=Player):
         """
         Changes the current room a player is in based on the portal
         they entered
@@ -27,12 +28,14 @@ class TopDownController:
         tile = player.check_step()
         if isinstance(tile, Portal):
             player.set_room(tile.dest_room)
-            player.set_coordinates(tile.dest_coords)
+            player.set_coordinates(
+                (tile.dest_coords[0] * 32, tile.dest_coords[1] * 32)
+            )
         elif isinstance(tile, Item):
             player.pick_up(tile)
             tile.set_player_has = True
 
-    def move_left(self, player):
+    def move_left(self, player=Player):
         """
         Moves the player left
 
@@ -48,7 +51,7 @@ class TopDownController:
 
         if player.check_collision():
             player.set_coordinates(
-                (player_coords[0] - TILE_WIDTH, player_coords[1])
+                (player_coords[0] + TILE_WIDTH, player_coords[1])
             )
 
         player.set_current_sprite(3)
@@ -74,7 +77,7 @@ class TopDownController:
 
         if player.check_collision():
             player.set_coordinates(
-                (player_coords[0] + TILE_WIDTH, player_coords[1])
+                (player_coords[0] - TILE_WIDTH, player_coords[1])
             )
 
         player.set_current_sprite(1)
@@ -99,7 +102,7 @@ class TopDownController:
 
         if player.check_collision():
             player.set_coordinates(
-                (player_coords[0], player_coords[1] + TILE_HEIGHT)
+                (player_coords[0], player_coords[1] - TILE_HEIGHT)
             )
 
         player.set_current_sprite(2)
@@ -125,7 +128,7 @@ class TopDownController:
 
         if player.check_collision():
             player.set_coordinates(
-                (player_coords[0], player_coords[1] - TILE_HEIGHT)
+                (player_coords[0], player_coords[1] + TILE_HEIGHT)
             )
 
         player.set_current_sprite(0)

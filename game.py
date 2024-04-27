@@ -19,7 +19,7 @@ screen = pygame.display.set_mode((WIDTH * TILE_SIZE, HEIGHT * TILE_SIZE))
 
 
 world = WorldManager()
-current_room = world.get_room("Tent_Interior")
+current_room = world.get_room("Small_Dungeon_2")
 user = Player(
     sprite_list=[
         "sprite_up32.png",
@@ -31,13 +31,13 @@ user = Player(
     current_sprite=3,
     current_item=None,
     name="coco",
-    coordinates=(0, 0),
+    coordinates=(3 * TILE_SIZE, 3 * TILE_SIZE),
     room=current_room,
 )
 controller = TopDownController()
 
 imp = user.get_sprite_list()[3]
-screen.blit(imp, (0, 0))
+screen.blit(imp, user.coordinates)
 pygame.display.flip()
 
 
@@ -49,6 +49,7 @@ while RUN:
             RUN = False
 
         if event.type == pygame.KEYDOWN:
+            current_room = user.room
             current_room.tile_group.draw(screen)
 
             match (event.key):
