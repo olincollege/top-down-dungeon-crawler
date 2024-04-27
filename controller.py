@@ -48,7 +48,7 @@ class TopDownController:
 
         if player.check_collision():
             player.set_coordinates(
-                (player_coords[0] - TILE_WIDTH, player_coords[1])
+                (player_coords[0] + TILE_WIDTH, player_coords[1])
             )
 
         player.set_current_sprite(3)
@@ -74,7 +74,7 @@ class TopDownController:
 
         if player.check_collision():
             player.set_coordinates(
-                (player_coords[0] + TILE_WIDTH, player_coords[1])
+                (player_coords[0] - TILE_WIDTH, player_coords[1])
             )
 
         player.set_current_sprite(1)
@@ -99,7 +99,7 @@ class TopDownController:
 
         if player.check_collision():
             player.set_coordinates(
-                (player_coords[0], player_coords[1] + TILE_HEIGHT)
+                (player_coords[0], player_coords[1] - TILE_HEIGHT)
             )
 
         player.set_current_sprite(2)
@@ -125,7 +125,7 @@ class TopDownController:
 
         if player.check_collision():
             player.set_coordinates(
-                (player_coords[0], player_coords[1] - TILE_HEIGHT)
+                (player_coords[0], player_coords[1] + TILE_HEIGHT)
             )
 
         player.set_current_sprite(0)
