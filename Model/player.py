@@ -125,7 +125,7 @@ class Player(Character):
 
         return None
 
-    def check_collision(self):
+    def check_collision(self, player_dir):
         """
         Checks to see if the player will collide with a tile
 
@@ -138,13 +138,36 @@ class Player(Character):
         Returns True if the character will collide, and False if it won't
         """
         collide_list = self.room.collide_list
-        player_rect = self.rect
+        player_coords = self.coordinates
 
         for tile in collide_list:
-            tile_rect = tile.rect
+            tile_coords = tile.coordinates
 
-            if player_rect.colliderect(tile_rect):
-                return True
+            match player_dir:
+                case 0:
+                    if (
+                        tile_coords[0] == player_coords[0]
+                        and tile_coords[1] == player_coords[1] - TILE_HEIGHT
+                    ):
+                        return True
+                case 1:
+                    if (
+                        tile_coords[0] == player_coords[0] + TILE_WIDTH
+                        and tile_coords[1] == player_coords[1]
+                    ):
+                        return True
+                case 2:
+                    if (
+                        tile_coords[0] == player_coords[0]
+                        and tile_coords[1] == player_coords[1] + TILE_HEIGHT
+                    ):
+                        return True
+                case 3:
+                    if (
+                        tile_coords[0] == player_coords[0] - TILE_WIDTH
+                        and tile_coords[1] == player_coords[1]
+                    ):
+                        return True
 
         return False
 

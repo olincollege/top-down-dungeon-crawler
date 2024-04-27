@@ -56,13 +56,17 @@ class TopDownController:
         Args:
             player: a Player instance representing the player's information
         """
-        player.set_coordinates(
-            (player.coordinates[0] - TILE_SIZE, player.coordinates[1])
-        )
 
-        if player.check_collision():
+        print(f"Checking collisions, it is {player.check_collision(3)}")
+
+        if player.check_collision(3):
+            print("COLLIDE")
             player.set_coordinates(
-                (player.coordinates[0] + TILE_SIZE, player.coordinates[1])
+                (player.coordinates[0], player.coordinates[1])
+            )
+        else:
+            player.set_coordinates(
+                (player.coordinates[0] - TILE_SIZE, player.coordinates[1])
             )
 
         player.set_current_sprite(3)
@@ -79,13 +83,16 @@ class TopDownController:
             player: a Player instance representing the player's information
         """
 
-        player.set_coordinates(
-            (player.coordinates[0] + TILE_SIZE, player.coordinates[1])
-        )
+        print(f"Checking collisions, it is {player.check_collision(1)}")
 
-        if player.check_collision():
+        if player.check_collision(1):
+            print("COLLIDE")
             player.set_coordinates(
-                (player.coordinates[0] - TILE_SIZE, player.coordinates[1])
+                (player.coordinates[0], player.coordinates[1])
+            )
+        else:
+            player.set_coordinates(
+                (player.coordinates[0] + TILE_SIZE, player.coordinates[1])
             )
 
         player.set_current_sprite(1)
@@ -101,13 +108,17 @@ class TopDownController:
         Args:
             player: a Player instance representing the player's information
         """
-        player.set_coordinates(
-            (player.coordinates[0], player.coordinates[1] + TILE_SIZE)
-        )
 
-        if player.check_collision():
+        print(f"Checking collisions, it is {player.check_collision(2)}")
+
+        if player.check_collision(2):
+            print("COLLIDE")
             player.set_coordinates(
-                (player.coordinates[0], player.coordinates[1] - TILE_SIZE)
+                (player.coordinates[0], player.coordinates[1])
+            )
+        else:
+            player.set_coordinates(
+                (player.coordinates[0], player.coordinates[1] + TILE_SIZE)
             )
 
         player.set_current_sprite(2)
@@ -123,13 +134,17 @@ class TopDownController:
         Args:
             player: a Player instance representing the player's information
         """
-        player.set_coordinates(
-            (player.coordinates[0], player.coordinates[1] - TILE_SIZE)
-        )
 
-        if player.check_collision():
+        print(f"Checking collisions, it is {player.check_collision(0)}")
+
+        if player.check_collision(0):
+            print("COLLIDE")
             player.set_coordinates(
-                (player.coordinates[0], player.coordinates[1] + TILE_SIZE)
+                (player.coordinates[0], player.coordinates[1])
+            )
+        else:
+            player.set_coordinates(
+                (player.coordinates[0], player.coordinates[1] - TILE_SIZE)
             )
 
         player.set_current_sprite(0)
