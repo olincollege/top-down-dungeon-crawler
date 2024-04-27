@@ -57,9 +57,7 @@ class TopDownController:
             player: a Player instance representing the player's information
         """
 
-        print(f"Checking collisions, it is {player.check_collision(3)}")
-
-        if player.check_collision(3):
+        if player.check_collision(3, self.current_room.collide_list):
             print("COLLIDE")
             player.set_coordinates(
                 (player.coordinates[0], player.coordinates[1])
@@ -83,9 +81,7 @@ class TopDownController:
             player: a Player instance representing the player's information
         """
 
-        print(f"Checking collisions, it is {player.check_collision(1)}")
-
-        if player.check_collision(1):
+        if player.check_collision(1, self.current_room.collide_list):
             print("COLLIDE")
             player.set_coordinates(
                 (player.coordinates[0], player.coordinates[1])
@@ -109,9 +105,7 @@ class TopDownController:
             player: a Player instance representing the player's information
         """
 
-        print(f"Checking collisions, it is {player.check_collision(2)}")
-
-        if player.check_collision(2):
+        if player.check_collision(2, self.current_room.collide_list):
             print("COLLIDE")
             player.set_coordinates(
                 (player.coordinates[0], player.coordinates[1])
@@ -135,9 +129,7 @@ class TopDownController:
             player: a Player instance representing the player's information
         """
 
-        print(f"Checking collisions, it is {player.check_collision(0)}")
-
-        if player.check_collision(0):
+        if player.check_collision(0, self.current_room.collide_list):
             print("COLLIDE")
             player.set_coordinates(
                 (player.coordinates[0], player.coordinates[1])
