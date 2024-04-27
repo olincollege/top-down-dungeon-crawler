@@ -23,10 +23,10 @@ controller = TopDownController()
 current_room = controller.current_room
 user = Player(
     sprite_list=[
-        "sprite_up32.png",
-        "sprite_right32.png",
-        "sprite_down32.png",
-        "sprite_left32.png",
+        "Resources/Player Images/sprite_up32.png",
+        "Resources/Player Images/sprite_right32.png",
+        "Resources/Player Images/sprite_down32.png",
+        "Resources/Player Images/sprite_left32.png",
     ],
     current_sprite=3,
     name="coco",
