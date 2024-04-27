@@ -46,6 +46,8 @@ class TopDownController:
             (player_coords[0] - TILE_WIDTH, player_coords[1])
         )
 
+        print(f"Checking collision, it is {player.check_collision()}")
+
         if player.check_collision():
             player.set_coordinates(
                 (player_coords[0] + TILE_WIDTH, player_coords[1])
@@ -72,7 +74,9 @@ class TopDownController:
             (player_coords[0] + TILE_WIDTH, player_coords[1])
         )
 
+        print(f"Checking collision, it is {player.check_collision()}")
         if player.check_collision():
+            print("COLLISION!!!")
             player.set_coordinates(
                 (player_coords[0] - TILE_WIDTH, player_coords[1])
             )
@@ -96,8 +100,9 @@ class TopDownController:
         player.set_coordinates(
             (player_coords[0], player_coords[1] + TILE_HEIGHT)
         )
-
+        print(f"Checking collision, it is {player.check_collision()}")
         if player.check_collision():
+            print("COLLISION!!!")
             player.set_coordinates(
                 (player_coords[0], player_coords[1] - TILE_HEIGHT)
             )
@@ -122,8 +127,9 @@ class TopDownController:
         player.set_coordinates(
             (player_coords[0], player_coords[1] - TILE_HEIGHT)
         )
-
+        print(f"Checking collision, it is {player.check_collision()}")
         if player.check_collision():
+            print("COLLISION!!!")
             player.set_coordinates(
                 (player_coords[0], player_coords[1] + TILE_HEIGHT)
             )
