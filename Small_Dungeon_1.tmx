@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="12" height="12" tilewidth="32" tileheight="32" infinite="0" nextlayerid="9" nextobjectid="1">
- <tileset firstgid="1" source="Resources/green_forest.tsx"/>
+ <tileset firstgid="1" source="Resources/green_dungeon.tsx"/>
  <layer id="2" name="Floor" width="12" height="12">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,
@@ -33,7 +33,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <layer id="1" name="Collidables" width="12" height="12" visible="0">
+ <layer id="1" name="Collidables" width="12" height="12">
   <data encoding="csv">
 339,339,339,339,339,339,339,339,339,339,339,339,
 339,339,339,339,339,339,339,339,339,339,339,339,
@@ -65,7 +65,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <layer id="6" name="Items" width="12" height="12" visible="0">
+ <layer id="6" name="Items" width="12" height="12">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,
@@ -81,7 +81,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <layer id="3" name="Portals" width="12" height="12" visible="0">
+ <layer id="3" name="Portals" width="12" height="12">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,522,0,0,0,0,0,0,0,0,
@@ -97,7 +97,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <layer id="7" name="Ceiling" width="12" height="12" visible="0">
+ <layer id="7" name="Ceiling" width="12" height="12">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,
