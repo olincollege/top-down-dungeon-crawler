@@ -3,6 +3,7 @@ and it's interactions"""
 
 from Model.tile import Portal, Item
 from Model.player import Player
+from Model.world_manager import WorldManager
 
 TILE_HEIGHT = 32
 TILE_WIDTH = 32
@@ -14,7 +15,22 @@ class TopDownController:
     """
 
     def __init__(self):
-        pass
+        self._world = WorldManager()
+        self._current_room = self._world.get_room("Tent_Interior")
+
+    @property
+    def world(self):
+        """
+        Getter for the world attribute.
+        """
+        return self._world
+
+    @property
+    def current_room(self):
+        """
+        Getter for the current room.
+        """
+        return self._current_room
 
     def track_step(self, player=Player):
         """
@@ -27,7 +43,8 @@ class TopDownController:
         """
         tile = player.check_step()
         if isinstance(tile, Portal):
-            player.set_room(tile.dest_room)
+            self._current_room = self._world.get_room(tile.dest_room)
+            player.set_room(self._current_room)
             player.set_coordinates(
                 (tile.dest_coords[0] * 32, tile.dest_coords[1] * 32)
             )

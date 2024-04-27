@@ -18,8 +18,8 @@ HEIGHT = 30
 screen = pygame.display.set_mode((WIDTH * TILE_SIZE, HEIGHT * TILE_SIZE))
 
 
-world = WorldManager()
-current_room = world.get_room("Small_Dungeon_2")
+controller = TopDownController()
+current_room = controller.current_room
 user = Player(
     sprite_list=[
         "sprite_up32.png",
@@ -34,7 +34,6 @@ user = Player(
     coordinates=(3 * TILE_SIZE, 3 * TILE_SIZE),
     room=current_room,
 )
-controller = TopDownController()
 
 imp = user.get_sprite_list()[3]
 screen.blit(imp, user.coordinates)
@@ -48,10 +47,10 @@ while RUN:
         if event.type == pygame.QUIT:
             RUN = False
 
-        if event.type == pygame.KEYDOWN:
-            current_room = user.room
-            current_room.tile_group.draw(screen)
+        current_room = controller.current_room
+        current_room.tile_group.draw(screen)
 
+        if event.type == pygame.KEYDOWN:
             match (event.key):
                 case pygame.K_LEFT:
                     controller.move_left(user)
