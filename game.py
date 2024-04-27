@@ -4,7 +4,6 @@
 import pygame
 
 # internal packages
-from Model.world_manager import WorldManager
 from Model.player import Player
 from controller import TopDownController
 
@@ -12,10 +11,12 @@ from controller import TopDownController
 pygame.init()
 
 TILE_SIZE = 32
-WIDTH = 30
-HEIGHT = 30
+SCREEN_WIDTH = 30
+SCREEN_HEIGHT = 30
 
-screen = pygame.display.set_mode((WIDTH * TILE_SIZE, HEIGHT * TILE_SIZE))
+screen = pygame.display.set_mode(
+    (SCREEN_WIDTH * TILE_SIZE, SCREEN_HEIGHT * TILE_SIZE)
+)
 
 
 controller = TopDownController()
@@ -27,9 +28,7 @@ user = Player(
         "sprite_down32.png",
         "sprite_left32.png",
     ],
-    inventory=[],
     current_sprite=3,
-    current_item=None,
     name="coco",
     coordinates=(3 * TILE_SIZE, 3 * TILE_SIZE),
     room=current_room,

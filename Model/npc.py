@@ -18,11 +18,9 @@ class Npc(Character):
         item_wants,
         sprite_list,
         current_sprite,
-        current_item,
         name,
         coordinates,
         room,
-        image,
     ):
         """
         Initializes a new npc
@@ -51,28 +49,27 @@ class Npc(Character):
         super().__init__(
             sprite_list,
             current_sprite,
-            current_item,
             name,
             coordinates,
             room,
         )  # pylint: disable=too-many-arguments
 
     @property
-    def get_voice_line(self):
+    def voice_line(self):
         """
         Returns the voice line of the npc
         """
         return self._voice_line
 
     @property
-    def get_is_satisfied(self):
+    def is_satisfied(self):
         """
         Returns whether the npc is satisfied
         """
         return self._is_satisfied
 
     @property
-    def get_item_wants(self):
+    def item_wants(self):
         """
         Returns the desired item of the npc
         """

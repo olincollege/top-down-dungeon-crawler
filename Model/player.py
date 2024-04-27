@@ -15,10 +15,8 @@ class Player(Character):
 
     def __init__(
         self,
-        inventory,
         sprite_list,
         current_sprite,
-        current_item,
         name,
         coordinates,
         room,
@@ -36,19 +34,17 @@ class Player(Character):
             name: String of the name of the sprite
             coordinates: tuple of 2 ints, reprisenting the location of the sprite
             room: String of name of the room the sprite is in
-            pos: tuple of 2 ints representing pixel locations of the player
         """
-
-        self._inventory = inventory
+        # give inventory
+        self._inventory = []
+        # init
         super().__init__(
             sprite_list,
             current_sprite,
-            current_item,
             name,
             coordinates,
             room,
         )
-        self._pos = (coordinates[0] * 32, coordinates[1] * 32)
 
     def check_step(self):
         """
@@ -62,12 +58,12 @@ class Player(Character):
         room_items = self._room.item_list
 
         for portal in portals:
-            temp_portal_coords = portal.pos
+            temp_portal_coords = portal.coordinates
             if self.coordinates == temp_portal_coords:
                 return portal
 
         for item in room_items:
-            temp_item_coords = item.pos
+            temp_item_coords = item.coordinates
             if self.coordinates == temp_item_coords:
                 return item
 
