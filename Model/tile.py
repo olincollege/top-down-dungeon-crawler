@@ -147,6 +147,13 @@ class Item(Tile):
         self._player_has = False
         super().__init__(coordinates, room, group, surf)
 
+    @property
+    def name(self):
+        """
+        kfkdfkdfhjdfj
+        """
+        return self._name
+
     def get_player_has(self):
         """
         returns a boolean based on if the player has the item

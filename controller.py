@@ -55,7 +55,10 @@ class TopDownController:
             temp_item_coords = item.coordinates
             if player.coordinates == temp_item_coords:
                 player.pick_up(item)
-                # remove item from room item list and tile group
+                self.current_room.remove_item(item)
+                print(
+                    f"Player picked up {item.name}! Current inventory: {player.list_inventory()}"
+                )
 
     def move_left(self, player=Player):
         """

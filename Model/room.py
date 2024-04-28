@@ -76,7 +76,7 @@ class Room(pygame.sprite.Sprite):
                         portal_count += 1
                     elif layer.name == "Items":
                         item_name = items[item_count]
-                        self._portal_list.append(
+                        self._item_list.append(
                             Item(
                                 coordinates=(x, y),
                                 room=self,
@@ -167,3 +167,11 @@ class Room(pygame.sprite.Sprite):
             "Upper": self._upper_tile_group,
             "Lower": self._lower_tile_group,
         }
+
+    def remove_item(self, item=Item):
+        """
+        Take an item out of the room.
+        """
+        print(f"Player picked up item {item.name}!")
+        self._item_list.remove(item)
+        item.remove(self._lower_tile_group)
