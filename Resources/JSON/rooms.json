@@ -27,17 +27,17 @@
         "filepath" : "Green_Forest.tmx",
         "portals" : [
             {
-                "dest_room" : "Tent_Interior",
-                "dest_coords" : [10,1],
-                "is_locked" : false,
-                "key" : null
-            },
-            {
                 "dest_room" : "Small_Dungeon_1",
                 "dest_coords" : [3,8],
                 "is_locked" : false,
                 "key" : null
-            }            
+            },
+            {
+                "dest_room" : "Tent_Interior",
+                "dest_coords" : [10,1],
+                "is_locked" : false,
+                "key" : null
+            }           
         ],
         "items" : [
             {

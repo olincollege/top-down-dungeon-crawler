@@ -1,6 +1,7 @@
 """ """
 
 import pygame
+from constants import TILE_SIZE
 
 
 class Tile(pygame.sprite.Sprite):
@@ -8,11 +9,20 @@ class Tile(pygame.sprite.Sprite):
     tile object
     """
 
-    def __init__(self, coordinates, room, group, surf=pygame.Surface((32, 32))):
+    def __init__(
+        self,
+        coordinates,
+        room,
+        group,
+        surf=pygame.Surface((TILE_SIZE, TILE_SIZE)),
+    ):
         super().__init__(group)
         self._room = room
         self._image = surf
-        self._coordinates = (coordinates[0] * 32, coordinates[1] * 32)
+        self._coordinates = (
+            coordinates[0] * TILE_SIZE,
+            coordinates[1] * TILE_SIZE,
+        )
         self._rect = self.image.get_rect(topleft=self.coordinates)
 
     @property
@@ -69,7 +79,10 @@ class Portal(Tile):
         """
         super().__init__(coordinates, room, group, surf)
         self._dest_room = dest_room
-        self._dest_coords = tuple(dest_coords)
+        self._dest_coords = (
+            dest_coords[0] * TILE_SIZE,
+            dest_coords[1] * TILE_SIZE,
+        )
         self._is_locked = is_locked
         self._key = key
 
