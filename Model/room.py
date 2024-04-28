@@ -2,8 +2,7 @@
 
 import pygame
 from pytmx.util_pygame import load_pygame
-from Model.tile import Tile
-from Model.tile import Portal
+from Model.tile import Tile, Portal, Item
 
 
 class Room(pygame.sprite.Sprite):
@@ -48,6 +47,7 @@ class Room(pygame.sprite.Sprite):
         # construct the map group
         for layer in self._map_tmx.visible_layers:
             portal_count = 0
+            item_count = 0
             for x, y, surf in layer.tiles():
                 try:
                     # if layer is ceiling
@@ -74,6 +74,18 @@ class Room(pygame.sprite.Sprite):
                             )
                         )
                         portal_count += 1
+                    elif layer.name == "Items":
+                        item_name = items[item_count]
+                        self._portal_list.append(
+                            Item(
+                                coordinates=(x, y),
+                                room=self,
+                                surf=surf,
+                                group=self._lower_tile_group,
+                                name=item_name,
+                            )
+                        )
+                        item_count += 1
                     # if layer is collidable
                     elif layer.name in ("Collidables", "Collidables_Deco"):
                         self._collide_list.append(
