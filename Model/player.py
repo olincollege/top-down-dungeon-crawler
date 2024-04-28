@@ -172,16 +172,6 @@ class Player(Character):
 
         return False
 
-    def equip(self, item_num):
-        """
-        changes what item is currently in the hand of the player
-
-        Args:
-            item_num: index of the item that the character wants to move from
-                their inventory into their hand
-        """
-        self.set_current_item(self._inventory[item_num])
-
     def pick_up(self, item):
         """
         takes item to be picked up and places it in the inventory
@@ -189,12 +179,7 @@ class Player(Character):
         Args:
             item: item to be picked up
         """
-        if len(self._inventory) == 9:
-            print(
-                "Inventory Full!"
-            )  # maybe change this later depending on how we print out messages like this
-        else:
-            self._inventory.append(item)
+        self._inventory.append(item)
 
     def list_inventory(self):
         """
