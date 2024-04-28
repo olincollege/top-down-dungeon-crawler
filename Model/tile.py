@@ -143,3 +143,9 @@ class Item(Tile):
         """
         self._name = name
         super().__init__(coordinates, room, group, surf)
+
+    @property
+    def name(self):
+        """
+        eee"""
+        return self._name
