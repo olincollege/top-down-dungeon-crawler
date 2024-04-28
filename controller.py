@@ -40,14 +40,22 @@ class TopDownController:
             player: a Player instance representing the player's information
             portal: a Portal instance that represents the portal's information
         """
-        tile = player.check_step()
-        if isinstance(tile, Portal):
-            self._current_room = self._world.get_room(tile.dest_room)
-            player.set_room(self._current_room)
-            player.set_coordinates(tile.dest_coords)
-        elif isinstance(tile, Item):
-            player.pick_up(tile)
-            tile.set_player_has = True
+
+        portals = self.current_room.portal_list
+        room_items = self.current_room.item_list
+
+        for portal in portals:
+            temp_portal_coords = portal.coordinates
+            if player.coordinates == temp_portal_coords:
+                self._current_room = self._world.get_room(portal.dest_room)
+                player.set_room(self._current_room)
+                player.set_coordinates(portal.dest_coords)
+
+        for item in room_items:
+            temp_item_coords = item.coordinates
+            if player.coordinates == temp_item_coords:
+                player.pick_up(item)
+                # remove item from room item list and tile group
 
     def move_left(self, player=Player):
         """
