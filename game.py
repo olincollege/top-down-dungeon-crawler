@@ -53,7 +53,6 @@ while RUN:
                     controller.move_down(user)
                     print("DOWN")
                 case pygame.K_SPACE:
-                    user.check_npc_coords(user.room, user.dir)
-                    user.check_item_coords()
+                    user.check_npc_coords(user.room, user.get_current_sprite)
 
         view.draw(user, controller.current_room)

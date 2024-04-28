@@ -31,18 +31,16 @@ class TopDownController:
         """
         return self._current_room
 
-    def track_step(self, player=Player):
+    def track_portal(self, player=Player):
         """
-        Changes the current room a player is in based on the portal
-        they entered
+        Checks if a player stepped on a portal, and changes the current room
+        a player is in based on the portal they entered
 
         Args:
             player: a Player instance representing the player's information
-            portal: a Portal instance that represents the portal's information
         """
 
         portals = self.current_room.portal_list
-        room_items = self.current_room.item_list
 
         for portal in portals:
             temp_portal_coords = portal.coordinates
@@ -51,11 +49,32 @@ class TopDownController:
                 player.set_room(self._current_room)
                 player.set_coordinates(portal.dest_coords)
 
+    def track_item(self, player=Player):
+        """
+        Checks if the player stepped on an item and picks it up
+
+        Args:
+            player: a Player instance representing the player's information
+        """
+        room_items = self.current_room.item_list
+
         for item in room_items:
             temp_item_coords = item.coordinates
             if player.coordinates == temp_item_coords:
                 player.pick_up(item)
                 # remove item from room item list and tile group
+
+    def check_step(self, player=Player):
+        """
+        Calls both track_portal and track_item
+
+        Made for convenience - both are called together often.
+
+        Args:
+            player: a Player instance representing the player's information
+        """
+        self.track_item(player)
+        self.track_portal(player)
 
     def move_left(self, player=Player):
         """
@@ -79,7 +98,7 @@ class TopDownController:
 
         player.set_rect(player.coordinates)
 
-        self.track_step(player)
+        self.check_step(player)
 
     def move_right(self, player=Player):
         """
@@ -103,7 +122,7 @@ class TopDownController:
 
         player.set_rect(player.coordinates)
 
-        self.track_step(player)
+        self.check_step(player)
 
     def move_down(self, player=Player):
         """
@@ -127,7 +146,7 @@ class TopDownController:
 
         player.set_rect(player.coordinates)
 
-        self.track_step(player)
+        self.check_step(player)
 
     def move_up(self, player=Player):
         """
@@ -151,4 +170,4 @@ class TopDownController:
 
         player.set_rect(player.coordinates)
 
-        self.track_step(player)
+        self.check_step(player)

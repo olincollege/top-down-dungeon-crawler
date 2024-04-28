@@ -76,7 +76,7 @@ class Room(pygame.sprite.Sprite):
                         portal_count += 1
                     elif layer.name == "Items":
                         item_name = items[item_count]
-                        self._portal_list.append(
+                        self._item_list.append(
                             Item(
                                 coordinates=(x, y),
                                 room=self,
