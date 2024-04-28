@@ -46,29 +46,6 @@ class Player(Character):
             room,
         )
 
-    def check_step(self):
-        """
-        Checks to see if the player has the same coordinates as any
-        special tile.
-
-        Returns an Portal or Item instance corresponding to the tile that
-        the player shares coordinates with, or None if no such tile exists
-        """
-        portals = self._room.portal_list
-        room_items = self._room.item_list
-
-        for portal in portals:
-            temp_portal_coords = portal.coordinates
-            if self.coordinates == temp_portal_coords:
-                return portal
-
-        for item in room_items:
-            temp_item_coords = item.coordinates
-            if self.coordinates == temp_item_coords:
-                return item
-
-        return None
-
     def check_npc_coords(self, room, player_dir):
         """
         Checks to see if the player is interacting with an NPC.
