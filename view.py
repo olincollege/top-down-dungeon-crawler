@@ -25,6 +25,8 @@ class View:
 
     def draw(self, player=Player, current_room=Room):
         """e"""
+        # fill with black
+        self._screen.fill((0, 0, 0))
         # draw the current room's lower tiles
         current_room.get_tile_groups()["Lower"].draw(self._screen)
         # draw the player

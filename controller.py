@@ -15,7 +15,7 @@ class TopDownController:
 
     def __init__(self):
         self._world = WorldManager()
-        self._current_room = self._world.get_room("Tent_Interior")
+        self._current_room = self._world.get_room("Green_Forest")
 
     @property
     def world(self):
