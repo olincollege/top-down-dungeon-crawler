@@ -19,10 +19,10 @@ controller = TopDownController()
 
 user = Player(
     sprite_list=[
-        "Resources/Player Images/sprite_up32.png",
-        "Resources/Player Images/sprite_left32.png",
-        "Resources/Player Images/sprite_down32.png",
-        "Resources/Player Images/sprite_right32.png",
+        "Resources/Player Images/red_up_32.png",
+        "Resources/Player Images/red_right_32.png",
+        "Resources/Player Images/red_down_32.png",
+        "Resources/Player Images/red_left_32.png",
     ],
     current_sprite=3,
     name="coco",
