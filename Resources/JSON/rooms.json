@@ -6,11 +6,12 @@
             {
                 "dest_room" : "Green_Forest",
                 "dest_coords" : [12,7],
+                "dest_dir" : 2,
                 "is_locked" : false,
                 "key" : null
             }
         ],
-        "items" : ["berries"],
+        "items" : ["silver_coin"],
         "npcs" : [
             {
                 "name" : "Felix"
@@ -25,17 +26,19 @@
             {
                 "dest_room" : "Small_Dungeon_1",
                 "dest_coords" : [3,8],
+                "dest_dir" : 0,
                 "is_locked" : false,
                 "key" : null
             },
             {
                 "dest_room" : "Tent_Interior",
                 "dest_coords" : [10,1],
+                "dest_dir" : 2,
                 "is_locked" : false,
                 "key" : null
             }           
         ],
-        "items" : ["sack"],
+        "items" : ["campfire_logs"],
         "npcs" : [
             {
                 "name" : "Felix"
@@ -50,12 +53,14 @@
             {
                 "dest_room" : "Small_Dungeon_2",
                 "dest_coords" : [9,1],
+                "dest_dir" : 2,
                 "is_locked" : false,
                 "key" : null
             },
             {
                 "dest_room" : "Green_Forest",
                 "dest_coords" : [26,1],
+                "dest_dir" : 2,
                 "is_locked" : false,
                 "key" : null
             }            
@@ -75,17 +80,19 @@
             {
                 "dest_room" : "Farmlands_2",
                 "dest_coords" : [13,14],
+                "dest_dir" : 0,
                 "is_locked" : false,
                 "key" : null
             },
             {
                 "dest_room" : "Small_Dungeon_1",
                 "dest_coords" : [3,1],
+                "dest_dir" : 2,
                 "is_locked" : false,
                 "key" : null
             }            
         ],
-        "items" : ["purple_pot"],
+        "items" : ["gold_dagger"],
         "npcs" : [
             {
                 "name" : "Felix"
@@ -100,12 +107,14 @@
             {
                 "dest_room" : "Farmlands",
                 "dest_coords" : [12,0],
+                "dest_dir" : 2,
                 "is_locked" : false,
                 "key" : null
             },
             {
                 "dest_room" : "Small_Dungeon_2",
                 "dest_coords" : [3,1],
+                "dest_dir" : 2,
                 "is_locked" : false,
                 "key" : null
             }            
@@ -125,12 +134,14 @@
             {
                 "dest_room" : "Farmlands_2",
                 "dest_coords" : [4,0],
+                "dest_dir" : 2,
                 "is_locked" : false,
                 "key" : null
             },
             {
                 "dest_room" : "Barn_Interior",
                 "dest_coords" : [6,6],
+                "dest_dir" : 2,
                 "is_locked" : false,
                 "key" : null
             }            
@@ -150,6 +161,7 @@
             {
                 "dest_room" : "Farmlands",
                 "dest_coords" : [17,20],
+                "dest_dir" : 2,
                 "is_locked" : false,
                 "key" : null
             }            
