@@ -11,7 +11,7 @@
                 "key" : null
             }
         ],
-        "items" : ["silver_coin"],
+        "items" : ["silver coin"],
         "npcs" : [
             {
                 "name" : "Hungry Boy",
@@ -42,13 +42,13 @@
                 "key" : null
             }           
         ],
-        "items" : ["campfire_logs"],
+        "items" : ["campfire logs"],
         "npcs" : [
             {
                 "name" : "Guard",
                 "filepath" : "Resources/npc_images/npc_guard.png",
                 "voice_line" : "I'm too scared to go into the dungeon without my axe",
-                "item_wants" : "battle_axe",
+                "item_wants" : "battleaxe",
                 "coordinates" : [23,4]
             }
         ]
@@ -79,7 +79,7 @@
                 "name" : "Mysterious Man",
                 "filepath" : "Resources/npc_images/npc_mysterous_guy.png",
                 "voice_line" : "I need more riches to fill my chest!",
-                "item_wants" : "silver_coin",
+                "item_wants" : "silver coin",
                 "coordinates" : [5,2]
             }
         ]
@@ -104,7 +104,7 @@
                 "key" : null
             }            
         ],
-        "items" : ["gold_dagger"],
+        "items" : ["gold dagger"],
         "npcs" : [
             {
                 "name" : "Skelly",
@@ -172,7 +172,7 @@
                 "name" : "Random Dude",
                 "filepath" : "Resources/npc_images/npc_male.png",
                 "voice_line" : "I'm so cold! I need logs to start a fire",
-                "item_wants" : "campfire_logs",
+                "item_wants" : "campfire logs",
                 "coordinates" : [22,4]
             }
         ]
@@ -190,13 +190,13 @@
                 "key" : null
             }            
         ],
-        "items" : ["battle_axe"],
+        "items" : ["battleaxe"],
         "npcs" : [
             {
                 "name" : "Felix",
                 "filepath" : "Resources/npc_images/npc_teacher.png",
                 "voice_line" : "I lost my grandfather's gold dagger! Help me find it!",
-                "item_wants" : "gold_dagger",
+                "item_wants" : "gold dagger",
                 "coordinates" : [2,7]
             }
         ]
