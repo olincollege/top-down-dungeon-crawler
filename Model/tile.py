@@ -56,6 +56,7 @@ class Portal(Tile):
         self,
         dest_room,
         dest_coords,
+        dest_dir,
         coordinates,
         room,
         surf,
@@ -79,6 +80,7 @@ class Portal(Tile):
         """
         super().__init__(coordinates, room, group, surf)
         self._dest_room = dest_room
+        self._dest_dir = dest_dir
         self._dest_coords = (
             dest_coords[0] * TILE_SIZE,
             dest_coords[1] * TILE_SIZE,

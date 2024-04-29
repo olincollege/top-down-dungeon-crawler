@@ -48,6 +48,7 @@ class TopDownController:
                 self._current_room = self._world.get_room(portal.dest_room)
                 player.set_room(self._current_room)
                 player.set_coordinates(portal.dest_coords)
+                player.set_current_sprite(portal.dest_dir)
 
     def track_item(self, player=Player):
         """
