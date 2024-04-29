@@ -4,10 +4,9 @@ npc or players
 """
 
 import pygame
-from Model.data_sprite import DataSprite
 
 
-class Character(DataSprite):
+class Character(pygame.sprite.Sprite):
     """
     Class Character defines a new character, inherits from
     DataSprite Class in data_sprite.py
@@ -38,7 +37,9 @@ class Character(DataSprite):
             for collision detection
         """
         # init
-        super().__init__(name, coordinates, room)
+        self._name = name
+        self._room = room
+        self._coordinates = coordinates
         # create sprites
         self._sprite_list = []
         for sprite in sprite_list:
@@ -49,24 +50,20 @@ class Character(DataSprite):
         self._image = self._sprite_list[self._current_sprite]
         self._rect = self._image.get_rect(topleft=self.coordinates)
 
-    def get_sprite_list(self):
+    @property
+    def sprite_list(self):
         """
         Returns the sprite list of a character as a list of Surfaces
         """
         return self._sprite_list
 
-    def get_current_sprite(self):
+    @property
+    def current_sprite(self):
         """
         Returns the current sprite orientation as an int
         0:up, 1:right, 2:down, 3:left
         """
         return self._current_sprite
-
-    def get_current_item(self):
-        """
-        Returns the current item that the Character has
-        """
-        return self._current_item
 
     @property
     def rect(self):
@@ -74,6 +71,47 @@ class Character(DataSprite):
         Returns the character's rect
         """
         return self._rect
+
+    @property
+    def name(self):
+        """
+        returns name of the object
+        """
+        return self._name
+
+    @property
+    def coordinates(self):
+        """
+        returns coordinates of the object
+        """
+        return self._coordinates
+
+    @property
+    def room(self):
+        """
+        returns room of the object
+        """
+        return self._room
+
+    def set_coordinates(self, coords):
+        """
+        Setter method for coordinates
+
+        Args:
+            coords: A tuple of ints representing the datasprite's new
+            coordinates.
+
+        """
+        self._coordinates = coords
+
+    def set_room(self, room):
+        """
+        Setter method for room
+
+        Args:
+            room_name: a room object representing the new room
+        """
+        self._room = room
 
     def set_current_sprite(self, orientation):
         """

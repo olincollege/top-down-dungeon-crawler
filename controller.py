@@ -1,7 +1,6 @@
 """controller.py contains the class that controls the player
 and it's interactions"""
 
-from Model.tile import Portal, Item
 from Model.player import Player
 from Model.world_manager import WorldManager
 
