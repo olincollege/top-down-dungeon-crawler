@@ -14,11 +14,11 @@
         "items" : ["silver_coin"],
         "npcs" : [
             {
-                "name" : "Felix",
-                "filepath" : "Resources/Player Images/red_right_32.png",
-                "voice_line" : "I'm so tall!",
-                "item_wants" : "manure",
-                "coordinates" : [0,0]
+                "name" : "Hungry Boy",
+                "filepath" : "Resources/npc_images/npc_student.png",
+                "voice_line" : "I'm very hungry... I love berries",
+                "item_wants" : "berry",
+                "coordinates" : [3,2]
             }
         ]
     },
@@ -45,11 +45,11 @@
         "items" : ["campfire_logs"],
         "npcs" : [
             {
-                "name" : "Felix",
-                "filepath" : "Resources/Player Images/red_right_32.png",
-                "voice_line" : "I'm so tall!",
-                "item_wants" : "manure",
-                "coordinates" : [6,6]
+                "name" : "Guard",
+                "filepath" : "Resources/npc_images/npc_guard.png",
+                "voice_line" : "I'm too scared to go into the dungeon without my axe",
+                "item_wants" : "battle_axe",
+                "coordinates" : [23,4]
             }
         ]
     },
@@ -76,11 +76,11 @@
         "items" : ["skull"],
         "npcs" : [
             {
-                "name" : "Felix",
-                "filepath" : "Resources/Player Images/red_right_32.png",
-                "voice_line" : "I'm so tall!",
-                "item_wants" : "manure",
-                "coordinates" : [0,0]
+                "name" : "Mysterious Man",
+                "filepath" : "Resources/npc_images/npc_mysterous_guy.png",
+                "voice_line" : "I need more riches to fill my chest!",
+                "item_wants" : "silver_coin",
+                "coordinates" : [5,2]
             }
         ]
     },
@@ -107,11 +107,11 @@
         "items" : ["gold_dagger"],
         "npcs" : [
             {
-                "name" : "Felix",
-                "filepath" : "Resources/Player Images/red_right_32.png",
-                "voice_line" : "I'm so tall!",
-                "item_wants" : "manure",
-                "coordinates" : [0,0]
+                "name" : "Skelly",
+                "filepath" : "Resources/npc_images/npc_skelly.png",
+                "voice_line" : "I need to find the skull of my best friend!",
+                "item_wants" : "skull",
+                "coordinates" : [1,2]
             }
         ]
     },
@@ -138,11 +138,11 @@
         "items" : ["berry"],
         "npcs" : [
             {
-                "name" : "Felix",
-                "filepath" : "Resources/Player Images/red_right_32.png",
-                "voice_line" : "I'm so tall!",
+                "name" : "Dog",
+                "filepath" : "Resources/npc_images/npc_dog.png",
+                "voice_line" : "I need something smelly to roll in",
                 "item_wants" : "manure",
-                "coordinates" : [0,0]
+                "coordinates" : [16,9]
             }
         ]
     },
@@ -169,11 +169,11 @@
         "items" : ["manure"],
         "npcs" : [
             {
-                "name" : "Felix",
-                "filepath" : "Resources/Player Images/red_right_32.png",
-                "voice_line" : "I'm so tall!",
-                "item_wants" : "manure",
-                "coordinates" : [0,0]
+                "name" : "Random Dude",
+                "filepath" : "Resources/npc_images/npc_male.png",
+                "voice_line" : "I'm so cold! I need logs to start a fire",
+                "item_wants" : "campfire_logs",
+                "coordinates" : [22,4]
             }
         ]
     },
@@ -194,10 +194,10 @@
         "npcs" : [
             {
                 "name" : "Felix",
-                "filepath" : "Resources/Player Images/red_right_32.png",
-                "voice_line" : "I'm so tall!",
-                "item_wants" : "manure",
-                "coordinates" : [0,0]
+                "filepath" : "Resources/npc_images/npc_teacher.png",
+                "voice_line" : "I lost my grandfather's gold dagger! Help me find it!",
+                "item_wants" : "gold_dagger",
+                "coordinates" : [2,7]
             }
         ]
     }
