@@ -10,11 +10,7 @@
                 "key" : null
             }
         ],
-        "items" : [
-            {
-                "name" : "berries"
-            }
-        ],
+        "items" : ["berries"],
         "npcs" : [
             {
                 "name" : "Felix"
@@ -39,11 +35,7 @@
                 "key" : null
             }           
         ],
-        "items" : [
-            {
-                "name" : "sack"
-            }
-        ],
+        "items" : ["sack"],
         "npcs" : [
             {
                 "name" : "Felix"
@@ -68,11 +60,7 @@
                 "key" : null
             }            
         ],
-        "items" : [
-            {
-                "name" : "skull"
-            }
-        ],
+        "items" : ["skull"],
         "npcs" : [
             {
                 "name" : "Felix"
@@ -97,11 +85,7 @@
                 "key" : null
             }            
         ],
-        "items" : [
-            {
-                "name" : "purple_pot"
-            }
-        ],
+        "items" : ["purple_pot"],
         "npcs" : [
             {
                 "name" : "Felix"
@@ -126,11 +110,7 @@
                 "key" : null
             }            
         ],
-        "items" : [
-            {
-                "name" : "berry"
-            }
-        ],
+        "items" : ["berry"],
         "npcs" : [
             {
                 "name" : "Felix"
@@ -155,11 +135,7 @@
                 "key" : null
             }            
         ],
-        "items" : [
-            {
-                "name" : "manure"
-            }
-        ],
+        "items" : ["manure"],
         "npcs" : [
             {
                 "name" : "Felix"
@@ -178,11 +154,7 @@
                 "key" : null
             }            
         ],
-        "items" : [
-            {
-                "name" : "battle_axe"
-            }
-        ],
+        "items" : ["battle_axe"],
         "npcs" : [
             {
                 "name" : "Felix"
