@@ -1,74 +1,50 @@
 import pygame
-import Model
-import Model.player
-import Model.character
-from controller import TopDownController
-
+from constants import SCREEN_HEIGHT, SCREEN_WIDTH, TILE_SIZE
 
 pygame.init()
 
-WIDTH = 1000
-HEIGHT = 800
 
-user = Model.character.Character(
-    [
-        "sprite_up32.png",
-        "sprite_right32.png",
-        "sprite_down32.png",
-        "sprite_left32.png",
-    ],
-    3,
-    None,
-    "coco",
-    (0, 0),
-    "basement",
+screen = pygame.display.set_mode(
+    (SCREEN_WIDTH * TILE_SIZE, SCREEN_HEIGHT * TILE_SIZE)
 )
-
-tdc = TopDownController()
-
-screen = pygame.display.set_mode((WIDTH, HEIGHT))
-imp = user.get_sprite_list()[3]
-screen.blit(imp, (0, 0))
+screen.fill((255, 255, 255))
 pygame.display.flip()
+
+
+def create_text(text):
+    font = pygame.font.SysFont("Comic Sans MS", 32)
+    text_surf = pygame.font.Font.render(
+        font, text, False, (255, 255, 255), (0, 0, 0)
+    )
+    new_surf = pygame.Surface(
+        (SCREEN_WIDTH * TILE_SIZE, SCREEN_HEIGHT * TILE_SIZE)
+    )
+    return (text_surf, new_surf)
+
 
 RUN = True
 
 while RUN:
-
     for event in pygame.event.get():
+        # kill program on exit
         if event.type == pygame.QUIT:
             RUN = False
 
         if event.type == pygame.KEYDOWN:
-            match (event.key):
-                case pygame.K_LEFT:
-                    tdc.move_left(user)
-                    imp = user.get_sprite_list()[user.get_current_sprite()]
-                    screen.fill((0, 0, 0))
-                    screen.blit(imp, user.coordinates)
-                    pygame.display.flip()
-                    print("LEFT")
-                case pygame.K_RIGHT:
-                    tdc.move_right(user)
-                    imp = user.get_sprite_list()[user.get_current_sprite()]
-                    screen.fill((0, 0, 0))
-                    screen.blit(imp, user.coordinates)
-                    pygame.display.flip()
-                    print("RIGHT")
-                case pygame.K_UP:
-                    tdc.move_up(user)
-                    imp = user.get_sprite_list()[user.get_current_sprite()]
-                    screen.fill((0, 0, 0))
-                    screen.blit(imp, user.coordinates)
-                    pygame.display.flip()
-                    print("UP")
-                case pygame.K_DOWN:
-                    tdc.move_down(user)
-                    imp = user.get_sprite_list()[user.get_current_sprite()]
-                    screen.fill((0, 0, 0))
-                    screen.blit(imp, user.coordinates)
-                    pygame.display.flip()
-                    print("DOWN")
-
-
-pygame.quit()
+            if event.key == pygame.K_ESCAPE:
+                RUN = False
+            if event.key == pygame.K_SPACE:
+                text = create_text("Hi there! Can you bring me some manure?")
+                screen.blit(text[1], (0, 0))
+                x = text[0].get_width()
+                screen.blit(
+                    text[0],
+                    (
+                        (SCREEN_WIDTH * TILE_SIZE - x) // 2,
+                        SCREEN_HEIGHT * TILE_SIZE // 2,
+                    ),
+                )
+                pygame.display.flip()
+            if event.key == pygame.K_x:
+                screen.fill((255, 255, 255))
+                pygame.display.flip()
