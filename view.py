@@ -32,6 +32,8 @@ class View:
         # draw the player
         player_image = player.sprite_list[player.current_sprite]
         self._screen.blit(player_image, player.coordinates)
+        # draw the current room's NPCs
+        current_room.get_tile_groups()["NPC"].draw(self._screen)
         # draw the current room's upper tiles
         current_room.get_tile_groups()["Upper"].draw(self._screen)
         # draw textbox
