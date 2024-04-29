@@ -1,7 +1,6 @@
 """controller.py contains the class that controls the player
 and it's interactions"""
 
-from Model.tile import Portal, Item
 from Model.player import Player
 from Model.world_manager import WorldManager
 
@@ -48,6 +47,7 @@ class TopDownController:
                 self._current_room = self._world.get_room(portal.dest_room)
                 player.set_room(self._current_room)
                 player.set_coordinates(portal.dest_coords)
+                player.set_current_sprite(portal.dest_dir)
 
     def track_item(self, player=Player):
         """

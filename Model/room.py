@@ -69,6 +69,7 @@ class Room(pygame.sprite.Sprite):
                                 group=self._lower_tile_group,
                                 dest_coords=portal_data["dest_coords"],
                                 dest_room=portal_data["dest_room"],
+                                dest_dir=portal_data["dest_dir"],
                                 is_locked=portal_data["is_locked"],
                                 key=portal_data["key"],
                             )
