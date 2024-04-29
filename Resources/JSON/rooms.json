@@ -12,7 +12,7 @@
         ],
         "items" : [
             {
-                "name" : "berries"
+                "name" : "silver_coin"
             }
         ],
         "npcs" : [
@@ -41,7 +41,7 @@
         ],
         "items" : [
             {
-                "name" : "sack"
+                "name" : "campfire_logs"
             }
         ],
         "npcs" : [
@@ -99,7 +99,7 @@
         ],
         "items" : [
             {
-                "name" : "purple_pot"
+                "name" : "gold_dagger"
             }
         ],
         "npcs" : [
