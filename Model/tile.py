@@ -105,9 +105,16 @@ class Portal(Tile):
     @property
     def dest_coords(self):
         """
-        Returns the destination coords of the portal
+        Returns the destination coords of the portal.
         """
         return self._dest_coords
+
+    @property
+    def dest_dir(self):
+        """
+        Returns the destination direction of the portal.
+        """
+        return self._dest_dir
 
     @property
     def key(self):
