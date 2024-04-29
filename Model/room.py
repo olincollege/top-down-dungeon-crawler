@@ -2,7 +2,7 @@
 
 import pygame
 from pytmx.util_pygame import load_pygame
-from Model.tile import Tile, Portal, Item
+from Model.tile import Tile, Portal, Item, NPC
 
 
 class Room(pygame.sprite.Sprite):
@@ -42,8 +42,22 @@ class Room(pygame.sprite.Sprite):
         self._collide_list = []
         # defining map and tilegroups
         self._lower_tile_group = pygame.sprite.Group()
+        self._npc_tile_group = pygame.sprite.Group()
         self._upper_tile_group = pygame.sprite.Group()
         self._map_tmx = load_pygame(filepath)
+        # construct the npc group
+        for npc in npcs:
+            self._npc_list.append(
+                NPC(
+                    name=npc["name"],
+                    surf=pygame.image.load(npc["filepath"]),
+                    coordinates=tuple(npc["coordinates"]),
+                    room=self,
+                    group=self._npc_tile_group,
+                    voice_line=npc["voice_line"],
+                    item_wants=npc["item_wants"],
+                )
+            )
         # construct the map group
         for layer in self._map_tmx.visible_layers:
             portal_count = 0
@@ -167,6 +181,7 @@ class Room(pygame.sprite.Sprite):
         return {
             "Upper": self._upper_tile_group,
             "Lower": self._lower_tile_group,
+            "NPC": self._npc_tile_group,
         }
 
     def remove_item(self, item=Item):
@@ -176,3 +191,9 @@ class Room(pygame.sprite.Sprite):
         print(f"Player picked up item {item.name}!")
         self._item_list.remove(item)
         item.remove(self._lower_tile_group)
+
+    def get_all_collide(self):
+        """
+        Return all collidable objects, including collidable tiles and npcs.
+        """
+        return self.collide_list + self.npc_list

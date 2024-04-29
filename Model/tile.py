@@ -158,3 +158,76 @@ class Item(Tile):
         """
         eee"""
         return self._name
+
+
+class NPC(Tile):
+    """
+    Class Npc defines a new npc,.
+    """
+
+    def __init__(
+        self,
+        voice_line,
+        item_wants,
+        surf,
+        group,
+        name,
+        coordinates,
+        room,
+    ):
+        """
+        Initializes a new npc
+
+        Attributes:
+            voice_line: String reprisenting what the npc says when
+                a player interacts/goes in room
+            is_satisfied: boolean of whether the npc has gotten the item
+                or not
+            item_wants: item that the npc needs to be satisfied
+
+        """
+        super().__init__(coordinates, room, group, surf)
+        self._name = name
+        self._voice_line = voice_line
+        self._is_satisfied = False
+        self._item_wants = item_wants
+
+    @property
+    def voice_line(self):
+        """
+        Returns the voice line of the npc
+        """
+        return self._voice_line
+
+    @property
+    def is_satisfied(self):
+        """
+        Returns whether the npc is satisfied
+        """
+        return self._is_satisfied
+
+    @property
+    def item_wants(self):
+        """
+        Returns the desired item of the npc
+        """
+        return self._item_wants
+
+    @property
+    def name(self):
+        """
+        eee"""
+        return self._name
+
+    def recieve(self, given_item):
+        """
+        when npc recieves an item, this method will take it, and
+        check whether it is the item that the npc wants. if it is,
+        the npc will become satisfied, if not, npc will remain
+        unsatisfied
+
+        Args:
+            given_item: item that the npc recieves
+        """
+        if given_item == self._item_wants:
+            self._is_satisfied = True

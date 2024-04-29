@@ -108,7 +108,7 @@ class TopDownController:
             player: a Player instance representing the player's information
         """
 
-        if player.check_collision(3, self.current_room.collide_list):
+        if player.check_collision(3, self.current_room.get_all_collide()):
             player.update_movement(3, 0, 0)
         else:
             player.update_movement(3, -TILE_SIZE, 0)
@@ -122,7 +122,7 @@ class TopDownController:
             player: a Player instance representing the player's information
         """
 
-        if player.check_collision(1, self.current_room.collide_list):
+        if player.check_collision(1, self.current_room.get_all_collide()):
             player.update_movement(1, 0, 0)
         else:
             player.update_movement(1, TILE_SIZE, 0)
@@ -136,7 +136,7 @@ class TopDownController:
             player: a Player instance representing the player's information
         """
 
-        if player.check_collision(2, self.current_room.collide_list):
+        if player.check_collision(2, self.current_room.get_all_collide()):
             player.update_movement(2, 0, 0)
         else:
             player.update_movement(2, 0, TILE_SIZE)
@@ -150,7 +150,7 @@ class TopDownController:
             player: a Player instance representing the player's information
         """
 
-        if player.check_collision(0, self.current_room.collide_list):
+        if player.check_collision(0, self.current_room.get_all_collide()):
             player.update_movement(0, 0, 0)
         else:
             player.update_movement(0, 0, -TILE_SIZE)
