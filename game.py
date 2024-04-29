@@ -55,12 +55,12 @@ while RUN:
                     controller.move_down(user)
                     print("DOWN")
                 case pygame.K_SPACE:
-                    user.check_npc_coords(user.room, user.get_current_sprite)
+                    user.check_npc_coords(user.room, user.current_sprite)
                 case pygame.K_i:
                     # user.open_inventory
-                    pass
+                    controller.create_textbox(user.list_inventory())
                 case pygame.K_x:
                     # user.close_textbox
-                    pass
+                    controller.clear_text_box()
 
-        view.draw(user, controller.current_room)
+        view.draw(controller.text_box, user, controller.current_room)

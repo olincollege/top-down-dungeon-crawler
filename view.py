@@ -33,5 +33,12 @@ class View:
             current_room.get_tile_groups()["Upper"].draw(self._screen)
         # if there is a textbox
         else:
-            self._screen.blit(text_box)
+            x = text_box.get_width()
+            self._screen.blit(
+                text_box,
+                (
+                    (SCREEN_WIDTH * TILE_SIZE - x) // 2,
+                    SCREEN_HEIGHT * TILE_SIZE // 2,
+                ),
+            )
         pygame.display.flip()

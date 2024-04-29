@@ -17,7 +17,14 @@ class TopDownController:
     def __init__(self):
         self._world = WorldManager()
         self._current_room = self._world.get_room("Green_Forest")
-        self._is_text = False
+        self._text_box = None
+
+    @property
+    def text_box(self):
+        """
+        Getter for the text box
+        """
+        return self._text_box
 
     @property
     def world(self):
@@ -33,22 +40,21 @@ class TopDownController:
         """
         return self._current_room
 
+    def clear_text_box(self):
+        """
+        Sets text box attribute to None
+        """
+        self._text_box = None
+
     def create_textbox(self, samp_text):
         """
         Creates a textbox.
-
-        Returns a Surface that can be drawn onto the screen, as well
-        as a Surface with the text that can be drawn onto the first
-        Surface.
         """
         font = pygame.font.SysFont("Comic Sans MS", 32)
         text_surf = pygame.font.Font.render(
             font, samp_text, False, (255, 255, 255), (0, 0, 0)
         )
-        new_surf = pygame.Surface(
-            (SCREEN_WIDTH * TILE_SIZE, SCREEN_HEIGHT * TILE_SIZE)
-        )
-        return (text_surf, new_surf)
+        self._text_box = text_surf
 
     def track_portal(self, player=Player):
         """
@@ -83,10 +89,7 @@ class TopDownController:
             if player.coordinates == temp_item_coords:
                 player.pick_up(item)
                 self.current_room.remove_item(item)
-                # print(
-                #     f"Player picked up {item.name}!
-                #     Current inventory: {player.list_inventory()}"
-                # )
+                self.create_textbox(f"You picked up {item.name}!")
 
     def check_step(self, player=Player):
         """
