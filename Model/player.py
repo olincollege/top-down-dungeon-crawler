@@ -71,10 +71,10 @@ class Player(Character):
                 case 0:
                     player_up = (
                         player_coords[0],
-                        player_coords[1] + TILE_HEIGHT,
+                        player_coords[1] - TILE_HEIGHT,
                     )
                     if player_up == npc_coords:
-                        return npc
+                        return npc.voice_line
 
                 case 1:
                     player_right = (
@@ -82,15 +82,15 @@ class Player(Character):
                         player_coords[1],
                     )
                     if player_right == npc_coords:
-                        return npc
+                        return npc.voice_line
 
                 case 2:
                     player_down = (
                         player_coords[0],
-                        player_coords[1] - TILE_HEIGHT,
+                        player_coords[1] + TILE_HEIGHT,
                     )
                     if player_down == npc_coords:
-                        return npc
+                        return npc.voice_line
 
                 case 3:
                     player_left = (
@@ -98,7 +98,7 @@ class Player(Character):
                         player_coords[1],
                     )
                     if player_left == npc_coords:
-                        return npc
+                        return npc.voice_line
 
         return None
 

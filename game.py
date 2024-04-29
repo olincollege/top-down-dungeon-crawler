@@ -55,7 +55,11 @@ while RUN:
                     controller.move_down(user)
                     print("DOWN")
                 case pygame.K_SPACE:
-                    user.check_npc_coords(user.room, user.current_sprite)
+                    is_npc = user.check_npc_coords(
+                        user.room, user.current_sprite
+                    )
+                    if is_npc is not None:
+                        controller.create_textbox(is_npc)
                 case pygame.K_i:
                     # user.open_inventory
                     controller.create_textbox(user.list_inventory())

@@ -89,7 +89,7 @@ class TopDownController:
             if player.coordinates == temp_item_coords:
                 player.pick_up(item)
                 self.current_room.remove_item(item)
-                self.create_textbox(f"You picked up {item.name}!")
+                self.create_textbox(f"You picked up: {item.name}!")
 
     def check_step(self, player=Player):
         """
