@@ -192,3 +192,8 @@ class Player(Character):
             room_name: a room object representing the new room
         """
         self._room = room
+
+    def update_movement(self, dir):
+        """
+        Groups all of the standard movement functions called by controller.
+        """
