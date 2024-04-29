@@ -193,7 +193,17 @@ class Player(Character):
         """
         self._room = room
 
-    def update_movement(self, dir):
+    def update_movement(self, new_dir, x_mod, y_mod):
         """
-        Groups all of the standard movement functions called by controller.
+        Groups all of the standard movement functions.
+
+        Args:
+            new_dir: An int representing the new direction to face.
+            x_mod: An int by which to change the x coordinate.
+            y_mod: An int by which to change the y coordinate.
         """
+        self.set_coordinates(
+            (self.coordinates[0] + x_mod, self.coordinates[1] + y_mod)
+        )
+        self.set_current_sprite(new_dir)
+        self.set_rect(self.coordinates)
