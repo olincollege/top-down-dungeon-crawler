@@ -166,12 +166,12 @@ class Player(Character):
             inv_string: string reprisentation of the names of the items
                 in the player inventory
         """
-        inv_string = ""
+        inv_string = "Current Inventory: "
 
         for item in self._inventory:
-            inv_string += f"{item.name}\n"
+            inv_string += f"{item.name}, "
 
-        return inv_string
+        return inv_string[: len(inv_string) - 2]
 
     def set_coordinates(self, coords):
         """

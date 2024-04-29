@@ -16,27 +16,29 @@ class View:
             (SCREEN_WIDTH * TILE_SIZE, SCREEN_HEIGHT * TILE_SIZE)
         )
 
-    def create_textbox(self, text):
-        """
-        Creates a textbox.
-
-        Returns a Surface that can be drawn onto the screen.
-        """
-
-    def draw(self, player=Player, current_room=Room):
+    def draw(self, text_box, player=Player, current_room=Room):
         """e"""
         # fill with black
         self._screen.fill((0, 0, 0))
-        # draw the current room's lower tiles
-        current_room.get_tile_groups()["Lower"].draw(self._screen)
-        # draw the player
-        player_image = player.sprite_list[player.current_sprite]
-        self._screen.blit(player_image, player.coordinates)
-        # draw the current room's NPCs
-        current_room.get_tile_groups()["NPC"].draw(self._screen)
-        # draw the current room's upper tiles
-        current_room.get_tile_groups()["Upper"].draw(self._screen)
-        # draw textbox
-        # DRAW TEXTBOX CODE
-        # upload the finalized frame image
+        # if no textbox
+        if text_box is None:
+            # draw the current room's lower tiles
+            current_room.get_tile_groups()["Lower"].draw(self._screen)
+            # draw the player
+            player_image = player.sprite_list[player.current_sprite]
+            self._screen.blit(player_image, player.coordinates)
+            # draw the current room's NPCs
+            current_room.get_tile_groups()["NPC"].draw(self._screen)
+            # draw the current room's upper tiles
+            current_room.get_tile_groups()["Upper"].draw(self._screen)
+        # if there is a textbox
+        else:
+            x = text_box.get_width()
+            self._screen.blit(
+                text_box,
+                (
+                    (SCREEN_WIDTH * TILE_SIZE - x) // 2,
+                    SCREEN_HEIGHT * TILE_SIZE // 2,
+                ),
+            )
         pygame.display.flip()
