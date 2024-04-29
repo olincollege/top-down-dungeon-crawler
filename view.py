@@ -16,13 +16,6 @@ class View:
             (SCREEN_WIDTH * TILE_SIZE, SCREEN_HEIGHT * TILE_SIZE)
         )
 
-    def create_textbox(self, text):
-        """
-        Creates a textbox.
-
-        Returns a Surface that can be drawn onto the screen.
-        """
-
     def draw(self, player=Player, current_room=Room):
         """e"""
         # fill with black
