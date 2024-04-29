@@ -1,7 +1,6 @@
 """controller.py contains the class that controls the player
 and it's interactions"""
 
-from Model.tile import Portal, Item
 from Model.player import Player
 from Model.world_manager import WorldManager
 
@@ -48,6 +47,7 @@ class TopDownController:
                 self._current_room = self._world.get_room(portal.dest_room)
                 player.set_room(self._current_room)
                 player.set_coordinates(portal.dest_coords)
+                player.set_current_sprite(portal.dest_dir)
 
     def track_item(self, player=Player):
         """
@@ -88,19 +88,9 @@ class TopDownController:
         """
 
         if player.check_collision(3, self.current_room.collide_list):
-            print("COLLIDE")
-            player.set_coordinates(
-                (player.coordinates[0], player.coordinates[1])
-            )
+            player.update_movement(3, 0, 0)
         else:
-            player.set_coordinates(
-                (player.coordinates[0] - TILE_SIZE, player.coordinates[1])
-            )
-
-        player.set_current_sprite(3)
-
-        player.set_rect(player.coordinates)
-
+            player.update_movement(3, -TILE_SIZE, 0)
         self.check_step(player)
 
     def move_right(self, player=Player):
@@ -112,19 +102,9 @@ class TopDownController:
         """
 
         if player.check_collision(1, self.current_room.collide_list):
-            print("COLLIDE")
-            player.set_coordinates(
-                (player.coordinates[0], player.coordinates[1])
-            )
+            player.update_movement(1, 0, 0)
         else:
-            player.set_coordinates(
-                (player.coordinates[0] + TILE_SIZE, player.coordinates[1])
-            )
-
-        player.set_current_sprite(1)
-
-        player.set_rect(player.coordinates)
-
+            player.update_movement(1, TILE_SIZE, 0)
         self.check_step(player)
 
     def move_down(self, player=Player):
@@ -136,19 +116,9 @@ class TopDownController:
         """
 
         if player.check_collision(2, self.current_room.collide_list):
-            print("COLLIDE")
-            player.set_coordinates(
-                (player.coordinates[0], player.coordinates[1])
-            )
+            player.update_movement(2, 0, 0)
         else:
-            player.set_coordinates(
-                (player.coordinates[0], player.coordinates[1] + TILE_SIZE)
-            )
-
-        player.set_current_sprite(2)
-
-        player.set_rect(player.coordinates)
-
+            player.update_movement(2, 0, TILE_SIZE)
         self.check_step(player)
 
     def move_up(self, player=Player):
@@ -160,17 +130,7 @@ class TopDownController:
         """
 
         if player.check_collision(0, self.current_room.collide_list):
-            print("COLLIDE")
-            player.set_coordinates(
-                (player.coordinates[0], player.coordinates[1])
-            )
+            player.update_movement(0, 0, 0)
         else:
-            player.set_coordinates(
-                (player.coordinates[0], player.coordinates[1] - TILE_SIZE)
-            )
-
-        player.set_current_sprite(0)
-
-        player.set_rect(player.coordinates)
-
+            player.update_movement(0, 0, -TILE_SIZE)
         self.check_step(player)

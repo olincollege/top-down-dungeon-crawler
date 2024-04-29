@@ -56,6 +56,7 @@ class Portal(Tile):
         self,
         dest_room,
         dest_coords,
+        dest_dir,
         coordinates,
         room,
         surf,
@@ -79,6 +80,7 @@ class Portal(Tile):
         """
         super().__init__(coordinates, room, group, surf)
         self._dest_room = dest_room
+        self._dest_dir = dest_dir
         self._dest_coords = (
             dest_coords[0] * TILE_SIZE,
             dest_coords[1] * TILE_SIZE,
@@ -103,9 +105,16 @@ class Portal(Tile):
     @property
     def dest_coords(self):
         """
-        Returns the destination coords of the portal
+        Returns the destination coords of the portal.
         """
         return self._dest_coords
+
+    @property
+    def dest_dir(self):
+        """
+        Returns the destination direction of the portal.
+        """
+        return self._dest_dir
 
     @property
     def key(self):
