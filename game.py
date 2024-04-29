@@ -41,6 +41,8 @@ while RUN:
 
         if event.type == pygame.KEYDOWN:
             match (event.key):
+                case pygame.K_ESCAPE:
+                    RUN = False
                 case pygame.K_LEFT:
                     controller.move_left(user)
                 case pygame.K_RIGHT:
@@ -54,5 +56,11 @@ while RUN:
                     print("DOWN")
                 case pygame.K_SPACE:
                     user.check_npc_coords(user.room, user.get_current_sprite)
+                case pygame.K_i:
+                    # user.open_inventory
+                    pass
+                case pygame.K_x:
+                    # user.close_textbox
+                    pass
 
         view.draw(user, controller.current_room)
