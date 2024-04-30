@@ -91,7 +91,7 @@ class Portal(Tile):
         coordinates,
         surf,
         group,
-    ):
+    ):  # pylint: disable=too-many-arguments
         """
         Initializes an instance of the Portal class.
 

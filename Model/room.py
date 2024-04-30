@@ -22,7 +22,9 @@ class Room(pygame.sprite.Sprite):
         group (Lower, Upper, NPC) and the values are the group itself.
     """
 
-    def __init__(self, name, filepath, portals, items, npcs):
+    def __init__(
+        self, name, filepath, portals, items, npcs
+    ):  # pylint: disable=too-many-arguments
         """
         Initializes an instance of the Room class.
 
