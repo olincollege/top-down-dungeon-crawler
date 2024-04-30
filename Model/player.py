@@ -222,7 +222,6 @@ class Player(
 
         # Cycles through the room's NPCs
         for npc in npc_list:
-
             # Gets the NPC's coordinates
             npc_coords = npc.coordinates
 
