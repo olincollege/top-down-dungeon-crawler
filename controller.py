@@ -39,6 +39,8 @@ class TopDownController:
     def text_box(self):
         """
         Getter for the text box attribute.
+
+        Returns the self._text_box attribute.
         """
         return self._text_box
 
@@ -46,6 +48,8 @@ class TopDownController:
     def world(self):
         """
         Getter for the world attribute.
+
+        Returns the self._world attribute.
         """
         return self._world
 
@@ -53,6 +57,8 @@ class TopDownController:
     def current_room(self):
         """
         Getter for the current room attribute.
+
+        Returns the self._current_room attribute.
         """
         return self._current_room
 
