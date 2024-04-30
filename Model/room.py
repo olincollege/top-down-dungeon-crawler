@@ -71,65 +71,54 @@ class Room(pygame.sprite.Sprite):
             portal_count = 0
             item_count = 0
             for x, y, surf in layer.tiles():
-                try:
-                    # if layer is ceiling
-                    if layer.name in ("Ceiling", "Ceiling_Deco"):
-                        Tile(
+                # if layer is ceiling
+                if layer.name in ("Ceiling", "Ceiling_Deco"):
+                    Tile(
+                        coordinates=(x, y),
+                        surf=surf,
+                        group=self._tile_groups["Upper"],
+                    )
+                # if layer is portals
+                elif layer.name == "Portals":
+                    portal_data = portals[portal_count]
+                    self._portal_list.append(
+                        Portal(
                             coordinates=(x, y),
                             surf=surf,
-                            group=self._tile_groups["Upper"],
+                            group=self._tile_groups["Lower"],
+                            dest_coords=portal_data["dest_coords"],
+                            dest_room=portal_data["dest_room"],
+                            dest_dir=portal_data["dest_dir"],
                         )
-                    # if layer is portals
-                    elif layer.name == "Portals":
-                        portal_data = portals[portal_count]
-                        self._portal_list.append(
-                            Portal(
-                                coordinates=(x, y),
-                                surf=surf,
-                                group=self._tile_groups["Lower"],
-                                dest_coords=portal_data["dest_coords"],
-                                dest_room=portal_data["dest_room"],
-                                dest_dir=portal_data["dest_dir"],
-                            )
+                    )
+                    portal_count += 1
+                # if layer is items
+                elif layer.name == "Items":
+                    item_name = items[item_count]
+                    self._item_list.append(
+                        Item(
+                            coordinates=(x, y),
+                            surf=surf,
+                            group=self._tile_groups["Lower"],
+                            name=item_name,
                         )
-                        portal_count += 1
-                    # if layer is items
-                    elif layer.name == "Items":
-                        item_name = items[item_count]
-                        self._item_list.append(
-                            Item(
-                                coordinates=(x, y),
-                                surf=surf,
-                                group=self._tile_groups["Lower"],
-                                name=item_name,
-                            )
-                        )
-                        item_count += 1
-                    # if layer is collidable
-                    elif layer.name in ("Collidables", "Collidables_Deco"):
-                        self._collide_list.append(
-                            Tile(
-                                coordinates=(x, y),
-                                surf=surf,
-                                group=self._tile_groups["Lower"],
-                            )
-                        )
-                    # if layer is not empty
-                    elif hasattr(layer, "data"):
+                    )
+                    item_count += 1
+                # if layer is collidable
+                elif layer.name in ("Collidables", "Collidables_Deco"):
+                    self._collide_list.append(
                         Tile(
                             coordinates=(x, y),
                             surf=surf,
                             group=self._tile_groups["Lower"],
                         )
-                # if no image, usually if pulling from the wrong tileset
-                except AttributeError:
-                    print(
-                        f"No image in map {self.name} on layer {layer.name} at tile {(x,y)}"
                     )
-                # if number of portals is different in JSON than in map object
-                except IndexError:
-                    print(
-                        f"Too many portals in map {self.name} on layer {layer.name} at tile {(x,y)}"
+                # if layer is not empty
+                elif hasattr(layer, "data"):
+                    Tile(
+                        coordinates=(x, y),
+                        surf=surf,
+                        group=self._tile_groups["Lower"],
                     )
 
     # getters
