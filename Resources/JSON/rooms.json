@@ -1,7 +1,7 @@
 {
     "Tent_Interior" : {
         "name" : "Tent_Interior",
-        "filepath" : "Tent_Interior.tmx",
+        "filepath" : "Map_Tent_Interior.tmx",
         "portals" : [
             {
                 "dest_room" : "Green_Forest",
@@ -26,7 +26,7 @@
 
     "Green_Forest" : {
         "name" : "Green_Forest",
-        "filepath" : "Green_Forest.tmx",
+        "filepath" : "Map_Green_Forest.tmx",
         "portals" : [
             {
                 "dest_room" : "Small_Dungeon_1",
@@ -58,7 +58,7 @@
 
     "Small_Dungeon_1" : {
         "name" : "Small_Dungeon_1",
-        "filepath" : "Small_Dungeon_1.tmx",
+        "filepath" : "Map_Small_Dungeon_1.tmx",
         "portals" : [
             {
                 "dest_room" : "Small_Dungeon_2",
@@ -89,7 +89,7 @@
 
     "Small_Dungeon_2" : {
         "name" : "Small_Dungeon_2",
-        "filepath" : "Small_Dungeon_2.tmx",
+        "filepath" : "Map_Small_Dungeon_2.tmx",
         "portals" : [
             {
                 "dest_room" : "Farmlands_2",
@@ -121,7 +121,7 @@
 
     "Farmlands_2" : {
         "name" : "Farmlands_2",
-        "filepath" : "Farmlands_2.tmx",
+        "filepath" : "Map_Farmlands_2.tmx",
         "portals" : [
             {
                 "dest_room" : "Farmlands",
@@ -153,7 +153,7 @@
 
     "Farmlands" : {
         "name" : "Farmlands",
-        "filepath" : "Farmlands.tmx",
+        "filepath" : "Map_Farmlands.tmx",
         "portals" : [
             {
                 "dest_room" : "Farmlands_2",
@@ -184,7 +184,7 @@
 
     "Barn_Interior" : {
         "name" : "Barn_Interior",
-        "filepath" : "Barn_Interior.tmx",
+        "filepath" : "Map_Barn_Interior.tmx",
         "portals" : [
             {
                 "dest_room" : "Farmlands",
