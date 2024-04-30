@@ -2,9 +2,9 @@
 and its interactions"""
 
 import pygame
-from constants import TILE_SIZE
-from Model.player import Player
+from Model.constants import TILE_SIZE
 from Model.world_manager import WorldManager
+from Model.player import Player
 
 TILE_SIZE = 32
 

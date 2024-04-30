@@ -5,9 +5,10 @@ import pygame
 
 # internal packages
 from Model.player import Player
+from Model.constants import TILE_SIZE
 from controller import TopDownController
 from view import View
-from constants import TILE_SIZE
+
 
 # initialize pygame
 pygame.init()
