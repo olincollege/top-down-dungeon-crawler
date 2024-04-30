@@ -24,9 +24,9 @@ user = Player(
         "Resources/Player Images/red_down_32.png",
         "Resources/Player Images/red_left_32.png",
     ],
-    current_sprite=3,
+    current_sprite=2,
     name="coco",
-    coordinates=(3 * TILE_SIZE, 3 * TILE_SIZE),
+    coordinates=(3 * TILE_SIZE, 15 * TILE_SIZE),
     room=controller.current_room,
 )
 
