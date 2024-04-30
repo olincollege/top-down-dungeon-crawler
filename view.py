@@ -4,7 +4,7 @@ draws the player, map, and text to the screen
 """
 
 import pygame
-from constants import TILE_SIZE, SCREEN_WIDTH, SCREEN_HEIGHT
+from Model.constants import TILE_SIZE, SCREEN_WIDTH, SCREEN_HEIGHT
 from Model.player import Player
 from Model.room import Room
 

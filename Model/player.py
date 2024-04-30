@@ -3,7 +3,7 @@ player.py lays out all the information for a player
 """
 
 import pygame
-from constants import TILE_SIZE  # pylint: disable=import-error
+from Model.constants import TILE_SIZE  # pylint: disable=import-error
 
 
 class Player(
