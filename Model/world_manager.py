@@ -3,7 +3,7 @@ This file contains the WorldManager class, which manages all of the rooms
 to make sure that instances of Rooms never diverge from each other.
 """
 
-import json
+from json import load
 from Model.room import Room
 
 
@@ -25,7 +25,7 @@ class WorldManager:
 
         # load in json file as a variable
         with open("Resources/JSON/rooms.json", encoding="utf-8") as rooms:
-            parsed_rooms = json.load(rooms)
+            parsed_rooms = load(rooms)
 
         # for each room in the parsed json room dictionary
         for room_name, room_data in parsed_rooms.items():
