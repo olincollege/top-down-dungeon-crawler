@@ -32,7 +32,7 @@ user = Player(
 
 # create welcome screen
 controller.create_textbox(
-    "Welcome to Sandman's Adventure! Press X to start, and Q to display instructions"
+    "Welcome to Sandman's Adventure! Press X to start, and Q for instructions"
 )
 
 # create game run variable
@@ -40,7 +40,6 @@ RUN = True
 
 # run game
 while RUN:
-
     # get events in the game
     for event in pygame.event.get():
         # kill program on exit
@@ -67,11 +66,11 @@ while RUN:
                     controller.move_down(user)
                 # interact with npcs
                 case pygame.K_SPACE:
-                    is_npc = user.check_npc_coords(
+                    IS_NPC = user.check_npc_coords(
                         user.room, user.current_sprite
                     )
-                    if is_npc is not None:
-                        controller.create_textbox(is_npc.det_voice(user))
+                    if IS_NPC is not None:
+                        controller.create_textbox(IS_NPC.det_voice(user))
                 # open inventory
                 case pygame.K_i:
                     controller.create_textbox(user.list_inventory())

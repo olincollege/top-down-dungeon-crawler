@@ -5,7 +5,7 @@ explore in the game.
 
 import pygame
 from pytmx.util_pygame import load_pygame
-from Model.tile import Tile, Portal, Item, NPC
+from Model.tile import Tile, Portal, Item, NPC  # pylint: disable=import-error
 
 
 class Room(pygame.sprite.Sprite):
@@ -70,11 +70,11 @@ class Room(pygame.sprite.Sprite):
         for layer in load_pygame(filepath).visible_layers:
             portal_count = 0
             item_count = 0
-            for x, y, surf in layer.tiles():
+            for x_val, y_val, surf in layer.tiles():
                 # if layer is ceiling
                 if layer.name in ("Ceiling", "Ceiling_Deco"):
                     Tile(
-                        coordinates=(x, y),
+                        coordinates=(x_val, y_val),
                         surf=surf,
                         group=self._tile_groups["Upper"],
                     )
@@ -83,7 +83,7 @@ class Room(pygame.sprite.Sprite):
                     portal_data = portals[portal_count]
                     self._portal_list.append(
                         Portal(
-                            coordinates=(x, y),
+                            coordinates=(x_val, y_val),
                             surf=surf,
                             group=self._tile_groups["Lower"],
                             dest_coords=portal_data["dest_coords"],
@@ -97,7 +97,7 @@ class Room(pygame.sprite.Sprite):
                     item_name = items[item_count]
                     self._item_list.append(
                         Item(
-                            coordinates=(x, y),
+                            coordinates=(x_val, y_val),
                             surf=surf,
                             group=self._tile_groups["Lower"],
                             name=item_name,
@@ -108,7 +108,7 @@ class Room(pygame.sprite.Sprite):
                 elif layer.name in ("Collidables", "Collidables_Deco"):
                     self._collide_list.append(
                         Tile(
-                            coordinates=(x, y),
+                            coordinates=(x_val, y_val),
                             surf=surf,
                             group=self._tile_groups["Lower"],
                         )
@@ -116,7 +116,7 @@ class Room(pygame.sprite.Sprite):
                 # if layer is not empty
                 elif hasattr(layer, "data"):
                     Tile(
-                        coordinates=(x, y),
+                        coordinates=(x_val, y_val),
                         surf=surf,
                         group=self._tile_groups["Lower"],
                     )

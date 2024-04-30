@@ -55,12 +55,12 @@ class View:  # pylint: disable=too-few-public-methods
         # if there is a textbox
         else:
             # Find value to center the textbox
-            x = text_box.get_width()
+            x_val = text_box.get_width()
             # Draw the textbox
             self._screen.blit(
                 text_box,
                 (
-                    (SCREEN_WIDTH * TILE_SIZE - x) // 2,
+                    (SCREEN_WIDTH * TILE_SIZE - x_val) // 2,
                     SCREEN_HEIGHT * TILE_SIZE // 2,
                 ),
             )

@@ -4,7 +4,7 @@ to make sure that instances of Rooms never diverge from each other.
 """
 
 from json import load
-from Model.room import Room
+from Model.room import Room  # pylint: disable=import-error
 
 
 class WorldManager:
