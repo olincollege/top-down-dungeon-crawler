@@ -44,3 +44,13 @@ class WorldManager:
             name: String representing the name of a room.
         """
         return self._room_list[name]
+
+    def get_world_npcs(self):
+        """
+        Creates list of the world's npcs
+        """
+        world_npcs = []
+        for r_name, r_object in self._room_list.items():
+            temp = r_object.npc_list
+            world_npcs += temp
+        return world_npcs
