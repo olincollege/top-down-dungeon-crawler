@@ -110,12 +110,12 @@ class TopDownController:
         Args:
             player: a Player instance representing the player's information
         """
-
-        if player.check_collision(3, self.current_room.get_all_collide()):
-            player.update_movement(3, 0, 0)
-        else:
-            player.update_movement(3, -TILE_SIZE, 0)
-        self.check_step(player)
+        if self._text_box is None:
+            if player.check_collision(3, self.current_room.get_all_collide()):
+                player.update_movement(3, 0, 0)
+            else:
+                player.update_movement(3, -TILE_SIZE, 0)
+            self.check_step(player)
 
     def move_right(self, player=Player):
         """
@@ -124,12 +124,12 @@ class TopDownController:
         Args:
             player: a Player instance representing the player's information
         """
-
-        if player.check_collision(1, self.current_room.get_all_collide()):
-            player.update_movement(1, 0, 0)
-        else:
-            player.update_movement(1, TILE_SIZE, 0)
-        self.check_step(player)
+        if self._text_box is None:
+            if player.check_collision(1, self.current_room.get_all_collide()):
+                player.update_movement(1, 0, 0)
+            else:
+                player.update_movement(1, TILE_SIZE, 0)
+            self.check_step(player)
 
     def move_down(self, player=Player):
         """
@@ -138,12 +138,12 @@ class TopDownController:
         Args:
             player: a Player instance representing the player's information
         """
-
-        if player.check_collision(2, self.current_room.get_all_collide()):
-            player.update_movement(2, 0, 0)
-        else:
-            player.update_movement(2, 0, TILE_SIZE)
-        self.check_step(player)
+        if self._text_box is None:
+            if player.check_collision(2, self.current_room.get_all_collide()):
+                player.update_movement(2, 0, 0)
+            else:
+                player.update_movement(2, 0, TILE_SIZE)
+            self.check_step(player)
 
     def move_up(self, player=Player):
         """
@@ -152,9 +152,9 @@ class TopDownController:
         Args:
             player: a Player instance representing the player's information
         """
-
-        if player.check_collision(0, self.current_room.get_all_collide()):
-            player.update_movement(0, 0, 0)
-        else:
-            player.update_movement(0, 0, -TILE_SIZE)
-        self.check_step(player)
+        if self._text_box is None:
+            if player.check_collision(0, self.current_room.get_all_collide()):
+                player.update_movement(0, 0, 0)
+            else:
+                player.update_movement(0, 0, -TILE_SIZE)
+            self.check_step(player)
