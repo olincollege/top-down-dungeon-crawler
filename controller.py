@@ -2,7 +2,7 @@
 and it's interactions"""
 
 import pygame
-from constants import TILE_SIZE, SCREEN_HEIGHT, SCREEN_WIDTH
+from constants import TILE_SIZE
 from Model.player import Player
 from Model.world_manager import WorldManager
 
@@ -19,6 +19,7 @@ class TopDownController:
         self._current_room = self._world.get_room("Tent_Interior")
         self._text_box = None
         self._instruct = 0
+        self._has_won = False
 
     @property
     def text_box(self):
@@ -95,17 +96,39 @@ class TopDownController:
                 self.current_room.remove_item(item)
                 self.create_textbox(f"You picked up: {item.name}!")
 
+    def check_win(self):
+        """
+        Checks if the player has won - i.e., satisfied all NPCs.
+
+        Returns a Boolean that represents if the player has won
+        or not.
+        """
+        npcs_satisfied = 0
+        for npc in self._world.get_world_npcs():
+            if npc.is_satisfied:
+                npcs_satisfied += 1
+        if npcs_satisfied == len(self._world.get_world_npcs()):
+            return True
+        return False
+
     def check_step(self, player=Player):
         """
-        Calls both track_portal and track_item
+        Calls both track_portal and track_item, and checks if
+        the player has won.
 
-        Made for convenience - both are called together often.
+        Made for convenience - all three are called together often.
 
         Args:
             player: a Player instance representing the player's information
         """
         self.track_item(player)
         self.track_portal(player)
+
+        if self.check_win() and not self._has_won:
+            self.create_textbox(
+                "You win! Press X to continue exploring, or Escape to exit."
+            )
+            self._has_won = True
 
     def move_left(self, player=Player):
         """
