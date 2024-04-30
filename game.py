@@ -30,7 +30,9 @@ user = Player(
     room=controller.current_room,
 )
 
-
+controller.create_textbox(
+    "Welcome! Press X to start, and Q to display instructions"
+)
 RUN = True
 
 while RUN:
@@ -66,5 +68,7 @@ while RUN:
                 case pygame.K_x:
                     # user.close_textbox
                     controller.clear_text_box()
+                case pygame.K_q:
+                    controller.instruct()
 
         view.draw(controller.text_box, user, controller.current_room)

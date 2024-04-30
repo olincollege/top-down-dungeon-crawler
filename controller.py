@@ -18,6 +18,7 @@ class TopDownController:
         self._world = WorldManager()
         self._current_room = self._world.get_room("Tent_Interior")
         self._text_box = None
+        self._instruct = 0
 
     @property
     def text_box(self):
@@ -49,6 +50,9 @@ class TopDownController:
     def create_textbox(self, samp_text):
         """
         Creates a textbox.
+
+        Args:
+            samp_text: a string representing the text to be written
         """
         font = pygame.font.SysFont("Comic Sans MS", 32)
         text_surf = pygame.font.Font.render(
@@ -158,3 +162,29 @@ class TopDownController:
             else:
                 player.update_movement(0, 0, -TILE_SIZE)
             self.check_step(player)
+
+    def instruct(self):
+        """
+        Creates instruction textboxes
+        """
+        num_instruct = self._instruct % 4
+
+        match num_instruct:
+            case 0:
+                self.create_textbox("X to close text - press Q again for more!")
+                self._instruct += 1
+            case 1:
+                self.create_textbox(
+                    "Arrow keys to move - press Q again for more!"
+                )
+                self._instruct += 1
+            case 2:
+                self.create_textbox(
+                    "I to open inventory - press Q again for more!"
+                )
+                self._instruct += 1
+            case 3:
+                self.create_textbox(
+                    "Space to interact with NPCs - press Q again for more!"
+                )
+                self._instruct += 1
