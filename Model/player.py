@@ -3,7 +3,7 @@ player.py lays out all the information for a player
 """
 
 import pygame
-from constants import TILE_SIZE
+from constants import TILE_SIZE  # pylint: disable=import-error
 
 
 class Player(
@@ -196,10 +196,9 @@ class Player(
         """
         inv_string = "Current Inventory: "
 
-        for item in self._inventory:
-            inv_string += f"{item}, "
+        inv_string = inv_string + ", ".join(self.inventory)
 
-        return inv_string[: len(inv_string) - 2]
+        return inv_string
 
     # function to see if an NPC is in front of the player
     def check_npc_coords(self, room, player_dir):

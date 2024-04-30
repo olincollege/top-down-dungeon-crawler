@@ -4,7 +4,7 @@ including NPCs, Items, and Portals, can be found here.
 """
 
 import pygame
-from constants import TILE_SIZE
+from constants import TILE_SIZE  # pylint: disable=import-error
 
 
 class Tile(pygame.sprite.Sprite):
