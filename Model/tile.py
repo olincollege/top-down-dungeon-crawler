@@ -193,7 +193,7 @@ class NPC(Tile):
         group,
         name,
         coordinates,
-    ):
+    ):  # pylint: disable=too-many-arguments
         """
         Initializes an instance of the NPC class.
 
