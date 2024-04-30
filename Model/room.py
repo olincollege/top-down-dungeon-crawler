@@ -1,4 +1,7 @@
-""" """
+"""
+This file contains the Room class, which represents each map the player can
+explore in the game.
+"""
 
 import pygame
 from pytmx.util_pygame import load_pygame
@@ -7,44 +10,48 @@ from Model.tile import Tile, Portal, Item, NPC
 
 class Room(pygame.sprite.Sprite):
     """
-    Creates a room for the player to traverse
-    Inherits from DataSprite
+    A single map posessing tiles, items, and NPCs that the player can explore.
+
+    Attributes:
+        _name: The unique string name of the Room.
+        _npc_list: A list of all of the NPC objects in the Room.
+        _item_list: A list of all of the item objects in the Room.
+        _portal_list: A list of all of the portal tiles in the Room.
+        _collide_list: A list of all of the collidables tiles in the Room.
+        _tile_groups: A dictionary in which the keys are the name of a tile
+        group (Lower, Upper, NPC) and the values are the group itself.
     """
 
     def __init__(self, name, filepath, portals, items, npcs):
         """
-        initializes the Room
+        Initializes an instance of the Room class.
 
-        Attributes:
-            name: String of the name of the sprite
-            filepath: String representing the path to the .tmx map file
+        Args:
+            name: String of the name of the sprite.
+            filepath: String representing the path to the .tmx map file.
             portals: A list of dictionaries in which each dictionary represents
             key/value pair information about a portal. Assumes that the list
             order matches the order in which they appear on the map.
-            items: A list of dictionaries in which each dictionary represents
-            key/value pair information about an item. Assumes that the list
+            items: A list of names of items of this map.. Assumes that the list
             order matches the order in which they appear on the map.
-            NPCs: A list of dictionaries in which each dictionary represents
+            npcs: A list of dictionaries in which each dictionary represents
             key/value pair information about an NPC. Assumes that the list
             order matches the order in which they appear on the map.
         """
-        # super init
+        # super init and set name
         super().__init__()
-        # set from parameters
         self._name = name
-        # other attributes
-        self._was_visited = False
-        # unpack dictionary information (neither of these are good at all)
-        # make it tile based in the future for loops
+        # create destination lists for special tiles
         self._npc_list = []
         self._item_list = []
         self._portal_list = []
         self._collide_list = []
         # defining map and tilegroups
-        self._lower_tile_group = pygame.sprite.Group()
-        self._npc_tile_group = pygame.sprite.Group()
-        self._upper_tile_group = pygame.sprite.Group()
-        self._map_tmx = load_pygame(filepath)
+        self._tile_groups = {
+            "Lower": pygame.sprite.Group(),
+            "NPC": pygame.sprite.Group(),
+            "Upper": pygame.sprite.Group(),
+        }
         # construct the npc group
         for npc in npcs:
             self._npc_list.append(
@@ -52,14 +59,13 @@ class Room(pygame.sprite.Sprite):
                     name=npc["name"],
                     surf=pygame.image.load(npc["filepath"]),
                     coordinates=tuple(npc["coordinates"]),
-                    room=self,
-                    group=self._npc_tile_group,
+                    group=self._tile_groups["NPC"],
                     voice_lines=npc["voice_lines"],
                     item_wants=npc["item_wants"],
                 )
             )
-        # construct the map group
-        for layer in self._map_tmx.visible_layers:
+        # construct the map groups
+        for layer in load_pygame(filepath).visible_layers:
             portal_count = 0
             item_count = 0
             for x, y, surf in layer.tiles():
@@ -68,9 +74,8 @@ class Room(pygame.sprite.Sprite):
                     if layer.name in ("Ceiling", "Ceiling_Deco"):
                         Tile(
                             coordinates=(x, y),
-                            room=self,
                             surf=surf,
-                            group=self._upper_tile_group,
+                            group=self._tile_groups["Upper"],
                         )
                     # if layer is portals
                     elif layer.name == "Portals":
@@ -78,25 +83,22 @@ class Room(pygame.sprite.Sprite):
                         self._portal_list.append(
                             Portal(
                                 coordinates=(x, y),
-                                room=self,
                                 surf=surf,
-                                group=self._lower_tile_group,
+                                group=self._tile_groups["Lower"],
                                 dest_coords=portal_data["dest_coords"],
                                 dest_room=portal_data["dest_room"],
                                 dest_dir=portal_data["dest_dir"],
-                                is_locked=portal_data["is_locked"],
-                                key=portal_data["key"],
                             )
                         )
                         portal_count += 1
+                    # if layer is items
                     elif layer.name == "Items":
                         item_name = items[item_count]
                         self._item_list.append(
                             Item(
                                 coordinates=(x, y),
-                                room=self,
                                 surf=surf,
-                                group=self._lower_tile_group,
+                                group=self._tile_groups["Lower"],
                                 name=item_name,
                             )
                         )
@@ -106,94 +108,86 @@ class Room(pygame.sprite.Sprite):
                         self._collide_list.append(
                             Tile(
                                 coordinates=(x, y),
-                                room=self,
                                 surf=surf,
-                                group=self._lower_tile_group,
+                                group=self._tile_groups["Lower"],
                             )
                         )
                     # if layer is not empty
                     elif hasattr(layer, "data"):
                         Tile(
                             coordinates=(x, y),
-                            room=self,
                             surf=surf,
-                            group=self._lower_tile_group,
+                            group=self._tile_groups["Lower"],
                         )
+                # if no image, usually if pulling from the wrong tileset
                 except AttributeError:
                     print(
                         f"No image in map {self.name} on layer {layer.name} at tile {(x,y)}"
                     )
+                # if number of portals is different in JSON than in map object
                 except IndexError:
                     print(
                         f"Too many portals in map {self.name} on layer {layer.name} at tile {(x,y)}"
                     )
 
+    # getters
     @property
     def name(self):
         """
-        e
+        Returns the name of the Room.
         """
         return self._name
 
     @property
     def npc_list(self):
         """
-        e
+        Returns a list of the NPCs in the Room.
         """
         return self._npc_list
 
     @property
     def portal_list(self):
         """
-        e
+        Returns a list of the portal tiles in the Room.
         """
         return self._portal_list
 
     @property
     def collide_list(self):
         """
-        e
+        Returns a list of the collidable tiles in the Room.
         """
         return self._collide_list
 
     @property
     def item_list(self):
         """
-        e
+        Returns a list of the items in the Room.
         """
         return self._item_list
 
     @property
-    def was_visited(self):
+    def tile_groups(self):
         """
-        returns whether the player has been to the room or not
+        Returns the dictionary of tile groups.
         """
-        return self._was_visited
+        return self._tile_groups
 
-    def get_tile_groups(self):
-        """
-        Function that gets both room tile groups and returns them
-        in a dictionary.
-
-        Returns a dictionary whose keys are "upper" and "lower" and
-        whose values are the corresponding tile groups.
-        """
-        return {
-            "Upper": self._upper_tile_group,
-            "Lower": self._lower_tile_group,
-            "NPC": self._npc_tile_group,
-        }
-
-    def remove_item(self, item=Item):
-        """
-        Take an item out of the room.
-        """
-        print(f"Player picked up item {item.name}!")
-        self._item_list.remove(item)
-        item.remove(self._lower_tile_group)
-
+    # slightly more complex getter for collisions
     def get_all_collide(self):
         """
         Return all collidable objects, including collidable tiles and npcs.
         """
         return self.collide_list + self.npc_list
+
+    # take an item out of the Room
+    def remove_item(self, item=Item):
+        """
+        Function that removes an item from the Room and takes it off the map.
+
+        Args:
+            item: An item object that the player is picking up.
+        """
+        print(f"Player picked up item {item.name}!")
+        self._item_list.remove(item)
+        item.remove(self._tile_groups["Lower"])

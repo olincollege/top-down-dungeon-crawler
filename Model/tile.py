@@ -1,31 +1,53 @@
-""" """
+"""
+This file contains class Tile and its subclasses. Any class that is tile-like,
+including NPCs, Items, and Portals, can be found here.
+"""
 
 import pygame
 from constants import TILE_SIZE
-from Model.player import Player
 
 
 class Tile(pygame.sprite.Sprite):
     """
-    tile object
+    A standard tile representing one square of information on the map.
+
+    Attributes:
+        _group: An instance of the pygame Group class. This attribute
+        designates the Tile instance as part of one of its parent Room's
+        groups, which is useful for drawing the map.
+        _coordinates: An tuple of ints in which the first item is the x
+        position and the second item is the y position. Units are pixels.
+        _image: A Surface which is the image the tile should display.
+        _rect: A Rect object which derives from the tile image and allows it
+        to be drawn in a group.
     """
 
     def __init__(
         self,
         coordinates,
-        room,
         group,
-        surf=pygame.Surface((TILE_SIZE, TILE_SIZE)),
+        surf,
     ):
+        """
+        Initializes an instance of the Tile class.
+
+        Args:
+            coordinates: Sets the coordinates.
+            group: Sets the group.
+            surf: Sets the image.
+        """
+        # super the group
         super().__init__(group)
-        self._room = room
-        self._image = surf
+        # define coordinates in pixel size
         self._coordinates = (
             coordinates[0] * TILE_SIZE,
             coordinates[1] * TILE_SIZE,
         )
+        # create image variables
+        self._image = surf
         self._rect = self.image.get_rect(topleft=self.coordinates)
 
+    # getters
     @property
     def coordinates(self):
         """
@@ -43,14 +65,22 @@ class Tile(pygame.sprite.Sprite):
     @property
     def rect(self):
         """
-        Gets the pos of this tile.
+        Gets the rect of this tile.
         """
         return self._rect
 
 
 class Portal(Tile):
     """
-    Creates a portal tile
+    A special tile that, when stepped on, transports the Player to a new room.
+
+    Attributes:
+        _dest_room: The string name of the Room the player should appear in
+        after stepping on this tile.
+        _dest_coords: The coordinates the player should appear in after
+        stepping on this tile.
+        _dest_dir: The int value representing the direction the player should
+        face after stepping on this tile.
     """
 
     def __init__(
@@ -59,47 +89,33 @@ class Portal(Tile):
         dest_coords,
         dest_dir,
         coordinates,
-        room,
         surf,
         group,
-        is_locked=False,
-        key=None,
-    ):  # pylint: disable=too-many-arguments
+    ):
         """
-        initializes a new portal object.
+        Initializes an instance of the Portal class.
 
-        Attributes:
-            is_locked: boolean of whether the portal is availble to use
-            dest_room: string name of room that the portal leads to
-            dest_coords: int tuple coordinates of the portal destination
-            key: item object reprisenting the key to the portal
-            name: String of the name of the sprite
-            coordinates: list of 2 ints, reprisenting the location of the sprite
-            room: String of name of the room the sprite is in
-            image: image reprisenting the sprite, auto set to be a blank pygame
-                surface of 32x32 px. Can be set to be any image
+        Args:
+            dest_room: Sets the destination room.
+            dest_coords: Sets the destination coordinates.
+            dest_dir: Sets the destination direction.
+            coordinates: Sets the coordinates.
+            surf: Sets the image.
+            group: Sets the group.
         """
-        super().__init__(coordinates, room, group, surf)
+        super().__init__(coordinates, group, surf)
         self._dest_room = dest_room
         self._dest_dir = dest_dir
         self._dest_coords = (
             dest_coords[0] * TILE_SIZE,
             dest_coords[1] * TILE_SIZE,
         )
-        self._is_locked = is_locked
-        self._key = key
 
-    @property
-    def is_locked(self):
-        """
-        Returns whether the portal is locked
-        """
-        return self._is_locked
-
+    # getters
     @property
     def dest_room(self):
         """
-        Returns the destination room
+        Returns the destination room of the portal.
         """
         return self._dest_room
 
@@ -117,53 +133,56 @@ class Portal(Tile):
         """
         return self._dest_dir
 
-    @property
-    def key(self):
-        """
-        Returns the key item for the portal
-        """
-        return self._key
-
-    def unlock(self, key_input):
-        """
-        unlocks the room based on the players input key item
-
-        Attributes:
-            key_input: item that the player inputs
-        """
-        if key_input == self._key:
-            self._is_locked = False
-
 
 class Item(Tile):
     """
-    Sets up an Item object
+    A special tile that can be picked up by the player.
+
+    Attributes:
+        _name: A string representing the name of the item. Once the item is
+        taken off the map, it is only referred to by name rather than any
+        other unique attributes.
     """
 
-    def __init__(self, name, coordinates, room, group, surf):
+    def __init__(self, name, coordinates, group, surf):
         """
-        Initializes an item object
+        Initializes an instance of the Item class.
 
         Attributes:
-            name: String of the name of the sprite
-            coordinates: list of 2 ints, reprisenting the location of the sprite
-            room: String of name of the room the sprite is in
-            image: image reprisenting the sprite, auto set to be a blank pygame
-                surface of 32x32 px. Can be set to be any image
+            name: Sets the name.
+            coordinates: Sets the coordinates.
+            group: Sets the group.
+            Surf: Sets the image.
         """
+        # super
+        super().__init__(coordinates, group, surf)
         self._name = name
-        super().__init__(coordinates, room, group, surf)
 
     @property
     def name(self):
         """
-        eee"""
+        Returns the string name of the item.
+        """
         return self._name
 
 
 class NPC(Tile):
     """
-    Class Npc defines a new npc,.
+    A special tile that can be collided with and spoken to.
+
+    Attributes:
+    _name:  A string representing the name of the NPC.
+    _voice_line_init: A string representing what the NPC will say if it has
+    not received the item it wants yet.
+    _voice_line_received: A string representing what the NPC will say if it has
+    just received the item it wants.
+    _voice_line_after: A string representing what the NPC will say once it
+    possesses the item it wants.
+    _item_wants: A string representing the name of the item that the NPC wants.
+    _is_satisfied: A boolean representing whether the NPC has received the item
+    that it wants in order to be completed.
+    _player_visits: A boolean representing whether or not the player has spoken
+    to this NPC yet.
     """
 
     def __init__(
@@ -174,71 +193,74 @@ class NPC(Tile):
         group,
         name,
         coordinates,
-        room,
     ):
         """
-        Initializes a new npc
+        Initializes an instance of the NPC class.
 
-        Attributes:
-            voice_line: List of strings representing what the npc says when
-                a player interacts, gives an item, or after satisfied
-            is_satisfied: boolean of whether the npc has gotten the item
-                or not
-            item_wants: item that the npc needs to be satisfied
-
+        Args:
+            name: Sets the name.
+            voice_lines: List of strings that sets what the NPC says when
+            a player interacts, gives an item, or after satisfied.
+            item_wants: Sets the item that the NPC wants.
+            surf: Sets the image.
+            group: Sets the group.
+            coordinates: Sets the coordinates.
         """
-        super().__init__(coordinates, room, group, surf)
+        # super
+        super().__init__(coordinates, group, surf)
+        # set from parameters
         self._name = name
+        self._item_wants = item_wants
+        # set voice lines
         self._voice_line_init = voice_lines[0]
         self._voice_line_received = voice_lines[1]
         self._voice_line_after = voice_lines[2]
+        # set default attributes
         self._is_satisfied = False
-        self._item_wants = item_wants
         self._player_visits = False
 
-    @property
-    def voice_lines(self):
-        """
-        Returns the voice lines of the npc
-        """
-        return self._voice_lines
-
+    # getters
     @property
     def is_satisfied(self):
         """
-        Returns whether the npc is satisfied
+        Returns whether or not the NPC is satisfied.
         """
         return self._is_satisfied
 
     @property
     def item_wants(self):
         """
-        Returns the desired item of the npc
+        Returns the string name of the desired item of the NPC.
         """
         return self._item_wants
 
     @property
     def name(self):
         """
-        eee"""
+        Returns the string name of the NPC.
+        """
         return self._name
 
-    def det_voice(self, player=Player):
+    # determine current voiceline
+    def det_voice(self, player):
         """
-        Determines which voiceline the NPC will give to the player,
-        based on whether or not the player has the item they want.
+        Determines which voiceline the NPC will give to the player, based on
+        whether or not the player has the item they want and whether the player
+        has spoken to this NPC yet.
 
         Args:
-            player: a Player instance that represents the information of the
-            player
+            player: the current player, who is of the Player class.
 
-        Returns the correct string
+        Returns the correct voiceline for the situation.
         """
+        # if possessing the item
         if self._is_satisfied:
             return self._voice_line_after
+        # if just receiving the item now
         if self._item_wants in player.inventory and self._player_visits:
             player.give(self._item_wants)
             self._is_satisfied = True
             return self._voice_line_received
+        # if never visited yet
         self._player_visits = True
         return self._voice_line_init
