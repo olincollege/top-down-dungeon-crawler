@@ -236,7 +236,7 @@ class NPC(Tile):
         """
         if self._is_satisfied:
             return self._voice_line_after
-        if self._item_wants in player.get_inventory() and self._player_visits:
+        if self._item_wants in player.inventory and self._player_visits:
             player.give(self._item_wants)
             self._is_satisfied = True
             return self._voice_line_received
