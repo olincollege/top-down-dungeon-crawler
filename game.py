@@ -59,7 +59,7 @@ while RUN:
                         user.room, user.current_sprite
                     )
                     if is_npc is not None:
-                        controller.create_textbox(is_npc)
+                        controller.create_textbox(is_npc.det_voice(user))
                 case pygame.K_i:
                     # user.open_inventory
                     controller.create_textbox(user.list_inventory())

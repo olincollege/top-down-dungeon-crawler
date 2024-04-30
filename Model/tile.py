@@ -2,6 +2,7 @@
 
 import pygame
 from constants import TILE_SIZE
+from Model.player import Player
 
 
 class Tile(pygame.sprite.Sprite):
@@ -167,7 +168,7 @@ class NPC(Tile):
 
     def __init__(
         self,
-        voice_line,
+        voice_lines,
         item_wants,
         surf,
         group,
@@ -179,8 +180,8 @@ class NPC(Tile):
         Initializes a new npc
 
         Attributes:
-            voice_line: String reprisenting what the npc says when
-                a player interacts/goes in room
+            voice_line: List of strings representing what the npc says when
+                a player interacts, gives an item, or after satisfied
             is_satisfied: boolean of whether the npc has gotten the item
                 or not
             item_wants: item that the npc needs to be satisfied
@@ -188,16 +189,19 @@ class NPC(Tile):
         """
         super().__init__(coordinates, room, group, surf)
         self._name = name
-        self._voice_line = voice_line
+        self._voice_line_init = voice_lines[0]
+        self._voice_line_received = voice_lines[1]
+        self._voice_line_after = voice_lines[2]
         self._is_satisfied = False
         self._item_wants = item_wants
+        self._player_visits = False
 
     @property
-    def voice_line(self):
+    def voice_lines(self):
         """
-        Returns the voice line of the npc
+        Returns the voice lines of the npc
         """
-        return self._voice_line
+        return self._voice_lines
 
     @property
     def is_satisfied(self):
@@ -219,15 +223,22 @@ class NPC(Tile):
         eee"""
         return self._name
 
-    def recieve(self, given_item):
+    def det_voice(self, player=Player):
         """
-        when npc recieves an item, this method will take it, and
-        check whether it is the item that the npc wants. if it is,
-        the npc will become satisfied, if not, npc will remain
-        unsatisfied
+        Determines which voiceline the NPC will give to the player,
+        based on whether or not the player has the item they want.
 
         Args:
-            given_item: item that the npc recieves
+            player: a Player instance that represents the information of the
+            player
+
+        Returns the correct string
         """
-        if given_item == self._item_wants:
+        if self._is_satisfied:
+            return self._voice_line_after
+        if self._item_wants in player.get_inventory() and self._player_visits:
+            player.give(self._item_wants)
             self._is_satisfied = True
+            return self._voice_line_received
+        self._player_visits = True
+        return self._voice_line_init

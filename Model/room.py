@@ -54,7 +54,7 @@ class Room(pygame.sprite.Sprite):
                     coordinates=tuple(npc["coordinates"]),
                     room=self,
                     group=self._npc_tile_group,
-                    voice_line=npc["voice_line"],
+                    voice_lines=npc["voice_lines"],
                     item_wants=npc["item_wants"],
                 )
             )

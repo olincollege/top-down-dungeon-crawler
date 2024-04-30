@@ -16,7 +16,8 @@
             {
                 "name" : "Hungry Boy",
                 "filepath" : "Resources/npc_images/npc_student.png",
-                "voice_line" : "I'm very hungry... I love berries",
+                "voice_lines" :["I'm very hungry... Can you give me some food?",
+                 "Thanks for the berries! I'll eat them up quick!", "I'm so full!"],
                 "item_wants" : "berry",
                 "coordinates" : [3,2]
             }
@@ -47,7 +48,8 @@
             {
                 "name" : "Guard",
                 "filepath" : "Resources/npc_images/npc_guard.png",
-                "voice_line" : "I'm too scared to go into the dungeon without my axe",
+                "voice_lines" : ["I'm too scared to go into the dungeon without my axe","Thanks! Where'd you find it?",
+                "I'm almost ready to go in...I promise"],
                 "item_wants" : "battleaxe",
                 "coordinates" : [23,4]
             }
@@ -78,7 +80,7 @@
             {
                 "name" : "Mysterious Man",
                 "filepath" : "Resources/npc_images/npc_mysterous_guy.png",
-                "voice_line" : "I need more riches to fill my chest!",
+                "voice_lines" : ["I need more riches to fill my chest!","Oh, this coin is perfect!", "I love my shiny new coin! If only I had some more..."],
                 "item_wants" : "silver coin",
                 "coordinates" : [5,2]
             }
@@ -109,7 +111,8 @@
             {
                 "name" : "Skelly",
                 "filepath" : "Resources/npc_images/npc_skelly.png",
-                "voice_line" : "I need to find the skull of my best friend!",
+                "voice_lines" : ["I need to find my best friend! He was just in that last dungeon.", "Oh, I guess he never made it out...", 
+                "I'll mourn you, my friend."],
                 "item_wants" : "skull",
                 "coordinates" : [1,2]
             }
@@ -140,7 +143,8 @@
             {
                 "name" : "Dog",
                 "filepath" : "Resources/npc_images/npc_dog.png",
-                "voice_line" : "I need something smelly to roll in",
+                "voice_lines" : ["I'm in the mood to roll around in something smelly, got anything? ARF","Wow, this is perfect! ARF", 
+                "ARF ARF ARF"],
                 "item_wants" : "manure",
                 "coordinates" : [16,9]
             }
@@ -171,7 +175,7 @@
             {
                 "name" : "Random Dude",
                 "filepath" : "Resources/npc_images/npc_male.png",
-                "voice_line" : "I'm so cold! I need logs to start a fire",
+                "voice_lines" : ["I'm so cold! Can you help me start a fire?","Oh good, firewood!", "Mmmm, nice and toasty"],
                 "item_wants" : "campfire logs",
                 "coordinates" : [22,4]
             }
@@ -195,7 +199,8 @@
             {
                 "name" : "Felix",
                 "filepath" : "Resources/npc_images/npc_teacher.png",
-                "voice_line" : "I lost my grandfather's gold dagger! Help me find it!",
+                "voice_lines" : ["I lost my grandfather's gold dagger! Have you seen it?","Thank you! Wait, it was where?", 
+                "I'm sorry Grandpa, I won't lose it again"],
                 "item_wants" : "gold dagger",
                 "coordinates" : [2,7]
             }

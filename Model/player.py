@@ -74,7 +74,7 @@ class Player(Character):
                         player_coords[1] - TILE_HEIGHT,
                     )
                     if player_up == npc_coords:
-                        return npc.voice_line
+                        return npc
 
                 case 1:
                     player_right = (
@@ -82,7 +82,7 @@ class Player(Character):
                         player_coords[1],
                     )
                     if player_right == npc_coords:
-                        return npc.voice_line
+                        return npc
 
                 case 2:
                     player_down = (
@@ -90,7 +90,7 @@ class Player(Character):
                         player_coords[1] + TILE_HEIGHT,
                     )
                     if player_down == npc_coords:
-                        return npc.voice_line
+                        return npc
 
                 case 3:
                     player_left = (
@@ -98,7 +98,7 @@ class Player(Character):
                         player_coords[1],
                     )
                     if player_left == npc_coords:
-                        return npc.voice_line
+                        return npc
 
         return None
 
@@ -156,20 +156,38 @@ class Player(Character):
         Args:
             item: item to be picked up
         """
-        self._inventory.append(item)
+        self._inventory.append(item.name)
+
+    def give(self, item):
+        """
+        Takes item from inventory and deletes it
+
+        Args:
+            item: a string representing an item to be removed
+        """
+        self._inventory.remove(item)
+
+    def get_inventory(self):
+        """
+        Returns the inventory as a list of item names
+        """
+        item_names = []
+        for item in self._inventory:
+            item_names.append(item)
+        return item_names
 
     def list_inventory(self):
         """
         Returns a string of the current items in the inventory
 
         Returns:
-            inv_string: string reprisentation of the names of the items
+            inv_string: string representation of the names of the items
                 in the player inventory
         """
         inv_string = "Current Inventory: "
 
         for item in self._inventory:
-            inv_string += f"{item.name}, "
+            inv_string += f"{item}, "
 
         return inv_string[: len(inv_string) - 2]
 
