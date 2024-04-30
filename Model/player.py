@@ -6,9 +6,24 @@ import pygame
 from constants import TILE_SIZE
 
 
-class Player(pygame.sprite.Sprite):
+class Player(
+    pygame.sprite.Sprite
+):  # pylint: disable=too-many-instance-attributes
     """
-    Creates a player object, inherits from Character
+    Creates a player object
+
+    Attributes:
+        _name: a string representing the name of the player
+        _room: a Room instance representing the room the
+        player is in
+        _coordinates: a tuple representing the x and y location
+        of the player
+        _sprite_list: a list of Surfaces representing the different
+        sprites a player has
+        _current_sprite: an integer from 0-3 representing which sprite
+        the player needs to display - direction.
+        _inventory: a list of strings that represent the item names that
+        the player has in the inventory
     """
 
     def __init__(
@@ -20,32 +35,30 @@ class Player(pygame.sprite.Sprite):
         room,
     ):  # pylint: disable=too-many-arguments
         """
-        Initializes a new npc
+        Initializes a new Player
 
-        Attributes:
-            inventory: list of items that the player has
-            sprite_list: list of images reprisenting the
-                4 states the character sprite can be in
-            current_sprite: int reprisenting which sprite from the list
-                is currently used
-            current_item: item that the character currently has
-            name: String of the name of the sprite
-            coordinates: tuple of 2 ints, reprisenting the location of sprite
-            room: String of name of the room the sprite is in
+        Args:
+            sprite_list: a list of images that represent the different
+            sprites a player has
+            current_sprite: an integer representing what direction the
+            player starts out facing - which sprite should be used
+            name: a string representing the player's name
+            coordinates: a tuple of integers representing the player's
+            starting coordinates
+            room: a Room instance representing what room the player
+            starts in
         """
-        # parameter init
+        # initialize name, room, coords
         self._name = name
         self._room = room
         self._coordinates = coordinates
-        # create sprites as images from filepaths
+        # create sprites as Surfaces from image filepaths
         self._sprite_list = []
         for sprite in sprite_list:
             temp = pygame.image.load(sprite)
             self._sprite_list.append(temp)
         # create current sprite info
         self._current_sprite = current_sprite
-        self._image = self._sprite_list[self._current_sprite]
-        self._rect = self._image.get_rect(topleft=self.coordinates)
         # give inventory
         self._inventory = []
 
@@ -53,49 +66,54 @@ class Player(pygame.sprite.Sprite):
     @property
     def name(self):
         """
-        returns name of the object
+        Gets the name of the player.
+
+        Returns the self._name attribute.
         """
         return self._name
 
     @property
     def room(self):
         """
-        returns room of the object
+        Gets the current room of the player
+
+        Returns the self._room attribute.
         """
         return self._room
 
     @property
     def coordinates(self):
         """
-        returns coordinates of the object
+        Gets the current coordinates of the player
+
+        Returns the self._coordinates attribute.
         """
         return self._coordinates
 
     @property
     def sprite_list(self):
         """
-        Returns the sprite list of a character as a list of Surfaces
+        Gets the sprite list of the player.
+
+        Returns the sprite list of the player as a list of Surfaces
         """
         return self._sprite_list
 
     @property
     def current_sprite(self):
         """
-        Returns the current sprite orientation as an int
+        Gets the current orientation of the player.
+
+        Returns the current sprite orientation as an int -
         0:up, 1:right, 2:down, 3:left
         """
         return self._current_sprite
 
     @property
-    def rect(self):
-        """
-        Returns the character's rect
-        """
-        return self._rect
-
-    @property
     def inventory(self):
         """
+        Gets the inventory of the player
+
         Returns the inventory as a list of item names
         """
         item_names = []
@@ -106,7 +124,7 @@ class Player(pygame.sprite.Sprite):
     # setters
     def set_room(self, room):
         """
-        Setter method for room
+        Sets the player's current room
 
         Args:
             room_name: a room object representing the new room
@@ -115,10 +133,10 @@ class Player(pygame.sprite.Sprite):
 
     def set_coordinates(self, coords):
         """
-        Setter method for coordinates
+        Sets the player's current coordinates
 
         Args:
-            coords: A tuple of ints representing the datasprite's new
+            coords: A tuple of ints representing the player's new
             coordinates.
 
         """
@@ -126,24 +144,13 @@ class Player(pygame.sprite.Sprite):
 
     def set_current_sprite(self, orientation):
         """
-        sets the current orientation of the sprite
+        Sets the current orientation of the sprite
 
         Args:
-            orientation: int reprisenting which orientation the
-                sprite is set to
-                0:up, 1:right, 2:down, 3:left
+            orientation: int representing which orientation the
+                sprite is set to: 0:up, 1:right, 2:down, 3:left
         """
         self._current_sprite = orientation
-
-    def set_rect(self, new_coords):
-        """
-        sets the rect of the sprite
-
-        Args:
-            new_coords: tuple representing character's new coords
-        """
-        self._coordinates = new_coords
-        self._rect = self._image.get_rect(topleft=self._coordinates)
 
     # function to call three common movement functions together
     def update_movement(self, new_dir, x_mod, y_mod):
@@ -159,12 +166,11 @@ class Player(pygame.sprite.Sprite):
             (self.coordinates[0] + x_mod, self.coordinates[1] + y_mod)
         )
         self.set_current_sprite(new_dir)
-        self.set_rect(self.coordinates)
 
     # functions to manage the inventory
     def pick_up(self, item):
         """
-        takes item to be picked up and places it in the inventory
+        Takes item to be picked up and places it's name in the inventory
 
         Args:
             item: item to be picked up
@@ -176,7 +182,7 @@ class Player(pygame.sprite.Sprite):
         Takes item from inventory and deletes it
 
         Args:
-            item: a string representing an item to be removed
+            item: a string representing the item's name that will be removed
         """
         self._inventory.remove(item)
 
@@ -209,15 +215,20 @@ class Player(pygame.sprite.Sprite):
         Returns a NPC instance corresponding to the NPC that
         the player is interacting with, or None if no such NPC exists
         """
-
+        # Gets list of NPCs in the room
         npc_list = room.npc_list
+
+        # Gets the player's current coordinates
         player_coords = self.coordinates
 
+        # Cycles through the room's NPCs
         for npc in npc_list:
 
+            # Gets the NPC's coordinates
             npc_coords = npc.coordinates
 
             match player_dir:
+                # Checks if the coordinates above the player have a NPC
                 case 0:
                     player_up = (
                         player_coords[0],
@@ -225,7 +236,7 @@ class Player(pygame.sprite.Sprite):
                     )
                     if player_up == npc_coords:
                         return npc
-
+                # Checks if the coordinates right of the player have a NPC
                 case 1:
                     player_right = (
                         player_coords[0] + TILE_SIZE,
@@ -233,7 +244,7 @@ class Player(pygame.sprite.Sprite):
                     )
                     if player_right == npc_coords:
                         return npc
-
+                # Checks if the coordinates below the player have a NPC
                 case 2:
                     player_down = (
                         player_coords[0],
@@ -241,7 +252,7 @@ class Player(pygame.sprite.Sprite):
                     )
                     if player_down == npc_coords:
                         return npc
-
+                # Checks if the coordinates left of the player have a NPC
                 case 3:
                     player_left = (
                         player_coords[0] - TILE_SIZE,
@@ -252,7 +263,6 @@ class Player(pygame.sprite.Sprite):
 
         return None
 
-    # function to see if the player is colliding with something
     def check_collision(self, player_dir, collidables):
         """
         Checks to see if the player will collide with a tile
@@ -267,30 +277,36 @@ class Player(pygame.sprite.Sprite):
 
         Returns True if the character will collide, and False if it won't
         """
+        # Gets the player's current coordinates
         player_coords = self.coordinates
 
+        # Cycles through each collidable tile and gets its coordinates
         for tile in collidables:
             tile_coords = tile.coordinates
 
             match player_dir:
+                # Checks if the coordinates above the player is collidable
                 case 0:
                     if (
                         tile_coords[0] == player_coords[0]
                         and tile_coords[1] == player_coords[1] - TILE_SIZE
                     ):
                         return True
+                # Checks if the coordinates right of the player is collidable
                 case 1:
                     if (
                         tile_coords[0] == player_coords[0] + TILE_SIZE
                         and tile_coords[1] == player_coords[1]
                     ):
                         return True
+                # Checks if the coordinates below the player is collidable
                 case 2:
                     if (
                         tile_coords[0] == player_coords[0]
                         and tile_coords[1] == player_coords[1] + TILE_SIZE
                     ):
                         return True
+                # Checks if the coordinates left of the player is collidable
                 case 3:
                     if (
                         tile_coords[0] == player_coords[0] - TILE_SIZE

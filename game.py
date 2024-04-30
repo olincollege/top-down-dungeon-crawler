@@ -25,13 +25,13 @@ user = Player(
         "Resources/Player Images/red_left_32.png",
     ],
     current_sprite=2,
-    name="coco",
+    name="Sandman",
     coordinates=(3 * TILE_SIZE, 15 * TILE_SIZE),
     room=controller.current_room,
 )
 
 controller.create_textbox(
-    "Welcome! Press X to start, and Q to display instructions"
+    "Welcome to Sandman's Adventure! Press X to start, and Q to display instructions"
 )
 RUN = True
 
@@ -49,13 +49,10 @@ while RUN:
                     controller.move_left(user)
                 case pygame.K_RIGHT:
                     controller.move_right(user)
-                    print("RIGHT")
                 case pygame.K_UP:
                     controller.move_up(user)
-                    print("UP")
                 case pygame.K_DOWN:
                     controller.move_down(user)
-                    print("DOWN")
                 case pygame.K_SPACE:
                     is_npc = user.check_npc_coords(
                         user.room, user.current_sprite

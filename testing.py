@@ -11,10 +11,10 @@ screen.fill((255, 255, 255))
 pygame.display.flip()
 
 
-def create_text(text):
-    font = pygame.font.SysFont("Comic Sans MS", 32)
+def create_text(samp_text):
+    font = pygame.font.SysFont("Times New Roman", 32)
     text_surf = pygame.font.Font.render(
-        font, text, False, (255, 255, 255), (0, 0, 0)
+        font, samp_text, False, (255, 255, 255), (0, 0, 0)
     )
     new_surf = pygame.Surface(
         (SCREEN_WIDTH * TILE_SIZE, SCREEN_HEIGHT * TILE_SIZE)
@@ -34,7 +34,7 @@ while RUN:
             if event.key == pygame.K_ESCAPE:
                 RUN = False
             if event.key == pygame.K_SPACE:
-                text = create_text("Hi there! Can you bring me some manure?")
+                text = create_text("Inventory: Gold Dagger, Manure")
                 screen.blit(text[1], (0, 0))
                 x = text[0].get_width()
                 screen.blit(
