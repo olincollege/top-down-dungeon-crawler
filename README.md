@@ -9,6 +9,9 @@ different problems. When the player helps solve each of the characters'
 problems, they win! Afterwards, the player is free to continue exploring
 the world.
 
+For more information, please go to our website:
+https://olincollege.github.io/top-down-dungeon-crawler/
+
 ## Running The Game
 In order to run this program, users should navigate to the game.py file
 in the root folder and press run. If all system requirements and package
@@ -26,9 +29,8 @@ Most supplemental resources can be found in the Resources folder. This
 includes JSON files that store hard-coded game data, as well as visual assets
 such as player sprites, NPC sprites, and map tilesets. The one exception to
 this is the .tmx map files, which needed to be stored in the project's root
-folder in order to load correctly. Additionally, unit tests can be found in the
-aptly named Unit Tests folder. Finally, the files for the Github Pages website
-can be found in the docs folder.
+folder in order to load correctly. Unit tests can also be found in the root folder. 
+Finally, the files for the Github Pages website can be found in the docs folder.
 
 Finally, the file game.py, which runs the program, can be found in the
 project's root folder.
