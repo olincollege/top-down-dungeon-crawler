@@ -34,7 +34,7 @@ Throughout the map, there are many NPCs waiting to be interacted with. When talk
 ### Video
 Below is a video of some explaination and gameplay of our game
 
-<video src="final_video.mp4" width="1316" height="992">
+[![Final Video](https://img.youtube.com/vi/yKlaoD2vMbg/0.jpg)](https://www.youtube.com/watch?v=yKlaoD2vMbg)
 
 
 
