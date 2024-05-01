@@ -26,9 +26,8 @@ Most supplemental resources can be found in the Resources folder. This
 includes JSON files that store hard-coded game data, as well as visual assets
 such as player sprites, NPC sprites, and map tilesets. The one exception to
 this is the .tmx map files, which needed to be stored in the project's root
-folder in order to load correctly. Additionally, unit tests can be found in the
-aptly named Unit Tests folder. Finally, the files for the Github Pages website
-can be found in the docs folder.
+folder in order to load correctly. Unit tests can also be found in the root folder. 
+Finally, the files for the Github Pages website can be found in the docs folder.
 
 Finally, the file game.py, which runs the program, can be found in the
 project's root folder.
