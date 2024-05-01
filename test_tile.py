@@ -1,5 +1,8 @@
 """
 Tests the methods in the tile.py file
+
+We will only be testing the function det_voice because
+everything else is a property, and therefore unnecessary to test.
 """
 
 import pygame
@@ -52,9 +55,14 @@ def test_det_voice(npc, player, item):
     """
     Tests the det_voice method in the NPC class of tile.py
 
-    Only testing the 'before' test because to update the state of the 
+    Only testing the 'before' test because to update the state of the
     npc the player has to interact with it in a way that can not be done
     in a unit test
+
+    Args:
+        npc: an NPC instance representing the information of the npc
+        player: a Player instance that represents the player's information
+        item: an Item instance representing the item to be picked up.
     """
     player.pick_up(item)
     voice_line = npc.det_voice(player)

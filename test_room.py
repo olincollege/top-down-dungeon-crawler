@@ -3,14 +3,16 @@ Tests the methods in the room.py file
 
 ****
 Below, we set up the code to run a pytest. However, there
-were issues when setting up the pytest and it would not function. 
+were issues when setting up the pytest and it would not function.
 We contacted CAs about this issue and no one was able to figure out
 the issue. We left the code here, but commented out the test itself.
 If the grader understands what the issue is please let us know
 
-
+We are also not testing any of the other functions because they
+are all properties and setters, and therefore unnecessary to test.
 
 """
+
 from json import load
 
 # import pytest

@@ -50,6 +50,7 @@ track_portal_cases = [
 track_item_cases = [
     # Not on item
     (test_play, 0, []),
+    # Player on item
     (test_play, 1, ["silver coin"]),
 ]
 # (test_play, 1, ["silver coin"]) - doesn't work??

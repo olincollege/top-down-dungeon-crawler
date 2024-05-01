@@ -108,9 +108,7 @@ class TopDownController:
                 # destination portal
                 player.set_coordinates(portal.dest_coords)
                 # Makes sure the player is facing the right way
-                print(player.current_sprite)
                 player.set_current_sprite(portal.dest_dir)
-                print(player.current_sprite)
 
     def track_item(self, player=Player):
         """
@@ -124,7 +122,6 @@ class TopDownController:
 
         for item in room_items:
             temp_item_coords = item.coordinates
-            print(f"item coords {temp_item_coords}")
             # Checks if the player and the item are in the same place
             if player.coordinates == temp_item_coords:
                 print(f"Picking up item at {temp_item_coords}")
