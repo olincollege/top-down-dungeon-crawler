@@ -9,6 +9,9 @@ different problems. When the player helps solve each of the characters'
 problems, they win! Afterwards, the player is free to continue exploring
 the world.
 
+For more information, please go to our website:
+https://olincollege.github.io/top-down-dungeon-crawler/
+
 ## Running The Game
 In order to run this program, users should navigate to the game.py file
 in the root folder and press run. If all system requirements and package
