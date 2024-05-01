@@ -117,10 +117,8 @@ class Player(
 
         Returns the inventory as a list of item names
         """
-        item_names = []
-        for item in self._inventory:
-            item_names.append(item)
-        return item_names
+        print(f"Returning inventory {self._inventory}")
+        return self._inventory
 
     # setters
     def set_room(self, room):
@@ -171,11 +169,12 @@ class Player(
     # functions to manage the inventory
     def pick_up(self, item):
         """
-        Takes item to be picked up and places it's name in the inventory
+        Takes item to be picked up and places its name in the inventory
 
         Args:
             item: item to be picked up
         """
+        print(f"Appending {item.name}")
         self._inventory.append(item.name)
 
     def give(self, item):

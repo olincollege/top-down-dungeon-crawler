@@ -125,6 +125,7 @@ class TopDownController:
             temp_item_coords = item.coordinates
             # Checks if the player and the item are in the same place
             if player.coordinates == temp_item_coords:
+                print(f"Picking up item at {temp_item_coords}")
                 # Adds item to player's inventory
                 player.pick_up(item)
                 # Removes item from Room instance
@@ -253,7 +254,7 @@ class TopDownController:
         Displays a different set of instructions (out of 4 possible),
         depending on the self._instruct attribute.
         """
-        # Creates number from 0-3
+        # Creates number from 0-4
         num_instruct = self._instruct % 5
 
         # Finds what instructions should be displayed and updates self._instruct

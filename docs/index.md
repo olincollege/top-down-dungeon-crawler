@@ -2,122 +2,40 @@
 layout: default
 ---
 
-Text can be **bold**, _italic_, or ~~strikethrough~~.
-
-[Link to another page](./another-page.html).
-
-There should be whitespace between paragraphs.
-
-There should be whitespace between paragraphs. We recommend including a README, or a file with information about your project.
-
-# Header 1
-
-This is a normal paragraph following a header. GitHub is a code hosting platform for version control and collaboration. It lets you and others work together on projects from anywhere.
-
-## Header 2
-
-> This is a blockquote following a header.
->
-> When something is important enough, you do it even if the odds are not in your favor.
-
-### Header 3
-
-```js
-// Javascript code with syntax highlighting.
-var fun = function lang(l) {
-  dateformat.i18n = require('./lang/' + l)
-  return true;
-}
-```
-
-```ruby
-# Ruby code with syntax highlighting
-GitHubPages::Dependencies.gems.each do |gem, version|
-  s.add_dependency(gem, "= #{version}")
-end
-```
-
-#### Header 4
-
-*   This is an unordered list following a header.
-*   This is an unordered list following a header.
-*   This is an unordered list following a header.
-
-##### Header 5
-
-1.  This is an ordered list following a header.
-2.  This is an ordered list following a header.
-3.  This is an ordered list following a header.
-
-###### Header 6
-
-| head1        | head two          | three |
-|:-------------|:------------------|:------|
-| ok           | good swedish fish | nice  |
-| out of stock | good and plenty   | nice  |
-| ok           | good `oreos`      | hmm   |
-| ok           | good `zoute` drop | yumm  |
-
-### There's a horizontal rule below this.
-
-* * *
-
-### Here is an unordered list:
-
-*   Item foo
-*   Item bar
-*   Item baz
-*   Item zip
-
-### And an ordered list:
-
-1.  Item one
-1.  Item two
-1.  Item three
-1.  Item four
-
-### And a nested list:
-
-- level 1 item
-  - level 2 item
-  - level 2 item
-    - level 3 item
-    - level 3 item
-- level 1 item
-  - level 2 item
-  - level 2 item
-  - level 2 item
-- level 1 item
-  - level 2 item
-  - level 2 item
-- level 1 item
-
-### Small image
-
-![Octocat](https://github.githubassets.com/images/icons/emoji/octocat.png)
-
-### Large image
-
-![Branching](https://guides.github.com/activities/hello-world/branching.png)
+# Sandman's Adventure
+## Mika Gazit, Ivy Mahncke, Charlie Mawn
+#### [Our Github Page](https://github.com/olincollege/top-down-dungeon-crawler)
 
 
-### Definition lists can be used with HTML syntax.
+### The Big Idea
+This game is a top down adventure game where the player will explore maps, pick up items, and interact with NPCs. The goal of this project was not only to create a fun game by the end, but also for us to explore, experiment with, and understand the intricacies of pygame, sprites, tilesets, and so much more. 
 
-<dl>
-<dt>Name</dt>
-<dd>Godzilla</dd>
-<dt>Born</dt>
-<dd>1952</dd>
-<dt>Birthplace</dt>
-<dd>Japan</dd>
-<dt>Color</dt>
-<dd>Green</dd>
-</dl>
 
-```
-Long, single-line code blocks should not wrap. They should horizontally scroll if they are too long. This line should be long enough to demonstrate this.
-```
+### Our Maps:
+##### Credit to Clockwork Raven on Itch.io for the tilesets [link](https://itch.io/s/87673/raven-fantasy-tilesets-full-collection)
+##### Credit to PizzaSun and tebited15 on DeviantArt for the player sprite [link](https://www.deviantart.com/pizzasun/art/Pokemon-XY-Male-Trainer-Gen-IV-Style-698428061)
+##### Credit to Pipoya on Itch.io for the npc sprites [link](https://pipoya.itch.io/pipoya-free-rpg-character-sprites-32x32)
 
-```
-The final element.
-```
+Here is our player! We were inspired by classic JRPGs such as Pokemon, Earthbound, and Octopath Traveler, so we wanted to use a sprite that reflects that. The player also has 4 different sprites so we can show directionality when moving around. 
+
+<img src="red_down_32.png" width="100" height="100">
+
+Here are images of two of our maps. Using the tilesets and sprite assets provided by the sources above, we put together a total of 7 maps, each with intricate detail, at least one item, and at least one NPC. We use the [Tiled Map Editor](https://thorbjorn.itch.io/tiled) in order to design each map. 
+
+
+<img src="Game_image_1.png" width="400" height="400"><img src="Game_image_2.png" width="350" height="400">
+
+
+### How to Play
+In order to download the game, navigate to our github page (linked above), then follow the instructions in the README.md file to download and run. 
+
+Throughout the map, there are many NPCs waiting to be interacted with. When talked to, they provide the player with a quest, and when completed, the NPC will be satisfied. The final goal of the game is to navigate the whole map, interact with every NPC, and find all the items that the NPCs desire in order to complete their quests. Once all the NPCs are satisfied, you win! You can either exit the game and start over, or continue exploring our maps.
+
+### Video
+Below is a video of some explaination and gameplay of our game
+
+[![Final Video](https://img.youtube.com/vi/yKlaoD2vMbg/0.jpg)](https://www.youtube.com/watch?v=yKlaoD2vMbg)
+
+
+
+
