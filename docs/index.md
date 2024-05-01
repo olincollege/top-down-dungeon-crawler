@@ -32,7 +32,7 @@ In order to download the game, navigate to our github page (linked above), then 
 Throughout the map, there are many NPCs waiting to be interacted with. When talked to, they provide the player with a quest, and when completed, the NPC will be satisfied. The final goal of the game is to navigate the whole map, interact with every NPC, and find all the items that the NPCs desire in order to complete their quests. Once all the NPCs are satisfied, you win! You can either exit the game and start over, or continue exploring our maps.
 
 ### Video
-Below is a video of some explaination and gameplay of our game
+Below is a video of some explaination and gameplay of our game. To play the video, please click on the image - it will navigate you to the YouTube page. 
 
 [![Final Video](https://img.youtube.com/vi/yKlaoD2vMbg/0.jpg)](https://www.youtube.com/watch?v=yKlaoD2vMbg)
 
