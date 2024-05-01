@@ -2,8 +2,7 @@
 File to test controller.py
 
 Functions that we aren't testing:
-    init: we are not testing initialization functions, especially since
-    we are testing all of the getters that we use in the implementation.
+    init: we are not testing initialization functions.
     text_box, world, current_room: all these properties will be tested
     elsewhere as part of other tests.
     clear_text_box, create_text_box: these functions affect Surfaces,
@@ -100,38 +99,6 @@ move_down_cases = [
 ]
 
 
-@pytest.mark.parametrize(
-    "test_player, test_num, final_room, final_coords, final_dir",
-    track_portal_cases,
-)
-def test_track_portal(
-    test_player, test_num, final_room, final_coords, final_dir
-):
-    """
-    Tests the track portal function in the controller
-
-    Args:
-        player: a Player instance that represents the player's information
-        test_num: an int representing which test will be run
-        final_room: the room that the player should be in after the test
-        final_coords: the coordinates that the player should have after the test
-        final_dir: the coordinates that the player should have after the test
-    """
-    match test_num:
-        case 0:
-            test_player.set_coordinates((0, 0))
-        case 1:
-            test_player.set_coordinates((320, 32))
-
-    test_cont.track_portal(test_player)
-    assert test_player.room == final_room
-    assert test_player.coordinates == (
-        final_coords[0] * constants.TILE_SIZE,
-        final_coords[1] * constants.TILE_SIZE,
-    )
-    assert test_player.current_sprite == final_dir
-
-
 @pytest.mark.parametrize("test_player, test_num, player_inv", track_item_cases)
 def test_track_item(test_player, test_num, player_inv):
     """
@@ -145,10 +112,10 @@ def test_track_item(test_player, test_num, player_inv):
         the player's inventory after the test
     """
     match test_num:
-        case 0:
-            test_player.set_coordinates((0, 0))
         case 1:
             test_player.set_coordinates((32, 64))
+        case 0:
+            test_player.set_coordinates((0, 0))
     test_cont.track_item(test_player)
     assert test_player.inventory == player_inv
 
@@ -163,6 +130,7 @@ def test_move_left(test_player, test_num, text_box):
         test_num: an int representing which test will be run
         text_box: a string representing the textbox, or None if there is none
     """
+    test_cont.clear_text_box()
     final_coords = (0, 0)
     match test_num:
         case 0:
@@ -228,19 +196,19 @@ def test_move_up(test_player, test_num, text_box):
     final_coords = (0, 0)
     match test_num:
         case 0:
-            test_player.set_coordinates((224, 512))
-            final_coords = (224, 480)
+            test_player.set_coordinates((256, 544))
+            final_coords = (256, 512)
         case 1:
-            test_player.set_coordinates((64, 32))
-            final_coords = (64, 32)
+            test_player.set_coordinates((64, 64))
+            final_coords = (64, 64)
         case 2:
             test_player.set_coordinates((224, 512))
             test_cont.create_textbox(text_box)
             final_coords = (224, 512)
         case 3:
-            test_player.set_coordinates((224, 320))
+            test_player.set_coordinates((64, 64))
             test_cont.create_textbox(text_box)
-            final_coords = (224, 320)
+            final_coords = (64, 64)
     test_cont.move_up(test_player)
     assert test_player.coordinates == final_coords
 
@@ -262,8 +230,8 @@ def test_move_down(test_player, test_num, text_box):
             test_player.set_coordinates((96, 544))
             final_coords = (96, 576)
         case 1:
-            test_player.set_coordinates((96, 608))
-            final_coords = (96, 608)
+            test_player.set_coordinates((96, 576))
+            final_coords = (96, 576)
         case 2:
             test_player.set_coordinates((224, 512))
             test_cont.create_textbox(text_box)
@@ -274,3 +242,37 @@ def test_move_down(test_player, test_num, text_box):
             final_coords = (96, 576)
     test_cont.move_down(test_player)
     assert test_player.coordinates == final_coords
+
+
+@pytest.mark.parametrize(
+    "test_player, test_num, final_room, final_coords, final_dir",
+    track_portal_cases,
+)
+def test_track_portal(
+    test_player, test_num, final_room, final_coords, final_dir
+):
+    """
+    Tests the track portal function in the controller
+
+    Args:
+        player: a Player instance that represents the player's information
+        test_num: an int representing which test will be run
+        final_room: the room that the player should be in after the test
+        final_coords: the coordinates that the player should have after the test
+        final_dir: the coordinates that the player should have after the test
+    """
+    match test_num:
+        case 0:
+            test_player.set_coordinates((0, 0))
+            test_player.set_current_sprite(0)
+        case 1:
+            test_player.set_coordinates((320, 32))
+            test_player.set_current_sprite(0)
+
+    test_cont.track_portal(test_player)
+    assert test_player.room == final_room
+    assert test_player.coordinates == (
+        final_coords[0] * constants.TILE_SIZE,
+        final_coords[1] * constants.TILE_SIZE,
+    )
+    assert test_player.current_sprite == final_dir
