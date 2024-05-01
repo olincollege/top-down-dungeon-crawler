@@ -5,7 +5,7 @@ import pygame
 
 # internal packages
 from Model.player import Player
-from Model.constants import TILE_SIZE
+from Model.constants import TILE_SIZE, LEFT, UP, RIGHT, DOWN
 from controller import TopDownController
 from view import View
 
@@ -25,7 +25,7 @@ user = Player(
         "Resources/Player Images/red_down_32.png",
         "Resources/Player Images/red_left_32.png",
     ],
-    current_sprite=2,
+    current_sprite=DOWN,
     name="Sandman",
     coordinates=(3 * TILE_SIZE, 15 * TILE_SIZE),
     room=controller.current_room,

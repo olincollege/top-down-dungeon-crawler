@@ -3,6 +3,7 @@ and its interactions"""
 
 import pygame
 from Model.constants import TILE_SIZE
+from Model.constants import LEFT, UP, RIGHT, DOWN
 from Model.world_manager import WorldManager
 from Model.player import Player
 
@@ -181,10 +182,12 @@ class TopDownController:
         # Checks if there is a textbox
         if self._text_box is None:
             # Checks for collisions
-            if player.check_collision(3, self.current_room.get_all_collide()):
-                player.update_movement(3, 0, 0)
+            if player.check_collision(
+                LEFT, self.current_room.get_all_collide()
+            ):
+                player.update_movement(LEFT, 0, 0)
             else:
-                player.update_movement(3, -TILE_SIZE, 0)
+                player.update_movement(LEFT, -TILE_SIZE, 0)
             # Checks if the new position is on a portal or item
             self.check_step(player)
 
@@ -198,10 +201,12 @@ class TopDownController:
         # Checks if there is a textbox
         if self._text_box is None:
             # Checks for collisions
-            if player.check_collision(1, self.current_room.get_all_collide()):
-                player.update_movement(1, 0, 0)
+            if player.check_collision(
+                RIGHT, self.current_room.get_all_collide()
+            ):
+                player.update_movement(RIGHT, 0, 0)
             else:
-                player.update_movement(1, TILE_SIZE, 0)
+                player.update_movement(RIGHT, TILE_SIZE, 0)
             # Checks if the new position is on a portal or item
             self.check_step(player)
 
@@ -215,10 +220,12 @@ class TopDownController:
         # Checks if there is a textbox
         if self._text_box is None:
             # Checks for collisions
-            if player.check_collision(2, self.current_room.get_all_collide()):
-                player.update_movement(2, 0, 0)
+            if player.check_collision(
+                DOWN, self.current_room.get_all_collide()
+            ):
+                player.update_movement(DOWN, 0, 0)
             else:
-                player.update_movement(2, 0, TILE_SIZE)
+                player.update_movement(DOWN, 0, TILE_SIZE)
             # Checks if the new position is on a portal or item
             self.check_step(player)
 
@@ -232,10 +239,10 @@ class TopDownController:
         # Checks if there is a textbox
         if self._text_box is None:
             # Checks for collisions
-            if player.check_collision(0, self.current_room.get_all_collide()):
-                player.update_movement(0, 0, 0)
+            if player.check_collision(UP, self.current_room.get_all_collide()):
+                player.update_movement(UP, 0, 0)
             else:
-                player.update_movement(0, 0, -TILE_SIZE)
+                player.update_movement(UP, 0, -TILE_SIZE)
             # Checks if the new position is on a portal or item
             self.check_step(player)
 
