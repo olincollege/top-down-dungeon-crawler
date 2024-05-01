@@ -5,7 +5,7 @@ import pygame
 
 # internal packages
 from Model.player import Player
-from Model.constants import TILE_SIZE, LEFT, UP, RIGHT, DOWN
+from Model.constants import TILE_SIZE, DOWN
 from controller import TopDownController
 from view import View
 
