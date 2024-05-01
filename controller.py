@@ -246,7 +246,7 @@ class TopDownController:
         Displays a different set of instructions (out of 4 possible),
         depending on the self._instruct attribute.
         """
-        # Creates number from 0-3
+        # Creates number from 0-4
         num_instruct = self._instruct % 5
 
         # Finds what instructions should be displayed and updates self._instruct

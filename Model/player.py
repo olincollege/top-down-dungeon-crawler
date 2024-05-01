@@ -170,7 +170,7 @@ class Player(
     # functions to manage the inventory
     def pick_up(self, item):
         """
-        Takes item to be picked up and places it's name in the inventory
+        Takes item to be picked up and places its name in the inventory
 
         Args:
             item: item to be picked up
